@@ -21,18 +21,16 @@ public class mytestpack {
 	public static void main(String[] args) throws AWTException {
 		LogCat logCat = LogCat.getInstance();
 		
-		logCat.sendToLog("WebDriver Starting ...");
+		logCat.sendToLog("WebDriver Starting (firefox)");
 		WebDriverEngine.getInstance("firefox");
-		logCat.sendToLog("WebDriver Started !!!");
 		
-		logCat.sendToLog("Opening ... https://10.251.108.203/LOR/login.jsp");
-		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-		logCat.sendToLog("Opened !!!");
+		logCat.sendToLog("Opening https://www.facebook.com");
+		new OpenBrowser("https://www.facebook.com").execute();
 		
 		logCat.sendToLog("Loging In ...");
-		new LogIn("SuwitL", "testuser").execute();
-		logCat.sendToLog("Loged In !!!");
+		new LogIn("", "").execute();
 
+		logCat.endLog();
 		//new LogOut().execute();
 	}
 }
