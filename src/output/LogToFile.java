@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class LogToFile {
 
@@ -18,10 +19,11 @@ public class LogToFile {
 	
 	private void openFile(){
 		try {
-
+			System.out.printf("now: %s%n", LocalDateTime.now());					
+			
 			String content = "This is the content to write into file.";
 
-			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log.txt");
+			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + getLocalTime() + ".log");
 
 			// if file doesnt exists, then create it
 			if (!file.exists()) {
@@ -43,6 +45,17 @@ public class LogToFile {
 		}
 	}
 	
+	private String getLocalTime() {
+		String localTime = "_" + LocalDateTime.now().getYear()
+				+ LocalDateTime.now().getMonthValue()
+				+ LocalDateTime.now().getDayOfMonth()
+				+ "_"
+				+ LocalDateTime.now().getHour()
+				+ LocalDateTime.now().getMinute()
+				+ LocalDateTime.now().getSecond();
+		return localTime;
+	}
+
 	public void closeFile(){
 		try{
 			bw.close();
