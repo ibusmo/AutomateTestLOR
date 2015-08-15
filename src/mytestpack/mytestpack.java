@@ -9,11 +9,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import DefaultKeyword.LogIn;
-import DefaultKeyword.LogOut;
-import DefaultKeyword.OpenBrowser;
-import Output.LogCat;
-import WebDriver.WebDriverEngine;
+import defaultKeyword.LogIn;
+import defaultKeyword.LogOut;
+import defaultKeyword.OpenBrowser;
+import output.LogCat;
+import webDriver.WebDriverEngine;
 
 import java.awt.event.KeyEvent;
 
@@ -22,7 +22,7 @@ public class mytestpack {
 		LogCat logCat = LogCat.getInstance();
 		
 		logCat.sendToLog("WebDriver Starting ...");
-		WebDriverEngine.initWebDriver("firefox");
+		WebDriverEngine.getInstance("firefox");
 		logCat.sendToLog("WebDriver Started !!!");
 		
 		logCat.sendToLog("Opening ... https://10.251.108.203/LOR/login.jsp");
