@@ -30,7 +30,7 @@ public class WebDriverEngine {
 		return instance;
 	}
 
-	public static WebDriver getDriverTest() {
+	public static WebDriver getDriver() {
 		if(driverTest == null){
 			if(webEngine == "firefox")
 				driverTest = new FirefoxDriver();

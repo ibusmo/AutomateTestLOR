@@ -11,8 +11,10 @@ public class LogInElement {
 		this.textboxPassword = "j_password";
 		this.buttonLogin = "wp-submit";
 		*/
+		/*
 		this.textboxUsername = "email";
 		this.textboxPassword = "pass";
 		this.buttonLogin = "u_0_v";
+		*/
 	}
 }
