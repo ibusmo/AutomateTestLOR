@@ -1,37 +1,24 @@
 package mytestpack;
 
 import java.awt.AWTException;
-import java.awt.Robot;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import defaultKeyword.LogIn;
-import defaultKeyword.LogOut;
-import defaultKeyword.OpenBrowser;
+import keyword.LogIn;
+import keyword.LogOut;
+import keyword.OpenBrowser;
 import output.LogCat;
 import webDriver.WebDriverEngine;
-
-import java.awt.event.KeyEvent;
 
 public class mytestpack {
 	public static void main(String[] args) throws AWTException {
 		LogCat logCat = LogCat.getInstance();
-		
-		logCat.sendToLog("WebDriver Starting (firefox)");
 		WebDriverEngine.getInstance("firefox");
 		
-		logCat.sendToLog("Opening https://www.facebook.com");
-		new OpenBrowser("https://www.facebook.com").execute();
+		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+		new LogIn("SuwitL", "testuser").execute();
+		new LogOut().execute();
 		
-		logCat.sendToLog("Loging In ...");
-		new LogIn("", "").execute();
-		
+		WebDriverEngine.Close();
 		logCat.endLog();
-		//new LogOut().execute();
 	}
 }
 

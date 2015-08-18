@@ -5,20 +5,22 @@ import java.util.List;
 
 public class LogCat {
 	private static LogCat instance = null;
-	private static List<String> logString = new ArrayList<String>();
-	private LogToFile logToFile = new LogToFile();
+	private static List<String> logString;
+	private static LogToFile logToFile;
 	
 	public static LogCat getInstance(){
 		if(instance == null){
 			instance = new LogCat();
+			logString = new ArrayList<String>();
+			logToFile = new LogToFile();
 		}
 		return instance;
 	}
 	
 	public void sendToLog(String logStr){
 		logString.add(logStr);
-		System.out.println(logStr);
 		logToFile.writeln(logStr);
+		System.out.println(logStr);
 	}
 	
 	public void endLog(){

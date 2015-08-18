@@ -1,4 +1,4 @@
-package defaultKeyword;
+package keyword;
 
 import org.openqa.selenium.By;
 
@@ -6,7 +6,7 @@ import element.LogInElement;
 
 public class LogIn implements Keywords {
 	
-	private LogInElement logInElement;
+	private LogInElement element;
 	
 	private String username;
 	private String password;
@@ -23,14 +23,15 @@ public class LogIn implements Keywords {
 	
 	@Override
 	public void initKeywords() {
-		logInElement = new LogInElement();
+		element = new LogInElement();
 	}
 
 	@Override
 	public boolean execute() {
-		driver.findElement(By.id(logInElement.textboxUsername)).sendKeys(username);
-		driver.findElement(By.id(logInElement.textboxPassword)).sendKeys(password);
-		driver.findElement(By.id(logInElement.buttonLogin)).click();
+		driver.findElement(By.id(element.textboxUsername)).sendKeys(username);
+		driver.findElement(By.id(element.textboxPassword)).sendKeys(password);
+		driver.findElement(By.id(element.buttonLogin)).click();
+		sendToLog();
 		return true;
 	}
 
@@ -48,5 +49,11 @@ public class LogIn implements Keywords {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public boolean sendToLog() {
+		logCat.sendToLog("Log in as u:" + username + " p:" + password);
+		return true;
 	}
 }

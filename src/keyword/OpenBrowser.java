@@ -1,4 +1,4 @@
-package defaultKeyword;
+package keyword;
 
 public class OpenBrowser implements Keywords {
 	private String url;
@@ -13,7 +13,7 @@ public class OpenBrowser implements Keywords {
 
 	@Override
 	public void initKeywords() {
-		setUrl("https://10.251.108.203/LOR/login.jsp");
+		//setUrl("https://10.251.108.203/LOR/login.jsp");
 	}
 
 	@Override
@@ -28,6 +28,12 @@ public class OpenBrowser implements Keywords {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public boolean sendToLog() {
+		logCat.sendToLog(url);
+		return true;
 	}
 
 }

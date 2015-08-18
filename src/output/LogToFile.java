@@ -19,18 +19,20 @@ public class LogToFile {
 	
 	private void openFile(){
 		try {
-			System.out.printf("now: %s%n", LocalDateTime.now());					
+			System.out.printf("now: %s%n", LocalDateTime.now());			
 			
-			String content = "This is the content to write into file.";
+			String currentDateTime = getLocalTime();
+			String content = "Start log. " + currentDateTime;
 
-			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + getLocalTime() + ".log");
+			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + currentDateTime + ".log");
 
-			// if file doesnt exists, then create it
+			// if file doesn't exists, then create it
+			// usually there doesn't exists
 			if (!file.exists()) {
 				file.createNewFile();
 			}
 			// Force to create new file
-			file.createNewFile();
+			//file.createNewFile();
 
 			fw = new FileWriter(file.getAbsoluteFile());
 			bw = new BufferedWriter(fw);
