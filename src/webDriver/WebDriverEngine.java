@@ -3,10 +3,13 @@ package webDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import output.LogCat;
+
 public class WebDriverEngine {
 	private static WebDriverEngine instance    =  null;
 	private static WebDriver driverTest = null;
 	private static String webEngine = null;
+	private static LogCat logCat;
 	
 	private WebDriverEngine(){
 		
@@ -32,11 +35,20 @@ public class WebDriverEngine {
 
 	public static WebDriver getDriver() {
 		if(driverTest == null){
-			if(webEngine == "firefox")
+			if(webEngine == "firefox"){
 				driverTest = new FirefoxDriver();
-			else
+			}
+			else{
 				driverTest = new FirefoxDriver();
+			}		
 		}
+		logCat = LogCat.getInstance();
+		logCat.sendToLog("WebDriver Starting " + webEngine);	
 		return driverTest;
+	}
+	
+	public static void Close(){
+		driverTest.close();
+		logCat.sendToLog("WebDriver Close");		
 	}
 }
