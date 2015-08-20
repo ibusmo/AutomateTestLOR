@@ -1,23 +1,27 @@
 package mytestpack;
 
-import java.awt.AWTException;
-
+import keyword.CertificateClick;
 import keyword.LogIn;
 import keyword.LogOut;
 import keyword.OpenBrowser;
+import keyword.Register;
 import output.LogCat;
 import webDriver.WebDriverEngine;
 
 public class mytestpack {
-	public static void main(String[] args) throws AWTException {
+	public static void main(String[] args){
 		LogCat logCat = LogCat.getInstance();
-		WebDriverEngine.getInstance("firefox");
+		WebDriverEngine.getInstance(); //IE
 		
 		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+		
+		//new CertificateClick().execute();
 		new LogIn("SuwitL", "testuser").execute();
+		new Register().execute();
+		
 		new LogOut().execute();
 		
-		WebDriverEngine.Close();
+		//WebDriverEngine.Close();
 		logCat.endLog();
 	}
 }

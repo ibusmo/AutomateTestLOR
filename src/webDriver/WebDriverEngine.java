@@ -2,6 +2,7 @@ package webDriver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import output.LogCat;
 
@@ -37,6 +38,10 @@ public class WebDriverEngine {
 		if(driverTest == null){
 			if(webEngine == "firefox"){
 				driverTest = new FirefoxDriver();
+			}
+			else if(webEngine == "IE"){
+				System.setProperty("webdriver.ie.driver", "C://Devs//IE//32//IEDriverServer.exe");
+				driverTest = new InternetExplorerDriver();
 			}
 			else{
 				driverTest = new FirefoxDriver();

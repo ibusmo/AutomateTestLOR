@@ -1,6 +1,8 @@
 package keyword;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import element.LogInElement;
 
@@ -28,32 +30,27 @@ public class LogIn implements Keywords {
 
 	@Override
 	public boolean execute() {
-		driver.findElement(By.id(element.textboxUsername)).sendKeys(username);
-		driver.findElement(By.id(element.textboxPassword)).sendKeys(password);
-		driver.findElement(By.id(element.buttonLogin)).click();
+		try{
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.textboxUsername)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.textboxPassword)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.buttonLogin)));
+			driver.findElement(By.id(element.textboxUsername)).clear();
+			driver.findElement(By.id(element.textboxUsername)).sendKeys(username);
+			driver.findElement(By.id(element.textboxPassword)).clear();
+			driver.findElement(By.id(element.textboxPassword)).sendKeys(password);
+			driver.findElement(By.id(element.buttonLogin)).click();
+		}catch (TimeoutException e){
+			logCat.sendToLog("[FAIL]\t -Time out\t -Login");
+			return false;
+		}
+		
 		sendToLog();
 		return true;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Override
 	public boolean sendToLog() {
-		logCat.sendToLog("Log in as u:" + username + " p:" + password);
+		logCat.sendToLog("[PASS]\t -Fill login\t -" + username + " : " + password);
 		return true;
 	}
 }
