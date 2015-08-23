@@ -117,13 +117,17 @@ public class Register implements Keywords {
 			logCat.sendToLog("[FAIL]\t {Register}\t -Get App ID\t : " + appID);
 			return false;
 		}
-		sendToLog();
+		sendToLogFinish();
 		return true;
 	}
-	
+
 	@Override
-	public boolean sendToLog() {
+	public void sendToLogStart() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t {Register}\t -Already Register");
-		return false;
 	}
 }

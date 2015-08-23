@@ -5,13 +5,16 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import element.LogInElement;
+import elementAttribute.LogInElement;
 import keyword.Keywords;
+import output.LogStatus.logaction;
+import output.LogStatus.logexestatus;
+import output.LogStatus.logoperation;
+import output.LogStatus.logpage;
 
 public class LogIn implements Keywords {
 	
-	private LogInElement element;
-	
+	private LogInElement loginElement;
 	private String username;
 	private String password;
 	
@@ -27,44 +30,46 @@ public class LogIn implements Keywords {
 	
 	@Override
 	public void initKeywords() {
-		element = new LogInElement();
+		loginElement = new LogInElement();
 	}
 
 	@Override
 	public boolean execute() {
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.textboxUsername)));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.textboxPassword)));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(element.buttonLogin)));
-			driver.findElement(By.id(element.textboxUsername)).clear();
-			driver.findElement(By.id(element.textboxUsername)).sendKeys(username);
-			driver.findElement(By.id(element.textboxPassword)).clear();
-			driver.findElement(By.id(element.textboxPassword)).sendKeys(password);
-			driver.findElement(By.id(element.buttonLogin)).click();
-			logCat.sendToLog("[PASS]\t {Loin Page}\t -Fill login\t -" + username + " : " + password);
+			//Fill Login Field and Submit
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(loginElement.textboxUsername)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(loginElement.textboxPassword)));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(loginElement.buttonLogin)));
+			driver.findElement(By.id(loginElement.textboxUsername)).clear();
+			driver.findElement(By.id(loginElement.textboxUsername)).sendKeys(username);
+			driver.findElement(By.id(loginElement.textboxPassword)).clear();
+			driver.findElement(By.id(loginElement.textboxPassword)).sendKeys(password);
+			driver.findElement(By.id(loginElement.buttonLogin)).click();
+			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Login, logaction.Fill_login, username + " : " + password);
 		}catch (TimeoutException e){
-			logCat.sendToLog("[FAIL]\t {Loin Page}\t -Fill login\t -" + username + " : " + password);
+			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login, logaction.Fill_login, username + " : " + password);
 			return false;
 		}
-
 		try{
-			///
-			driver.findElement(By.id(element.textboxPassword)).sendKeys(password);
-			driver.findElement(By.id(element.buttonLogin)).click();
-			///
-			logCat.sendToLog("[PASS]\t {Loin Page}\t -Login again\t -Login");
+			//Kick
+			driver.findElement(By.id(loginElement.textboxPassword)).sendKeys(password);
+			driver.findElement(By.id(loginElement.buttonLogin)).click();
+			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Login, logaction.Fill_login_again);
 		}catch (NoSuchElementException e){
-			logCat.sendToLog("[FAIL]\t {Loin Page}\t -Login again\t -Login");
-			//return false;
+			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login, logaction.Fill_login_again);
+			return false;
 		}
 		
-		sendToLog();
+		sendToLogFinish();
 		return true;
 	}
 
 	@Override
-	public boolean sendToLog() {
-		logCat.sendToLog("[PASS]\t {Loin Page}\t -Already Login");
-		return true;
+	public void sendToLogStart() {
+	}
+
+	@Override
+	public void sendToLogFinish() {
+		logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login);
 	}
 }

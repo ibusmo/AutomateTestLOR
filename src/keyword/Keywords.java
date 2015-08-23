@@ -14,6 +14,7 @@ public interface Keywords {
 	public LogCat logCat = LogCat.getInstance();
 	
 	public void initKeywords();
-	public boolean sendToLog();
+	public void sendToLogStart();
+	public void sendToLogFinish();
 	public boolean execute();
 }
