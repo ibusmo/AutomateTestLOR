@@ -8,6 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import keyword.Keywords;
+import output.LogStatus.logaction;
+import output.LogStatus.logexestatus;
+import output.LogStatus.logoperation;
+import output.LogStatus.logpage;
 
 public class GotoApp implements Keywords {
 
@@ -29,9 +33,9 @@ public class GotoApp implements Keywords {
 			String btnWorkBoxTab = "//*[@id='menu-vertical']/ul/li[1]/div/a";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnWorkBoxTab)));
 			driver.findElement(By.xpath(btnWorkBoxTab)).click();
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Click\t\t -WorkBox Tab");
+			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.WorkBox, logaction.Click, "WorkBox Tab");
 		}catch (TimeoutException e){
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Click\t\t -WorkBox Tab");
+			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.WorkBox, logaction.Click, "WorkBox Tab");
 			return false;
 		}
 		try{
@@ -39,9 +43,9 @@ public class GotoApp implements Keywords {
 			String btnPersonalWorkBoxTab = "//*[@id='101']/a";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnPersonalWorkBoxTab)));
 			driver.findElement(By.xpath(btnPersonalWorkBoxTab)).click();
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Click\t\t -PersonalWorkBox Subtab");
+			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.WorkBox, logaction.Click, "PersonalWorkBox Subtab");
 		}catch (TimeoutException e){
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Click\t\t -PersonalWorkBox Subtab");
+			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.WorkBox, logaction.Click, "PersonalWorkBox Subtab");
 			return false;
 		}
 		try{
@@ -79,14 +83,12 @@ public class GotoApp implements Keywords {
 	}
 
 	@Override
-	public boolean sendToLogStart() {
+	public void sendToLogStart() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
-	public boolean sendToLogFinish() {
+	public void sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t {WorkBox}\t -Already open WorkBox");
-		return false;
 	}
 }

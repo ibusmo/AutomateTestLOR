@@ -34,15 +34,13 @@ public class OpenBrowser implements Keywords {
 	}
 
 	@Override
-	public boolean sendToLogStart() {
+	public void sendToLogStart() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
-	public boolean sendToLogFinish() {
+	public void sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t -Open & Go\t " + "-" + url);
-		return false;
 	}
 
 }

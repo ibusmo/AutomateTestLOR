@@ -122,14 +122,12 @@ public class Register implements Keywords {
 	}
 
 	@Override
-	public boolean sendToLogStart() {
+	public void sendToLogStart() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
-	public boolean sendToLogFinish() {
+	public void sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t {Register}\t -Already Register");
-		return false;
 	}
 }

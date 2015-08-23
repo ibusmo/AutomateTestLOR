@@ -1,4 +1,4 @@
-package element;
+package elementAttribute;
 
 public class LogInElement {
 	public String textboxUsername;
