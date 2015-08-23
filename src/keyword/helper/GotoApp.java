@@ -74,12 +74,18 @@ public class GotoApp implements Keywords {
 			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Link click\t -AppID\t\t\t -" + appID);
 			return false;
 		}
-		sendToLog();
+		sendToLogFinish();
 		return true;
 	}
-	
+
 	@Override
-	public boolean sendToLog() {
+	public boolean sendToLogStart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t {WorkBox}\t -Already open WorkBox");
 		return false;
 	}

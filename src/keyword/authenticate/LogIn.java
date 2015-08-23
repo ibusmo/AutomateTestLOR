@@ -58,13 +58,19 @@ public class LogIn implements Keywords {
 			//return false;
 		}
 		
-		sendToLog();
+		sendToLogStart();
 		return true;
 	}
 
 	@Override
-	public boolean sendToLog() {
+	public boolean sendToLogStart() {
 		logCat.sendToLog("[PASS]\t {Loin Page}\t -Already Login");
-		return true;
+		return false;
+	}
+
+	@Override
+	public boolean sendToLogFinish() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

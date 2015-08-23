@@ -32,7 +32,7 @@ public class mytestpack {
 
 	private static void waitForInterrupt() {
 		try {
-			char ch = (char) System.in.read();
+			System.in.read();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

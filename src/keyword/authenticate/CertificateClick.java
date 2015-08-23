@@ -17,12 +17,6 @@ public class CertificateClick implements Keywords {
 	}
 
 	@Override
-	public boolean sendToLog() {
-		logCat.sendToLog("[FAIL]\t -Certificate\t ");
-		return false;
-	}
-
-	@Override
 	public boolean execute() {
 		try{
 			linkCertiificate = "overridelink";
@@ -32,7 +26,20 @@ public class CertificateClick implements Keywords {
 			logCat.sendToLog("[FAIL]\t -Time out\t -Certificate");
 			return false;
 		}
+		sendToLogFinish();
 		return true;
+	}
+	
+	@Override
+	public boolean sendToLogStart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean sendToLogFinish() {
+		logCat.sendToLog("[FAIL]\t -Certificate\t ");
+		return false;
 	}
 
 }

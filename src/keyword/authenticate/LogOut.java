@@ -29,14 +29,20 @@ public class LogOut implements Keywords {
 			return false;
 		}
 
-		sendToLog();
+		sendToLogFinish();
 		return true;
 	}
 
 	@Override
-	public boolean sendToLog() {
+	public boolean sendToLogStart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t {Logout}\t -Already Logout");
-		return true;
+		return false;
 	}
 
 }

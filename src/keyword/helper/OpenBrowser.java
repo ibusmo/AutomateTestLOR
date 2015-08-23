@@ -21,7 +21,7 @@ public class OpenBrowser implements Keywords {
 	@Override
 	public boolean execute() {
 		driver.get(url);
-		sendToLog();
+		sendToLogFinish();
 		return true;
 	}
 
@@ -34,9 +34,15 @@ public class OpenBrowser implements Keywords {
 	}
 
 	@Override
-	public boolean sendToLog() {
+	public boolean sendToLogStart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean sendToLogFinish() {
 		logCat.sendToLog("[PASS]\t -Open & Go\t " + "-" + url);
-		return true;
+		return false;
 	}
 
 }
