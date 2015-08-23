@@ -24,7 +24,8 @@ public class LogToFile {
 			String currentDateTime = getLocalTime();
 			String content = "Start log. " + currentDateTime;
 
-			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + currentDateTime + ".log");
+			//file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + currentDateTime + ".log");
+			file = new File("C:\\Users\\EthanHuntTB1\\Desktop\\log" + ".log");
 
 			// if file doesn't exists, then create it
 			// usually there doesn't exists

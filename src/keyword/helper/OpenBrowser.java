@@ -1,4 +1,6 @@
-package keyword;
+package keyword.helper;
+
+import keyword.Keywords;
 
 public class OpenBrowser implements Keywords {
 	private String url;
@@ -19,6 +21,7 @@ public class OpenBrowser implements Keywords {
 	@Override
 	public boolean execute() {
 		driver.get(url);
+		sendToLog();
 		return true;
 	}
 
@@ -32,7 +35,7 @@ public class OpenBrowser implements Keywords {
 
 	@Override
 	public boolean sendToLog() {
-		logCat.sendToLog(url);
+		logCat.sendToLog("[PASS]\t -Open & Go\t " + "-" + url);
 		return true;
 	}
 
