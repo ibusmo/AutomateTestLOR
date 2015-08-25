@@ -7,6 +7,7 @@ import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
+import keyword.registerandscnanning.LoanForm;
 import output.LogCat;
 import webdriver.WebDriverEngine;
 
@@ -19,11 +20,13 @@ public class mytestpack {
 		//new CertificateClick().execute();
 		new LogIn("SuwitL", "testuser").execute();
 		//new Register().execute();
-		//050908580043 050908580033
-		new GotoApp("050908580043").execute();
+		//050908580043 050908580033 050908580044
+		new GotoApp("050908580044").execute();
+		new LoanForm().execute();
+		waitForInterrupt();
 		//new Customer().execute();
-		//new TabPolicy().execute()
-		new CustomerNCB().execute();
+		//new TabPolicy().execute();
+		//new CustomerNCB().execute();
 		waitForInterrupt();
 		new LogOut().execute();
 		

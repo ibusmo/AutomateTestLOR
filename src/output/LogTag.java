@@ -25,6 +25,7 @@ public class LogTag {
 	public enum logtab{
 		WorkBox,
 		RegisCust,
+		LoanForm,
 		policy,
 		None
 	} 
