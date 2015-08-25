@@ -1,11 +1,14 @@
 package keyword.NCB;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import CustomComponent.DatePicker;
+import CustomComponent.SelectDropdown;
+import CustomComponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -19,92 +22,116 @@ public class CustomerNCB implements Keywords {
 	@Override
 	public void initKeywords() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean execute() {
 		sendToLogStart();
-		try{
-			//Click NCB Tab
+		try {
+			// Click NCB Tab
 			String btnNCBSubtab = "//*[@id='subTabs']/ul/li[6]/a";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnNCBSubtab)));
+			new WaitFor().xpath(btnNCBSubtab);
 			driver.findElement(By.xpath(btnNCBSubtab)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "NCB Tab");
-		}catch (TimeoutException e){
+		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "NCB Tab");
 			return false;
 		}
-		try{
-			//Click Input Date
-			String inputDate = "reportedDt"; //id
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(inputDate)));
-			executor.executeScript("$('#"+inputDate+"').val('"+getCurDate()+"');", driver.findElement(By.id(inputDate)));
-			//driver.findElement(By.id(inputDate)).clear();
-			//driver.findElement(By.id(inputDate)).sendKeys(getCurDate());
+		try {
+			// Click Input Date //Date Picker
+			String inputDateField = "reportedDt"; // id
+			String dateStr = getCurDate();
+			new DatePicker().pickDate(inputDateField, dateStr);
 			sendToLogCustom(logexestatus.PASS, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
-		}catch (TimeoutException e){
+		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
 			return false;
 		}
-		try{		
-			//Select DropDown สถานะฟ้องร้องคดี *
+		try {
+			// Select DropDown สถานะฟ้องร้องคดี *
 			String inputField = "//*[@id='tabs-2']/div[1]/div/div[6]/input";
-			String selectField = "litigationStatusCode";
 			String inputValue = "02 : ไม่มี";
+			String selectField = "litigationStatusCode";
 			String selectValue = "02";
-			selectNCBHelper(inputField, selectField, inputValue, selectValue);
+			new SelectDropdown().select(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
-		}catch (TimeoutException e){
+		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
+			return false;
+		}
+		try {
+			// Select DropDown สถานะฟ้องร้องคดี *
+			ArrayList<String> inputText = new ArrayList<String>();
+			ArrayList<String> showText = new ArrayList<String>();
+			inputText.add("reportedCountAccount");			showText.add("จำนวนบัญชี");
+			inputText.add("reportedCountCreditCard");		showText.add("จำนวนบัตรเครดิตที่ถืออยู่");
+			inputText.add("reportedLimitAmount");			showText.add("วงเงินรวม");
+			inputText.add("reportedOutStanding");			showText.add("ยอดคงค้างรวม");
+			inputText.add("reportedOutStandingOverdue");	showText.add("ยอดคงค้างที่พ้นกำหนดชำระรวม");
+			inputText.add("reportedDebtHome");				showText.add("ภาระหนี้คงเหลือของที่พักอาศัย(กรณีเป็นเจ้าของ)");
+			inputText.add("reportedInstallment");			showText.add("หนี้เดิมผ่อนชำระต่อเดือนที่รายงานต่อ NCB (ไม่รวมหนี้เดิมของ GSB)");
+			inputText.add("reportedCreditCardMinPaymant");	showText.add("ยอดชำระขั้นต่ำของบัตรเครดิต");
+			inputText.add("reportedOverdraftInterest");		showText.add("ดอกเบี้ยของวงเงินเบิกเกินบัญชี");
+			
+			for (int i=0; i<inputText.size(); i++) {
+				new WaitFor().id(inputText.get(i));
+				driver.findElement(By.id(inputText.get(i))).clear();
+				driver.findElement(By.id(inputText.get(i))).sendKeys("0");
+				sendToLogCustom(logexestatus.PASS, logaction.Type, showText.get(i));
+			}
+		} catch (TimeoutException e) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Text Field Problem");
+			return false;
+		}
+		try{
+			//Button Click บันทึก
+			String btnSave = "btnSave";
+			new WaitFor().id(btnSave);
+			driver.findElement(By.id(btnSave)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Save, "บันทึก");
+		}catch(TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Save, "บันทึก");
 			return false;
 		}
 		sendToLogFinish();
 		return true;
 	}
-	
+
 	private String getCurDate() {
-		
-		String localTime = ""
-				+ String.format("%02d", LocalDateTime.now().getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/"
-				+ LocalDateTime.now().getYear();
+
+		String localTime = "" + String.format("%02d", LocalDateTime.now().getDayOfMonth()) + "/"
+				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
 		return localTime;
 	}
-	
-	private void selectNCBHelper(String inputField, String selectField, String inputValue, String selectValue) {
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(inputField)));
-		driver.findElement(By.xpath(inputField)).clear();
-		driver.findElement(By.xpath(inputField)).sendKeys(inputValue);
-		executor.executeScript("$('#"+selectField+"').val('"+selectValue+"');", driver.findElement(By.id(selectField)));
-	}
-	
+
 	@Override
 	public void sendToLogStart() {
-		sendToLogCustom(logexestatus.START, logaction.None);		
+		sendToLogCustom(logexestatus.START, logaction.None);
 	}
 
 	@Override
 	public void sendToLogFinish() {
-		sendToLogCustom(logexestatus.FINISH, logaction.None);	
+		sendToLogCustom(logexestatus.FINISH, logaction.None);
 	}
-	
+
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
 				logtab.RegisCust, 
 				logsubtab.NCB, 
 				logelement.None, 
-				logaction, 
+				logaction,
 				null);
-	}	
+	}
+
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
 				logtab.RegisCust, 
 				logsubtab.NCB, 
 				logelement.None, 
-				logaction, 
+				logaction,
 				str);
 	}
 }
