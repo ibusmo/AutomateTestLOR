@@ -6,10 +6,12 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import keyword.Keywords;
-import output.LogStatus.logaction;
-import output.LogStatus.logexestatus;
-import output.LogStatus.logoperation;
-import output.LogStatus.logpage;
+import output.LogTag.logaction;
+import output.LogTag.logelement;
+import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
 public class LogOut implements Keywords {
 
@@ -20,16 +22,17 @@ public class LogOut implements Keywords {
 
 	@Override
 	public boolean execute() {
+		sendToLogStart();
 		try{
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")));
 			//executor.executeScript("redirect('j_acegi_logout');", driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")));
 			driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")).click();
 			Alert javascriptprompt = driver.switchTo().alert();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Logout, logaction.Comfirm, javascriptprompt.getText());
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
 			javascriptprompt.accept();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Logout, logaction.Comfirm, "Yes");
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "Yes");
 		}catch (TimeoutException e){
-			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Logout, "Time out");
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "Time Out");
 			return false;
 		}
 		sendToLogFinish();
@@ -38,12 +41,30 @@ public class LogOut implements Keywords {
 
 	@Override
 	public void sendToLogStart() {
-		// TODO Auto-generated method stub
+		sendToLogCustom(logexestatus.START, logaction.None);
 	}
 
 	@Override
 	public void sendToLogFinish() {
-		logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Logout);
+		sendToLogCustom(logexestatus.FINISH, logaction.None);
 	}
-
+	
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
+		logCat.sendToLog(logexestatus, 
+				logoperation.Logout, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 
+				logaction, 
+				null);
+	}	
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
+		logCat.sendToLog(logexestatus, 
+				logoperation.Logout, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 
+				logaction, 
+				str);
+	}
 }

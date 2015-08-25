@@ -7,6 +7,12 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import output.LogCat;
+import output.LogTag.logaction;
+import output.LogTag.logelement;
+import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
 public class WebDriverEngine {
 	private static WebDriverEngine instance    =  null;
@@ -78,10 +84,22 @@ public class WebDriverEngine {
 	
 	public static void Close(){
 		driver.close();
-		logCat.sendToLog("[Tear]\t -WebDriver Close");		
+		logCat.sendToLog(logexestatus.TEAR, 
+				logoperation.WebDriver, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 
+				logaction.Stop, 
+				webEngine);
 	}
 	
-	private static void sendToLog() {
-		logCat.sendToLog("[Init]\t -WebDriver Starting -" + webEngine);			
+	private static void sendToLog() {	
+		logCat.sendToLog(logexestatus.INIT, 
+				logoperation.WebDriver, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 
+				logaction.Start, 
+				webEngine);
 	}
 }

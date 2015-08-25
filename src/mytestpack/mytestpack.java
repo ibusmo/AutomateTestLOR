@@ -2,27 +2,32 @@ package mytestpack;
 
 import java.io.IOException;
 
+import keyword.NCB.CustomerNCB;
 import keyword.authenticate.CertificateClick;
 import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
 import keyword.register.Register;
+import keyword.registerandscnanning.Customer;
+import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
 import webdriver.WebDriverEngine;
 
 public class mytestpack {
 	public static void main(String[] args){
 		LogCat logCat = LogCat.getInstance();
-		WebDriverEngine.getInstance(); //IE
+		WebDriverEngine.getInstance("firefox"); //IE
 		
 		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-		new CertificateClick().execute();
-		
+		//new CertificateClick().execute();
 		new LogIn("SuwitL", "testuser").execute();
-		new Register().execute();
-		new GotoApp("050908580033").execute();
-		
+		//new Register().execute();
+		//050908580043 050908580033
+		new GotoApp("050908580043").execute();
+		//new Customer().execute();
+		//new TabPolicy().execute()
+		new CustomerNCB().execute();
 		waitForInterrupt();
 		new LogOut().execute();
 		

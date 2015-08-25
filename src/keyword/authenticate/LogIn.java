@@ -7,10 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import elementAttribute.LogInElement;
 import keyword.Keywords;
-import output.LogStatus.logaction;
-import output.LogStatus.logexestatus;
-import output.LogStatus.logoperation;
-import output.LogStatus.logpage;
+import output.LogTag.logaction;
+import output.LogTag.logelement;
+import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
 public class LogIn implements Keywords {
 	
@@ -35,6 +37,7 @@ public class LogIn implements Keywords {
 
 	@Override
 	public boolean execute() {
+		sendToLogStart();
 		try{
 			//Fill Login Field and Submit
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(loginElement.textboxUsername)));
@@ -45,31 +48,51 @@ public class LogIn implements Keywords {
 			driver.findElement(By.id(loginElement.textboxPassword)).clear();
 			driver.findElement(By.id(loginElement.textboxPassword)).sendKeys(password);
 			driver.findElement(By.id(loginElement.buttonLogin)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Login, logaction.Fill_login, username + " : " + password);
+			sendToLogCustom(logexestatus.PASS, logaction.Fill_login, username + " : " + password);
 		}catch (TimeoutException e){
-			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login, logaction.Fill_login, username + " : " + password);
+			sendToLogCustom(logexestatus.FAIL, logaction.Fill_login, username + " : " + password);
 			return false;
 		}
 		try{
 			//Kick
 			driver.findElement(By.id(loginElement.textboxPassword)).sendKeys(password);
 			driver.findElement(By.id(loginElement.buttonLogin)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.Login, logaction.Fill_login_again);
+			sendToLogCustom(logexestatus.PASS, logaction.Fill_again, username + " : " + password);
 		}catch (NoSuchElementException e){
-			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login, logaction.Fill_login_again);
+			sendToLogCustom(logexestatus.FAIL, logaction.Fill_again, username + " : " + password);
 			return false;
 		}
-		
 		sendToLogFinish();
 		return true;
 	}
 
 	@Override
 	public void sendToLogStart() {
+		sendToLogCustom(logexestatus.START, logaction.None);
 	}
 
 	@Override
 	public void sendToLogFinish() {
-		logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.Login);
+		sendToLogCustom(logexestatus.FINISH, logaction.None);
+	}
+	
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
+		logCat.sendToLog(logexestatus, 
+				logoperation.Login, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 
+				logaction, 
+				null);
+	}
+	
+	private void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
+		logCat.sendToLog(logexestatus, 
+				logoperation.Login, 
+				logtab.None, 
+				logsubtab.None, 
+				logelement.None, 				
+				logaction, 
+				str);
 	}
 }
