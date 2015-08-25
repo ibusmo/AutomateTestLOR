@@ -3,14 +3,10 @@ package mytestpack;
 import java.io.IOException;
 
 import keyword.NCB.CustomerNCB;
-import keyword.authenticate.CertificateClick;
 import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
-import keyword.register.Register;
-import keyword.registerandscnanning.Customer;
-import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
 import webdriver.WebDriverEngine;
 
