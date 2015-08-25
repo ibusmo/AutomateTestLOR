@@ -7,6 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import CustomComponent.SelectDropdown;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -37,14 +38,13 @@ public class Register implements Keywords {
 		}
 		try{		
 			//Select DropDown กลุ่มลูกค้าสินเชื่อ *	
-			String inputGroup = "//*[@id='applicationForm']/div[3]/div/div/div[2]/div[2]/input";
-			String selectGroup = "workflowCode";
-			String groupValue = "CSM";
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(inputGroup)));
-			driver.findElement(By.xpath(inputGroup)).clear();
-			driver.findElement(By.xpath(inputGroup)).sendKeys("CSM : สินเชื่อรายย่อย");
-			executor.executeScript("$('#"+selectGroup+"').val('"+groupValue+"');", driver.findElement(By.id(selectGroup)));
-			executor.executeScript("populatePurposeLoanByWorkFlow('"+groupValue+"','',true,false,'purposeLoanCode');getWorkflowGroup('"+groupValue+"');", driver.findElement(By.id(selectGroup)));
+			String inputField = "//*[@id='applicationForm']/div[3]/div/div/div[2]/div[2]/input";
+			String inputValue = "CSM : สินเชื่อรายย่อย";
+			String selectField = "workflowCode";
+			String selectValue = "CSM";
+			String jsExe = "populatePurposeLoanByWorkFlow('"+selectValue+"','',true,false,'purposeLoanCode');"
+							+"getWorkflowGroup('"+selectValue+"');";
+			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jsExe);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
@@ -62,13 +62,11 @@ public class Register implements Keywords {
 		}
 		try{
 			//Select DropDown ช่องทางการรับข่าวสาร Event	
-			String inputNews = "//*[@id='dropdownFixWidth']/input";
-			String selectNews = "newsSourceCode";
-			String NewsValue = "06";
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(inputNews)));
-			driver.findElement(By.xpath(inputNews)).clear();
-			driver.findElement(By.xpath(inputNews)).sendKeys("06 : Event");
-			executor.executeScript("$('#"+selectNews+"').val('"+NewsValue+"');", driver.findElement(By.id(selectNews)));
+			String inputNewsField = "//*[@id='dropdownFixWidth']/input";
+			String inputValue = "06 : Event";
+			String selectNewsField = "newsSourceCode";
+			String selectNewsValue = "06";
+			new SelectDropdown().select(inputNewsField, inputValue, selectNewsField, selectNewsValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ช่องทางการรับข่าวสาร");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ช่องทางการรับข่าวสาร");
