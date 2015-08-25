@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
+import CustomComponent.SelectPopup;
 import CustomComponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -58,11 +59,8 @@ public class LoanForm implements Keywords {
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "เพิ่ม Market Code");			
 		}
-		for(String winHandle : driver.getWindowHandles()){ 
-		    WebDriver popup = null;
-		    popup = driver.switchTo().window(winHandle); 
-		    System.out.println(driver.getTitle()); 
-		  }
+		String xpath = "//*[@id='addCreditDiv']/table/thead/tr/th";
+		WebDriver popup = new SelectPopup().byxpath(xpath);
 		sendToLogFinish();
 		return true;
 	}
