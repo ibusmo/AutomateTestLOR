@@ -1,6 +1,12 @@
 package keyword.helper;
 
 import keyword.Keywords;
+import output.LogTag.logaction;
+import output.LogTag.logelement;
+import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
 public class OpenBrowser implements Keywords {
 	private String url;
@@ -40,7 +46,7 @@ public class OpenBrowser implements Keywords {
 
 	@Override
 	public void sendToLogFinish() {
-		logCat.sendToLog("[PASS]\t -Open & Go\t " + "-" + url);
+		logCat.sendToLog(logexestatus.PASS, logoperation.OpenBrowser, logtab.None, logsubtab.None, logelement.None, logaction.None, url);
 	}
 
 }

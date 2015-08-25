@@ -8,10 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import keyword.Keywords;
-import output.LogStatus.logaction;
-import output.LogStatus.logexestatus;
-import output.LogStatus.logoperation;
-import output.LogStatus.logpage;
+import output.LogTag.logaction;
+import output.LogTag.logelement;
+import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
 public class GotoApp implements Keywords {
 
@@ -28,14 +30,15 @@ public class GotoApp implements Keywords {
 
 	@Override
 	public boolean execute() {
+		sendToLogStart();
 		try{
 			//Click WorkBox Tab
 			String btnWorkBoxTab = "//*[@id='menu-vertical']/ul/li[1]/div/a";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnWorkBoxTab)));
 			driver.findElement(By.xpath(btnWorkBoxTab)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.WorkBox, logaction.Click, "WorkBox Tab");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.None, logelement.None, logaction.Click, "WorkBox Tab");
 		}catch (TimeoutException e){
-			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.WorkBox, logaction.Click, "WorkBox Tab");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.None, logelement.None, logaction.Click, "WorkBox Tab");
 			return false;
 		}
 		try{
@@ -43,9 +46,9 @@ public class GotoApp implements Keywords {
 			String btnPersonalWorkBoxTab = "//*[@id='101']/a";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnPersonalWorkBoxTab)));
 			driver.findElement(By.xpath(btnPersonalWorkBoxTab)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.General, logpage.WorkBox, logaction.Click, "PersonalWorkBox Subtab");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, "PersonalWorkBox SubTab");
 		}catch (TimeoutException e){
-			logCat.sendToLog(logexestatus.FAIL, logoperation.General, logpage.WorkBox, logaction.Click, "PersonalWorkBox Subtab");
+			logCat.sendToLog(logexestatus.FAIL, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, "PersonalWorkBox SubTab");
 			return false;
 		}
 		try{
@@ -55,27 +58,27 @@ public class GotoApp implements Keywords {
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name(radioSearchType)));
 			List<WebElement> radios = driver.findElements(By.name(radioSearchType));
 			radios.get(1).click();
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Radio\t\t -selectedSearchType\t -เลขที่ใบคำขอ");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Radio, "เลขที่ใบคำขอ");
 			//Input Text เลขที่ใบคำขอ
 			String textsearchAppId = "searchAppId"; //name
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name(textsearchAppId)));
 			driver.findElement(By.name(textsearchAppId)).sendKeys(appID);
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Input Text\t -textsearchAppId\t -เลขที่ใบคำขอ");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Type, "เลขที่ใบคำขอ");
 			//Button Click ค้นหา
 			String buttonSearch = "//*[@id='content']/div/div/form/div[2]/button";
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(buttonSearch)));
 			driver.findElement(By.xpath(buttonSearch)).click();			
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Button click\t -Search\t\t -ค้นหา");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, "ค้นหา");
 			//Link Click AppID
 			String buttonAppID = appID;
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText(buttonAppID)));
 			driver.findElement(By.linkText(buttonAppID)).click();			
-			logCat.sendToLog("[PASS]\t {WorkBox}\t -Link click\t -AppID\t\t\t -" + appID);
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, appID);
 		}catch (TimeoutException e){
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Radio]\t\t -selectedSearchType\t -เลขที่ใบคำขอ");
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Input Text\t -textsearchAppId\t -เลขที่ใบคำขอ");
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Button click\t -Search\t\t -ค้นหา");
-			logCat.sendToLog("[FAIL]\t {WorkBox}\t -Link click\t -AppID\t\t\t -" + appID);
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Radio, "เลขที่ใบคำขอ");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Type, "เลขที่ใบคำขอ");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, "ค้นหา");
+			logCat.sendToLog(logexestatus.PASS, logoperation.WorkBox, logtab.WorkBox, logsubtab.PersonalBox, logelement.None, logaction.Click, appID);
 			return false;
 		}
 		sendToLogFinish();
@@ -84,11 +87,11 @@ public class GotoApp implements Keywords {
 
 	@Override
 	public void sendToLogStart() {
-		// TODO Auto-generated method stub
+		logCat.sendToLog(logexestatus.START, logoperation.WorkBox, logtab.None, logsubtab.None, logelement.None, logaction.None, appID);
 	}
 
 	@Override
 	public void sendToLogFinish() {
-		logCat.sendToLog("[PASS]\t {WorkBox}\t -Already open WorkBox");
+		logCat.sendToLog(logexestatus.FINISH, logoperation.WorkBox, logtab.None, logsubtab.None, logelement.None, logaction.None, appID);
 	}
 }

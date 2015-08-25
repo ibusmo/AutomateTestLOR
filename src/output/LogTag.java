@@ -1,39 +1,55 @@
 package output;
 
-public class LogStatus {
+public class LogTag {
 	public enum logexestatus{
+		INIT,
+		TEAR,
 		PASS,
 		FAIL,
 		START,
-		FINISH
+		FINISH,
+		None
 	}
 	public enum logoperation{
-		General,
-		RegisterScanning
-	}
-	public enum logpage{
-		Home,
+		WebDriver,
+		OpenBrowser,
 		Certificate,
 		Login,
 		Logout,
 		Register,
-		WorkBox
-	} 
+		WorkBox,
+		RegisScan,
+		NCB,
+		None
+	}
 	public enum logtab{
-		
+		WorkBox,
+		RegisCust,
+		policy,
+		None
 	} 
 	public enum logsubtab{
-		
+		WorkBox,
+		PersonalBox,
+		NCB,
+		None
 	} 
 	public enum logelement{
-		
+		None
 	}
 	public enum logaction{
+		Start,
+		Stop,
 		Fill_login,
-		Fill_login_again,
+		Fill_again,
 		Comfirm,
 		Click,
 		Radio,
 		Dropdown,
+		Type,
+		Save,
+		Get,
+		Date,
+		None
 	}
 }
