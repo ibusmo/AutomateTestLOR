@@ -1,5 +1,6 @@
 package keyword.registerandscnanning;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,16 +23,29 @@ public class TabPolicy implements Keywords {
 
 	@Override
 	public boolean execute() {
+		sendToLogStart();
 		try{
 			//Click Policy Tab เกณฑ์นโบยนบาย
 			String btnPolicyTab = "//*[@id='mainTab']/ul/li[11]/a";
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnPolicyTab)));
-			driver.findElement(By.xpath(btnPolicyTab)).click();
+			driver.findElement(By.xpath(btnPolicyTab)).click();			
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "เกณฑ์นโบยนบาย");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "เกณฑ์นโบยนบาย");
 			return false;
 		}
+		
+		try{		
+			//Alert Confirm Handler
+			Alert javascriptprompt = driver.switchTo().alert();
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
+			javascriptprompt.accept();
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "เกณฑ์นโบยนบาย Yes");			
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "เกณฑ์นโบยนบาย");
+			return false;
+		}
+		
 		try{		
 			//Select DropDown สินเชื่อที่ขอขัดต่อกฎหมายหรือไม่ *
 			String inputField = "//*[@id='bankPolicyActionForm']/div[2]/div[2]/input";
@@ -92,6 +106,17 @@ public class TabPolicy implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ธนาคารมีข้อมูลเพียงพอในการรู้จักลูกค้า (KYC) * " + "มี");
 			return false;
 		}
+		try{
+			//Button Click บันทึก
+			String buttonSave = "btnSave";
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(buttonSave)));
+			driver.findElement(By.id(buttonSave)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Save, "บันทึก");
+		}catch(TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Save, "บันทึก");
+			return false;
+		}
+		sendToLogFinish();
 		return true;
 	}
 	
@@ -114,10 +139,12 @@ public class TabPolicy implements Keywords {
 	
 	@Override
 	public void sendToLogStart() {
+		sendToLogCustom(logexestatus.START, logaction.None, "");
 	}
 
 	@Override
 	public void sendToLogFinish() {
+		sendToLogCustom(logexestatus.FINISH, logaction.None, "");
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {

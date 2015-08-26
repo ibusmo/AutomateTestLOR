@@ -8,6 +8,8 @@ import keyword.authenticate.LogOut;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
 import keyword.registerandscnanning.LoanFormAdd;
+import keyword.registerandscnanning.LoanFormLongTermLoan;
+import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
 import webdriver.WebDriverEngine;
 //26/08/2015 09:56
@@ -22,12 +24,14 @@ public class mytestpack {
 		//new Register().execute();
 		//050908580043 050908580033 050908580044
 		new GotoApp("050908580044").execute();
-		new LoanFormAdd().execute();
-		waitForInterrupt();
 		//new Customer().execute();
-		//new TabPolicy().execute();
+		new LoanFormAdd().execute();
+							waitForInterrupt();
+		new LoanFormLongTermLoan().execute();
+							waitForInterrupt();
+		new TabPolicy().execute();
+							waitForInterrupt();
 		//new CustomerNCB().execute();
-		waitForInterrupt();
 		new LogOut().execute();
 		
 		WebDriverEngine.Close();

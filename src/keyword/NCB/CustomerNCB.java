@@ -54,7 +54,7 @@ public class CustomerNCB implements Keywords {
 			String inputValue = "02 : ไม่มี";
 			String selectField = "litigationStatusCode";
 			String selectValue = "02";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");

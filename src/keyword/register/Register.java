@@ -44,7 +44,7 @@ public class Register implements Keywords {
 			String selectValue = "CSM";
 			String jsExe = "populatePurposeLoanByWorkFlow('"+selectValue+"','',true,false,'purposeLoanCode');"
 							+"getWorkflowGroup('"+selectValue+"');";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jsExe);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
@@ -66,7 +66,7 @@ public class Register implements Keywords {
 			String inputValue = "06 : Event";
 			String selectNewsField = "newsSourceCode";
 			String selectNewsValue = "06";
-			new SelectDropdown().select(inputNewsField, inputValue, selectNewsField, selectNewsValue);
+			new SelectDropdown().id(inputNewsField, inputValue, selectNewsField, selectNewsValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ช่องทางการรับข่าวสาร");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ช่องทางการรับข่าวสาร");

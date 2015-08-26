@@ -15,7 +15,7 @@ public class SelectPopup implements CustomComponent {
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
-				LogCat.getInstance().sendToLog("[POPUP] " + "Wait for popup " + " Thread Error");	
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
 				e.printStackTrace();			
 			}
 			timeCount++;
@@ -25,19 +25,27 @@ public class SelectPopup implements CustomComponent {
 			}
 		} while (driver.getWindowHandles().size() != numPopup);
 		
+		//Wait For Elements
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+			e.printStackTrace();
+		}
+		
 		//SELECT POPUP
 		for (String winHandle : driver.getWindowHandles()) {
 			WebDriver popup = null;
 			popup = driver.switchTo().window(winHandle);
 			try {
 				if (popup.findElement(By.xpath(xpath)).isDisplayed()) {
-					LogCat.getInstance().sendToLog("[SELECT] " + driver.getCurrentUrl());
+					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
 					return popup;
 				}
 			} catch (NoSuchElementException e) {
 				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
 			}
-			LogCat.getInstance().sendToLog("[POPUP] " + driver.getCurrentUrl());
+			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
 		}
 		return null;
 	}
