@@ -10,7 +10,7 @@ import keyword.helper.OpenBrowser;
 import keyword.registerandscnanning.LoanFormAdd;
 import output.LogCat;
 import webdriver.WebDriverEngine;
-
+//26/08/2015 09:56
 public class mytestpack {
 	public static void main(String[] args){
 		LogCat logCat = LogCat.getInstance();
