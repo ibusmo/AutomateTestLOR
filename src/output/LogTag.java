@@ -25,12 +25,24 @@ public class LogTag {
 	public enum logtab{
 		WorkBox,
 		RegisCust,
+		LoanForm,
 		policy,
 		None
 	} 
 	public enum logsubtab{
 		WorkBox,
 		PersonalBox,
+		Add,
+		
+		CIFInfo,
+		CIFOtherInfo,
+		CIFSalary,
+		CIFCareer,
+		CIFExpense,
+		CIFNonNCB,
+		
+		LongTermLoan,
+		
 		NCB,
 		None
 	} 
@@ -50,6 +62,7 @@ public class LogTag {
 		Save,
 		Get,
 		Date,
+		Popup,
 		None
 	}
 }
