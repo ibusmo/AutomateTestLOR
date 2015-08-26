@@ -16,7 +16,7 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-public class LoanForm implements Keywords {
+public class LoanFormAdd implements Keywords {
 
 	@Override
 	public void initKeywords() {
@@ -69,9 +69,9 @@ public class LoanForm implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
 			return false;
 		} else {
-			sendToLogCustom(logexestatus.PASS, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
-			if (!addLoanFormPopup(popupcreditPicklist))
+			if (addLoanFormPopup(popupcreditPicklist)==false)
 				return false;
+			sendToLogCustom(logexestatus.PASS, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
 		}
 		// Select PopUp page for Main Page
 		String xpathMainPage = "//*[@id='content']/div/div/div[1]";
@@ -81,8 +81,6 @@ public class LoanForm implements Keywords {
 			return false;
 		} else {
 			sendToLogCustom(logexestatus.PASS, logaction.Popup, "Browser หลัก");
-			//if (!addLoanFormPopup(popupMainPage))
-				//return false;
 		}
 		sendToLogFinish();
 		return true;
@@ -228,12 +226,12 @@ public class LoanForm implements Keywords {
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.None, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.Add, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.None, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.Add, logelement.None,
 				logaction, str);
 	}
 }
