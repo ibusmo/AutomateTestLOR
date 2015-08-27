@@ -108,7 +108,7 @@ public class CustomerAdd implements Keywords {
 			String selectField = "searchedCustType";
 			String selectValue = "B";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทผู้ขอสินเชื่อ " + "ผู้ขอสินเชื่อหลัก");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ประเภทผู้ขอสินเชื่อ " + "ผู้ขอสินเชื่อหลัก");

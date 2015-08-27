@@ -2,10 +2,8 @@ package keyword.registerandscnanning;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 
 import CustomComponent.SelectDropdown;
-import CustomComponent.SelectPopup;
 import CustomComponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -14,8 +12,6 @@ import output.LogTag.logexestatus;
 import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
-
-import keyword.Keywords;
 
 public class CustomerOtherInfo  implements Keywords{
 	
@@ -74,7 +70,7 @@ public class CustomerOtherInfo  implements Keywords{
 			String selectField = "incomeSourceCode";
 			String selectValue = "1";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 		}catch (TimeoutException e){
@@ -90,7 +86,7 @@ public class CustomerOtherInfo  implements Keywords{
 			String selectField = "coborrowerRelatedTypeCode";
 			String selectValue = "01";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้  ");
 		}catch (TimeoutException e){
@@ -106,7 +102,7 @@ public class CustomerOtherInfo  implements Keywords{
 			String selectField = "garantorRelatedTypeCode";
 			String selectValue = "01";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก  " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 		}catch (TimeoutException e){
@@ -145,7 +141,7 @@ public class CustomerOtherInfo  implements Keywords{
 			String selectField = "houseTypeCode";
 			String selectValue = "01";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทที่พักอาศัย   " + "ประเภทที่พักอาศัย  ");
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย  ");
 		}catch (TimeoutException e){
@@ -161,7 +157,7 @@ public class CustomerOtherInfo  implements Keywords{
 			String selectField = "houseOwnershipCode";
 			String selectValue = "01";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue, jEXE);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะที่พักอาศัย  " + "สถานะที่พักอาศัย   ");
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย   ");
 		}catch (TimeoutException e){
@@ -203,7 +199,7 @@ public class CustomerOtherInfo  implements Keywords{
 		try{
 			String inputExpenseConsumer = "expenseConsumer";
 			new WaitFor().id(inputExpenseConsumer);
-			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(ExpenseConsumer);
+			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(inputExpenseConsumer);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าใช้จ่ายอุปโภคบริโภค " + "ค่าใช้จ่ายอุปโภคบริโภค ");
 			
 		}catch (TimeoutException e){

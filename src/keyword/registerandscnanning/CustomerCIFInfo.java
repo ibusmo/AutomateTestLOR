@@ -1,12 +1,7 @@
 package keyword.registerandscnanning;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 
-import CustomComponent.SelectDropdown;
-import CustomComponent.SelectPopup;
-import CustomComponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;

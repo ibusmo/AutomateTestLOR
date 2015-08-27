@@ -1,7 +1,6 @@
 package keyword.registerandscnanning;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 
 
 import CustomComponent.WaitFor;
@@ -13,7 +12,6 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-import keyword.Keywords;
 public class CustomerNonNCB implements Keywords {
 	
 	private String reportedCoopCompLoan;
