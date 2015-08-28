@@ -18,6 +18,8 @@ import output.LogTag.logtab;
 
 public class Register implements Keywords {
 	
+	String appID = null;
+	
 	@Override
 	public void initKeywords() {
 		// TODO Auto-generated method stub
@@ -110,9 +112,9 @@ public class Register implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Save, "บันทึก");
 			return false;
 		}
-		String appID = "None";
+		appID = "None";
 		try{
-			//Get App ID
+			//Get AppID
 			String textAppID = "current_appId";
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(textAppID)));
 			appID = driver.findElement(By.id(textAppID)).getText();
@@ -123,6 +125,10 @@ public class Register implements Keywords {
 		}
 		sendToLogFinish();
 		return true;
+	}
+	
+	public String getAppID() {
+		return appID;
 	}
 
 	@Override

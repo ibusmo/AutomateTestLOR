@@ -13,33 +13,41 @@ import output.LogTag.logtab;
 
 public class CustomerExpenses implements Keywords {
 	
-	private String ExpenseConsumer;
+	private String ExpenseOfConsumer;
 	@Override
 	public void initKeywords() {
 		// TODO Auto-generated method stub
 	}
 	
-	public CustomerExpenses(String ExpenseConsumer ) {
-		this.ExpenseConsumer = ExpenseConsumer;
+	public CustomerExpenses(String ExpenseOfConsumer ) {
+		this.ExpenseOfConsumer = ExpenseOfConsumer;
 	}
 	
 	public boolean execute() {
 		sendToLogStart();
 		
-		
-		
-		
+		// Click tab ค่าใช้จ่าย
 		try{
-			String inputExpenseConsumer = "ExpenseConsumer";
-			new WaitFor().id(inputExpenseConsumer);
-			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(ExpenseConsumer);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���������ػ���������   " + "���������ػ��������� ");
+			String SubOtherInfo = "//*[@id='subTabs']/ul/li[5]/a";
+			new WaitFor().xpath(SubOtherInfo);
+			driver.findElement(By.xpath(SubOtherInfo)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "Click tab ค่าใช้จ่าย" + "Click tab ค่าใช้จ่าย");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���������ػ���������   " + "���������ػ���������  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Click tab ค่าใช้จ่าย" + "Click tab ค่าใช้จ่าย");
+		}
+		
+		// Input ค่าใช้จ่าย
+		try{
+			String inputExpenseConsumer = "expenseConsumer";
+			new WaitFor().id(inputExpenseConsumer);
+			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(ExpenseOfConsumer);
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค ");
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค  ");
 		}
 		
 		
-		
+		// SAVE
 		try{
 			String btnSave = "btnSave";
 			new WaitFor().id(btnSave);
@@ -68,12 +76,12 @@ public class CustomerExpenses implements Keywords {
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFExpense, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFExpense, logelement.None,
 				logaction, str);
 	}
 }

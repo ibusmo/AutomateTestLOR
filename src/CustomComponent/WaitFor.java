@@ -16,4 +16,7 @@ public class WaitFor implements CustomComponent {
 	public void xpath(String xpath){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 	}
+	public void cssSelector(String cssSelector){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+	}
 }

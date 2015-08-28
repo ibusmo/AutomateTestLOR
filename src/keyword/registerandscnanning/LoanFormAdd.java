@@ -29,18 +29,22 @@ public class LoanFormAdd implements Keywords {
 		sendToLogStart();
 		try {
 			// Click คำขอสินเชื่อ Tab
-			String btnRLoanFormTab = "//*[@id='mainTab']/ul/li[5]/a";
-			new WaitFor().xpath(btnRLoanFormTab);
-			driver.findElement(By.xpath(btnRLoanFormTab)).click();
-			sendToLogCustom(logexestatus.PASS, logaction.Click, "คำขอสินเชื่อ Tab");
-			// Alert
-			Alert javascriptprompt = driver.switchTo().alert();
-			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
-			javascriptprompt.accept();
-			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "OK");
+			String btnLoanFormTab = "//*[@id='mainTab']/ul/li[5]/a";
+			new WaitFor().xpath(btnLoanFormTab);
+			driver.findElement(By.xpath(btnLoanFormTab)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "คำขอสินเชื่อ Tab");			
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "คำขอสินเชื่อ Tab");
 			return false;
+		}
+		try{
+		// Alert
+			Alert javascriptprompt = driver.switchTo().alert();
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
+			javascriptprompt.accept();
+			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "คำขอสินเชื่อ Tab OK");
+		}catch (NullPointerException e) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "คำขอสินเชื่อ Tab");
 		}
 		try {
 			// Click เพิ่ม Market Code

@@ -26,7 +26,9 @@ public class LogTag {
 		WorkBox,
 		RegisCust,
 		LoanForm,
-		policy,
+		Policy,
+		RequireDoc,
+		AttachFiles,
 		None
 	} 
 	public enum logsubtab{
@@ -36,7 +38,7 @@ public class LogTag {
 		
 		CIFInfo,
 		CIFOtherInfo,
-		CIFSalary,
+		CIFIncome,
 		CIFCareer,
 		CIFExpense,
 		CIFNonNCB,
@@ -63,6 +65,8 @@ public class LogTag {
 		Get,
 		Date,
 		Popup,
+		Check,
+		Attach,
 		None
 	}
 }

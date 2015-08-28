@@ -21,9 +21,9 @@ public class CustomerCIFInfo implements Keywords{
 	public boolean execute() {
 		sendToLogStart();
 		try{
-			sendToLogCustom(logexestatus.PASS, logaction.Click, "¢ÈÕ¡Ÿ≈ CIF" +  "¢ÈÕ¡Ÿ≈ CIF");
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏• CIF" +  "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏• CIF");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Click, "¢ÈÕ¡Ÿ≈ CIF" +  "¢ÈÕ¡Ÿ≈ CIF");
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏• CIF" +  "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏• CIF");
 		}
 		
 		sendToLogFinish();
@@ -42,12 +42,12 @@ public class CustomerCIFInfo implements Keywords{
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFInfo, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFInfo, logelement.None,
 				logaction, str);
 	}
 }

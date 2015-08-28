@@ -15,7 +15,6 @@ import output.LogTag.logtab;
 
 public class CustomerOtherInfo  implements Keywords{
 	
-	
 	private String PeriodYear;
 	private String NumberOfChild;
 	private String CurAddrYear;
@@ -43,149 +42,140 @@ public class CustomerOtherInfo  implements Keywords{
 	public boolean execute() {
 		sendToLogStart();
 		try{
-			String SubOtherInfo = "//div[@id='subTabs']/ul[1]/li[2]";
+			// Click tab ข้อมูลอื่นๆ
+			String SubOtherInfo = "//*[@id='subTabs']/ul/li[2]/a";				
 			new WaitFor().xpath(SubOtherInfo);
 			driver.findElement(By.xpath(SubOtherInfo)).click();
-			sendToLogCustom(logexestatus.PASS, logaction.Click, "Click tab ����������" + "Click tab ����������");
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "Click tab ข้อมูลอื่นๆ" + "Click tab ข้อมูลอื่นๆ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Click tab ����������" +  "Click tab ����������");
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Click tab ข้อมูลอื่นๆ" +  "Click tab ข้อมูลอื่นๆ");
 		}
 		
-		
-		try { 
+		try{ 
+			// input ข้อมูลรายปี
 			String inputCustPeriod = "custPeriodYear";
 			new WaitFor().id(inputCustPeriod);
 			driver.findElement(By.id(inputCustPeriod)).sendKeys(PeriodYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "��������㹡�����١���" + "��������㹡�����١���");
-
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "��������㹡�����١���" + "��������㹡�����١���");
-
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
 		}
 		
-		
 		try{
-			String inputField = "//*[@id='incomeSourceCode']/input";
-			String inputValue = "1 : �Թ��͹";
+			// Select Dropdown แหล่งที่มาของรายได้
+			String inputField = "//*[@id='tabs-2']/div/div[1]/div[9]/div[2]/input";
+			String inputValue = "1 : เงินเดือน";
 			String selectField = "incomeSourceCode";
 			String selectValue = "1";
-			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "���觷���Ңͧ����� " + "���觷���Ңͧ����� ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���觷���Ңͧ����� " + "���觷���Ңͧ����� ");
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���觷���Ңͧ����� " + "���觷���Ңͧ����� ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 			return false;
 		}
 		
-		
-		
 		try{
-			String inputField = "//*[@id='coborrowerRelatedTypeCode']/input";
-			String inputValue = "01 : ����ռ��������/����ռ���ӻ�Сѹ";
+			// Select Dropdown ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้
+			String inputField = "//*[@id='tabs-2']/div/div[1]/div[10]/div[2]/input";
+			String inputValue = "01 : ไม่มีผู้กู้ร่วม/ไม่มีผู้ค้ำประกัน";
 			String selectField = "coborrowerRelatedTypeCode";
 			String selectValue = "01";
-			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "��������ѹ��ͧ�������������յ�͡�á�� " + "��������ѹ��ͧ�������������յ�͡�á�� ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "��������ѹ��ͧ�������������յ�͡�á�� " + "��������ѹ��ͧ�������������յ�͡�á��  ");
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "��������ѹ��ͧ�������������յ�͡�á�� " + "��������ѹ��ͧ�������������յ�͡�á�� ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
 			return false;
 		}
 		
-		
-		
 		try{
-			String inputField = "//*[@id='garantorRelatedTypeCode']/input";
-			String inputValue = "01 : ����ռ��������/����ռ���ӻ�Сѹ";
+			// Select Dropdown ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก
+			String inputField = "//*[@id='tabs-2']/div/div[1]/div[11]/div[2]/input";
+			String inputValue = "01 : ไม่มีผู้กู้ร่วม/ไม่มีผู้ค้ำประกัน";
 			String selectField = "garantorRelatedTypeCode";
 			String selectValue = "01";
-			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ  " + "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ " + "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ ");
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก  " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ " + "��������ѹ��ͧ����ӻ�Сѹ�Ѻ�������ѡ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 			return false;
 		}
 		
-		
 		try{
+			// input จำนวนบุตรทังหมด
 			String inputChildAll = "childCountAll";
 			new WaitFor().id(inputChildAll);
 			driver.findElement(By.id(inputChildAll)).sendKeys(NumberOfChild);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "�ӹǹ�ص÷ѧ��� " + "�ӹǹ�ص÷ѧ���  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "จำนวนบุตรทังหมด " + "จำนวนบุตรทังหมด  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "�ӹǹ�ص÷ѧ���  " + "�ӹǹ�ص÷ѧ���  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "จำนวนบุตรทังหมด  " + "จำนวนบุตรทังหมด  ");
 			return false;
 		}
 		
-		
 		try{
+			//input ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  
 			String inputCurAddrYear = "curAddrYear";
 			new WaitFor().id(inputCurAddrYear);
 			driver.findElement(By.id(inputCurAddrYear)).sendKeys(CurAddrYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "�������ҷ�������㹷������Ѩ�غѹ  " + "�������ҷ�������㹷������Ѩ�غѹ   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "�������ҷ�������㹷������Ѩ�غѹ   " + "�������ҷ�������㹷������Ѩ�غѹ   ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
 			return false;
 		}
 		
-		
-		
-		
 		try{
-			String inputField = "//*[@id='houseTypeCode']/input";
-			String inputValue = "01 : ��ҹ�����";
+			// Select Dropdown ประเภทที่พักอาศัย  
+			String inputField = "//*[@id='tabs-2']/div/div[1]/div[14]/div[2]/input";
+			String inputValue = "01 : บ้านเดี่ยว";
 			String selectField = "houseTypeCode";
 			String selectValue = "01";
-			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "���������ѡ�����   " + "���������ѡ�����  ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���������ѡ�����  " + "���������ѡ�����  ");
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทที่พักอาศัย   " + "ประเภทที่พักอาศัย  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���������ѡ�����  " + "���������ѡ����� ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย ");
 			return false;
 		}
 		
-		
-		
 		try{
-			String inputField = "//*[@id='houseOwnershipCode']/input";
-			String inputValue = "01 : �繢ͧ���ͧ / ������� - ��ʹ���м١�ѹ";
+			// Select Dropdown สถานะที่พักอาศัย
+			String inputField = "//*[@id='tabs-2']/div/div[1]/div[14]/div[4]/input";
+			String inputValue = "01 : เป็นของตนเอง / คู่สมรส - ปลอดภาระผูกพัน";
 			String selectField = "houseOwnershipCode";
 			String selectValue = "01";
-			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ʶҹз��ѡ�����  " + "ʶҹз��ѡ�����   ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ʶҹз��ѡ�����   " + "ʶҹз��ѡ�����   ");
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะที่พักอาศัย  " + "สถานะที่พักอาศัย   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ʶҹз��ѡ�����   " + "ʶҹз��ѡ�����  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย  ");
 			return false;
 		}
 		
 		try{
+			// Input Type อายุงานปัจจุบัน
 			String inputWorkCurYear = "workCurExpYear";	
 			new WaitFor().id(inputWorkCurYear);
 			driver.findElement(By.id(inputWorkCurYear)).sendKeys(WorkCurYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���اҹ�Ѩ�غѹ    " + "���اҹ�Ѩ�غѹ   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���اҹ�Ѩ�غѹ    " + "���اҹ�Ѩ�غѹ   ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
 		}
 		
 		
 		try{
+			// Input Type อายุงานรวม
 			String inputworkAllExpYear = "workAllExpYear";	
 			new WaitFor().id(inputworkAllExpYear);
 			driver.findElement(By.id(inputworkAllExpYear)).sendKeys(WorkAllYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���اҹ���  " + "���اҹ��� ");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���اҹ���  " + "���اҹ��� ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");
 		}
 		
-		
 		try{
+			// SAVE
 			String btnSave = "btnSave";
 			new WaitFor().id(btnSave);
 			driver.findElement(By.id(btnSave)).click();
@@ -193,27 +183,9 @@ public class CustomerOtherInfo  implements Keywords{
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Save  " + "Save ");
 		}
-		
-		
-		
-		try{
-			String inputExpenseConsumer = "expenseConsumer";
-			new WaitFor().id(inputExpenseConsumer);
-			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(inputExpenseConsumer);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "���������ػ��������� " + "���������ػ��������� ");
-			
-		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "���������ػ��������� " + "���������ػ��������� ");
-			return false;
-		}
-		
 		sendToLogFinish();              
 		return true;
 	}
-	
-	
-	
-	
 	
 	@Override
 	public void sendToLogStart() {
@@ -226,12 +198,12 @@ public class CustomerOtherInfo  implements Keywords{
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFOtherInfo, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFOtherInfo, logelement.None,
 				logaction, str);
 	}
 }

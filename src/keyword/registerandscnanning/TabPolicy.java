@@ -130,7 +130,7 @@ public class TabPolicy implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.RegisScan, 
-				logtab.policy, 
+				logtab.Policy, 
 				logsubtab.None, 
 				logelement.None, 
 				logaction, 
@@ -150,7 +150,7 @@ public class TabPolicy implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.RegisScan, 
-				logtab.policy, 
+				logtab.Policy, 
 				logsubtab.None, 
 				logelement.None, 
 				logaction, 

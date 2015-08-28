@@ -49,21 +49,19 @@ public class CustomerAdd implements Keywords {
 					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
 			return false;
 		}
+
+		// Select PopUp page for เพิ่มผู้ขอสินเชื่อ
+		String xpathPopup = "//html/body/form/table/thead/tr[1]/th";
+		WebDriver popup = new SelectPopup().byxpath(xpathPopup, 2);
+		if (popup == null) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มผู้ขอสินเชื่อ");
+			return false;
+		} else {
+			sendToLogCustom(logexestatus.PASS, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
+		}
+
 		try {
-			// Select PopUp page for เพิ่มผู้ขอสินเชื่อ
-			String xpathPopup = "//html/body/form/table/thead/tr[1]/th";
-			WebDriver popup = new SelectPopup().byxpath(xpathPopup, 2);
-			if (popup == null) {
-				sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มผู้ขอสินเชื่อ");
-				return false;
-			} else {
-				/*
-				if (addLoanFormPopup(popup)==false)
-					return false;
-				sendToLogCustom(logexestatus.PASS, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
-				*/
-			}
-			System.out.println(driver.getCurrentUrl());
+			// ค้นหาผู้ขอสินเชื่อจากในระบบ
 			String rdoSearchCustomer = "addClientFlag";
 			new WaitFor().name(rdoSearchCustomer);
 			driver.findElement(By.name(rdoSearchCustomer)).click();
@@ -73,7 +71,9 @@ public class CustomerAdd implements Keywords {
 					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
 			return false;
 		}
+
 		try {
+			// ค้นหาด้วย CIF No.
 			String rdoSearchCustomerByCIF = "//div[@id='searchCriteria']/div[33]/input[@name='searchType']";
 			new WaitFor().xpath(rdoSearchCustomerByCIF);
 			driver.findElement(By.xpath(rdoSearchCustomerByCIF)).click();
@@ -82,7 +82,9 @@ public class CustomerAdd implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Radio, "CIF No.");
 			return false;
 		}
+
 		try {
+			// input CIF No.
 			String inputCIFNo = "filterCIFNo";
 			new WaitFor().id(inputCIFNo);
 			driver.findElement(By.id(inputCIFNo)).clear();
@@ -92,7 +94,9 @@ public class CustomerAdd implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "พิมพ์  CIF No.");
 			return false;
 		}
+
 		try {
+			// กดปุ่มค้นหา
 			String btnSearch = "btnSearch";
 			new WaitFor().name(btnSearch);
 			driver.findElement(By.name(btnSearch)).click();
@@ -114,7 +118,9 @@ public class CustomerAdd implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ประเภทผู้ขอสินเชื่อ " + "ผู้ขอสินเชื่อหลัก");
 			return false;
 		}
+
 		try {
+			// เลือกลูกค้า
 			String rdoSelectCustomer = "//div[@id='table_result_search']/table[1]/tbody[1]/tr[2]/td[1]/input";
 			new WaitFor().xpath(rdoSelectCustomer);
 			driver.findElement(By.xpath(rdoSelectCustomer)).click();
@@ -123,7 +129,9 @@ public class CustomerAdd implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Radio, "เลือกผู้กู้" + "เลือกผู้กู้");
 			return false;
 		}
+
 		try {
+			// save
 			String BtnSave = "//div[@id='table_search']/div[4]/button[1]";
 			new WaitFor().xpath(BtnSave);
 			driver.findElement(By.xpath(BtnSave)).click();
@@ -133,6 +141,7 @@ public class CustomerAdd implements Keywords {
 			return false;
 		}
 		try {
+			// Confirm Save
 			String BtnSaveConfirm = "//div[@id='dialog-modal']/table[3]/tbody[1]/tr[1]/th[1]/button[1]";
 			new WaitFor().xpath(BtnSaveConfirm);
 			driver.findElement(By.xpath(BtnSaveConfirm)).click();
@@ -141,6 +150,16 @@ public class CustomerAdd implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "ยืนยันบันทึก" + "ยืนยันบันทึก");
 			return false;
 		}
+		// Return to Main tab //
+		String xpathReturnPopup = "//*[@id='content']/div/div/div[1]";
+		WebDriver returnPopup = new SelectPopup().byxpath(xpathReturnPopup, 1);
+		if (returnPopup == null) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
+			return false;
+		} else {
+			sendToLogCustom(logexestatus.PASS, logaction.Popup, "Browser หลัก");
+		}
+
 		sendToLogFinish();
 		return true;
 	}
