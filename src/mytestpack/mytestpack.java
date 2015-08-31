@@ -1,25 +1,34 @@
 package mytestpack;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import keyword.NCB.NCB;
+import keyword.NCB.NCBSendWork;
 import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
-import keyword.considerandcommentation.ExecutiveSummary;
+import keyword.basicinfocheck.BICDocuments;
+import keyword.basicinfocheck.BICExecutiveSummary;
+import keyword.basicinfocheck.BICSendWork;
+import keyword.considerandcommentation.CCDocuments;
+import keyword.considerandcommentation.CCExecutiveSummary;
+import keyword.considerandcommentation.CCSendWork;
+import keyword.considerandcommentation.CollateralAdd;
+import keyword.considerandcommentation.CollateralInfo;
+import keyword.considerandcommentation.CollateralMortgage;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
 import keyword.register.Register;
-import keyword.registerandscnanning.AttachFiles;
 import keyword.registerandscnanning.CustomerAdd;
 import keyword.registerandscnanning.CustomerCIFInfo;
 import keyword.registerandscnanning.CustomerExpenses;
 import keyword.registerandscnanning.CustomerIncome;
 import keyword.registerandscnanning.CustomerNonNCB;
 import keyword.registerandscnanning.CustomerOtherInfo;
+import keyword.registerandscnanning.ReScnDocuments;
+import keyword.registerandscnanning.RegScnSendWork;
 import keyword.registerandscnanning.LoanFormAdd;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
-import keyword.registerandscnanning.RequireDocuments;
-import keyword.registerandscnanning.SendWork;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
 import webdriver.WebDriverEngine;
@@ -29,22 +38,19 @@ public class mytestpack {
 		LogCat logCat = LogCat.getInstance();
 		WebDriverEngine.getInstance("firefox");		
 		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-		new LogIn("SuwitL", "testuser").execute();		addSpace();
-		
-		String appID = "";
-		String CIF = "1357";
+		new LogIn("SuwitL", "testuser").execute();			addSpace();
 
-		//appID = register();								waitForInterrupt();
-		//registerandscanning(appID, CIF);				waitForInterrupt();
-		//ncb(appID);										waitForInterrupt();
+		String appID = "050908580057";
+		String CIF = "1357";
 		
-		appID = "050908580054";
-		new GotoApp(appID).execute();					waitForInterrupt();
-		new AttachFiles().execute();					waitForInterrupt();	
+		appID = register();								waitForInterrupt();
+		registerandscanning(appID, CIF);					waitForInterrupt();
+		ncb(appID);										waitForInterrupt();
+		considerAndCommentation(appID);					waitForInterrupt();
+		new LogOut().execute();							waitForInterrupt();
 		
-//		new ExecutiveSummary().execute();				waitForInterrupt();
-//		new RequireDocuments().execute();				waitForInterrupt();
-//		new AttachFiles().execute();					waitForInterrupt();	
+		new LogIn("BoonthamC", "testuser").execute();		waitForInterrupt();
+		basicInfoCheck(appID);								waitForInterrupt();
 		
 		new LogOut().execute();							
 		
@@ -52,16 +58,41 @@ public class mytestpack {
 		logCat.endLog();
 	}
 	
+	private static void basicInfoCheck(String appID) {
+		new GotoApp(appID).execute();					addSpace();
+		
+		new BICExecutiveSummary().execute();				addSpace();
+		new BICDocuments().execute();		addSpace();
+		//new RequireDocuments().execute();				addSpace();
+		//new AttachFiles().execute();					addSpace();
+		
+		new BICSendWork().execute();			addSpace();
+	}
+	
+	private static void considerAndCommentation(String appID) {
+		new GotoApp(appID).execute();					addSpace();
+		
+		new CollateralAdd().execute();					addSpace();
+		new CollateralMortgage().execute();					addSpace();
+		new CollateralInfo().execute();					addSpace();
+		
+		new CCExecutiveSummary().execute();				addSpace();
+		new CCDocuments().execute();			addSpace();
+		//new RequireDocuments().execute();				addSpace();
+		//new AttachFiles().execute();					addSpace();
+		
+		new CCSendWork().execute();			addSpace();
+	}
+	
 	private static void ncb(String appID) {
 		new GotoApp(appID).execute();					addSpace();
 		
 		new NCB().execute();							addSpace();
 		
-		new SendWork().execute();						addSpace();
+		new NCBSendWork().execute();					addSpace();
 	}
 
 	private static void registerandscanning(String appID, String CIF) {
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		new GotoApp(appID).execute();					addSpace();
 														
 		new CustomerAdd(CIF).execute();					addSpace();
@@ -74,13 +105,13 @@ public class mytestpack {
 		new LoanFormAdd().execute();					addSpace();
 		new LoanFormLongTermLoan().execute();			addSpace();
 		
-		new RequireDocuments().execute();				addSpace();
-		new AttachFiles().execute();					addSpace();	
+		new ReScnDocuments().execute();		addSpace();
+		//new RequireDocuments().execute();				addSpace();
+		//new AttachFiles().execute();					addSpace();	
 		
 		new TabPolicy().execute();						addSpace();
 		
-		new SendWork().execute();						addSpace();
-		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		new RegScnSendWork().execute();			addSpace();
 	}
 
 	private static String register() {
@@ -103,6 +134,14 @@ public class mytestpack {
 	
 	private static void addSpace() {
 		System.out.println("\n...\n");
+	}
+	
+	public static String getNum(int point){
+		Random ran = new Random();
+		int low = (int) Math.pow(10, point-1);
+		int high = (int) Math.pow(10, point)-low;
+		int tmp = ran.nextInt(high) + low;
+		return ""+tmp;
 	}
 }
 

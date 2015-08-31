@@ -20,8 +20,9 @@ public class LogTag {
 		WorkBox,
 		RegScanning,
 		NCB,
-		ConsiderComment,
-		None
+		ConsComment,
+		BasiInfo,
+		None, RegisScan
 	}
 	public enum logtab{
 		WorkBox,
@@ -33,7 +34,7 @@ public class LogTag {
 		
 		RegCollate,
 		ExcSummary,
-		None, 
+		None, RegColl, 
 	} 
 	public enum logsubtab{
 		WorkBox,
@@ -50,7 +51,7 @@ public class LogTag {
 		LongTermLoan,
 		
 		NCB,
-		None
+		None, Warrantee, Mortgage
 	} 
 	public enum logelement{
 		None
@@ -72,6 +73,6 @@ public class LogTag {
 		Check,
 		Attach,
 		SendWork,
-		None
+		None, Checkbox
 	}
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import CustomComponent.SelectDropdown;
+import CustomComponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -31,7 +31,7 @@ public class Register implements Keywords {
 		try{
 			//Click Register Tab
 			String btnRegisterTab = "//*[@id='menu-vertical']/ul/li[2]/div/a";
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(btnRegisterTab)));
+			new WaitFor().xpath(btnRegisterTab);
 			driver.findElement(By.xpath(btnRegisterTab)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "Register Tab");
 		}catch (TimeoutException e){
@@ -54,7 +54,7 @@ public class Register implements Keywords {
 		}
 		try{
 			//Radio Button การตรวจสอบสมาชิกในคำขอ ไม่ตรวจสอบ
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("groupCheck")));
+			new WaitFor().name("groupCheck");
 			List<WebElement> radios = driver.findElements(By.name("groupCheck"));
 			radios.get(1).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Radio, "การตรวจสอบสมาชิกในคำขอ");
@@ -76,6 +76,7 @@ public class Register implements Keywords {
 		}		
 		try{
 			//Radio Button สินเชื่อ Fast Track
+			new WaitFor().name("fastTrackFlag");
 			List<WebElement> radios = driver.findElements(By.name("fastTrackFlag"));
 			radios.get(0).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Radio, "FastTrackFlag");
@@ -84,13 +85,13 @@ public class Register implements Keywords {
 			return false;
 		}	
 		try{
-			//Input Text ผู้สร้างใบคำขอสินเชื่อ, หน่วยงานที่ขาย			
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("issuerPhoneMobile")));
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("issuerPhoneOffice")));
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("issuerPhoneOfficeExt")));
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("salePhoneMobile")));
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("salePhoneOffice")));
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("salePhoneOfficeExt")));
+			//Input Text ผู้สร้างใบคำขอสินเชื่อ, หน่วยงานที่ขาย
+			new WaitFor().name("issuerPhoneMobile");
+			new WaitFor().name("issuerPhoneOffice");
+			new WaitFor().name("issuerPhoneOfficeExt");
+			new WaitFor().name("salePhoneMobile");
+			new WaitFor().name("salePhoneOffice");
+			new WaitFor().name("salePhoneOfficeExt");
 			driver.findElement(By.name("issuerPhoneMobile")).sendKeys("0812345678");
 			driver.findElement(By.name("issuerPhoneOffice")).sendKeys("0212345678");
 			driver.findElement(By.name("issuerPhoneOfficeExt")).sendKeys("123");
@@ -105,7 +106,7 @@ public class Register implements Keywords {
 		try{
 			//Button Click บันทึก
 			String buttonSave = "//*[@id='applicationForm']/div[3]/div/div/div[26]/button[1]";
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(buttonSave)));
+			new WaitFor().xpath(buttonSave);
 			driver.findElement(By.xpath(buttonSave)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Save, "บันทึก");
 		}catch(TimeoutException e){
@@ -116,7 +117,7 @@ public class Register implements Keywords {
 		try{
 			//Get AppID
 			String textAppID = "current_appId";
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id(textAppID)));
+			new WaitFor().id(textAppID);
 			appID = driver.findElement(By.id(textAppID)).getText();
 			sendToLogCustom(logexestatus.PASS, logaction.Get, appID);
 		}catch(TimeoutException e){
