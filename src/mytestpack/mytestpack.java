@@ -2,9 +2,10 @@ package mytestpack;
 
 import java.util.Scanner;
 
-import keyword.NCB.CustomerNCB;
+import keyword.NCB.NCB;
 import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
+import keyword.considerandcommentation.ExecutiveSummary;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
 import keyword.register.Register;
@@ -18,68 +19,88 @@ import keyword.registerandscnanning.CustomerOtherInfo;
 import keyword.registerandscnanning.LoanFormAdd;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
 import keyword.registerandscnanning.RequireDocuments;
+import keyword.registerandscnanning.SendWork;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
 import webdriver.WebDriverEngine;
 //26/08/2015 09:56
 public class mytestpack {
-	public static void main(String[] args){
+	public static void main(String[] args){		
+		LogCat logCat = LogCat.getInstance();
+		WebDriverEngine.getInstance("firefox");		
+		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+		new LogIn("SuwitL", "testuser").execute();		addSpace();
 		
 		String appID = "";
 		String CIF = "1357";
-		
-		LogCat logCat = LogCat.getInstance();
-		WebDriverEngine.getInstance("firefox"); //IE
-		
-		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-		new LogIn("SuwitL", "testuser").execute();		addSpace();
 
-		/*
-		Register register = new Register();
-		register.execute();
-		appID = register.getAppID();
-														waitForInterrupt();
+		//appID = register();								waitForInterrupt();
+		//registerandscanning(appID, CIF);				waitForInterrupt();
+		//ncb(appID);										waitForInterrupt();
 		
-		//050908580043 050908580033 050908580044 061108580021
-		//050908580045		
+		appID = "050908580054";
 		new GotoApp(appID).execute();					waitForInterrupt();
-		
-		new CustomerAdd(CIF).execute();					waitForInterrupt();
-		new CustomerCIFInfo().execute();				waitForInterrupt();
-		new CustomerOtherInfo("1", "3", "5", "7", "9").execute();								waitForInterrupt();
-		new CustomerIncome("2", "20000", "1000", "1000", "1000", "1000", "1000").execute();		waitForInterrupt();
-		new CustomerExpenses("8000").execute();			waitForInterrupt();
-		new CustomerNonNCB("0").execute();				waitForInterrupt();
-
-		new LoanFormAdd().execute();					waitForInterrupt();
-		new LoanFormLongTermLoan().execute();			waitForInterrupt();
-		
-		new RequireDocuments().execute();				waitForInterrupt();
 		new AttachFiles().execute();					waitForInterrupt();	
 		
-		new TabPolicy().execute();						waitForInterrupt();
-
-		new AttachFiles().execute();					waitForInterrupt();	
-		*/
-
-		new GotoApp("050908580048").execute();
-		new CustomerNCB().execute();
+//		new ExecutiveSummary().execute();				waitForInterrupt();
+//		new RequireDocuments().execute();				waitForInterrupt();
+//		new AttachFiles().execute();					waitForInterrupt();	
 		
 		new LogOut().execute();							
 		
 		WebDriverEngine.Close();
 		logCat.endLog();
 	}
+	
+	private static void ncb(String appID) {
+		new GotoApp(appID).execute();					addSpace();
+		
+		new NCB().execute();							addSpace();
+		
+		new SendWork().execute();						addSpace();
+	}
 
+	private static void registerandscanning(String appID, String CIF) {
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		new GotoApp(appID).execute();					addSpace();
+														
+		new CustomerAdd(CIF).execute();					addSpace();
+		new CustomerCIFInfo().execute();				addSpace();
+		new CustomerOtherInfo("1", "3", "5", "7", "9").execute();								addSpace();
+		new CustomerIncome("2", "20000", "1000", "1000", "1000", "1000", "1000").execute();		addSpace();
+		new CustomerExpenses("8000").execute();			addSpace();
+		new CustomerNonNCB("0").execute();				addSpace();
+														
+		new LoanFormAdd().execute();					addSpace();
+		new LoanFormLongTermLoan().execute();			addSpace();
+		
+		new RequireDocuments().execute();				addSpace();
+		new AttachFiles().execute();					addSpace();	
+		
+		new TabPolicy().execute();						addSpace();
+		
+		new SendWork().execute();						addSpace();
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	}
+
+	private static String register() {
+		Register register = new Register();				
+		register.execute();								
+		String appID = register.getAppID();				addSpace();
+		return appID;
+	}
+	
 	private static void waitForInterrupt() {
+		@SuppressWarnings("resource")
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Enter the first number");
+		// get user input for a
+		@SuppressWarnings("unused")
+		String x = reader.nextLine();
+		
 		addSpace();
-//		@SuppressWarnings("resource")
-//		Scanner reader = new Scanner(System.in);
-//		System.out.println("Enter the first number");
-//		// get user input for a
-//		@SuppressWarnings("unused")
-//		String x = reader.nextLine();
-	}	
+	}
+	
 	private static void addSpace() {
 		System.out.println("\n...\n");
 	}

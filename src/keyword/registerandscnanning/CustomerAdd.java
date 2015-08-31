@@ -42,10 +42,10 @@ public class CustomerAdd implements Keywords {
 			String btnAddCustomer = "//div[@id='tabs-1']/div/div/div[2]/button";
 			new WaitFor().xpath(btnAddCustomer);
 			driver.findElement(By.xpath(btnAddCustomer)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.RegisScan, logtab.RegisCust, logsubtab.None,
+			logCat.sendToLog(logexestatus.PASS, logoperation.RegScanning, logtab.RegCustomer, logsubtab.None,
 					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
 		} catch (TimeoutException e) {
-			logCat.sendToLog(logexestatus.FAIL, logoperation.RegisScan, logtab.RegisCust, logsubtab.None,
+			logCat.sendToLog(logexestatus.FAIL, logoperation.RegScanning, logtab.RegCustomer, logsubtab.None,
 					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
 			return false;
 		}
@@ -67,7 +67,7 @@ public class CustomerAdd implements Keywords {
 			driver.findElement(By.name(rdoSearchCustomer)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "ค้นหาในระบบ" + "ค้นหาในระบบ");
 		} catch (TimeoutException e) {
-			logCat.sendToLog(logexestatus.FAIL, logoperation.RegisScan, logtab.RegisCust, logsubtab.None,
+			logCat.sendToLog(logexestatus.FAIL, logoperation.RegScanning, logtab.RegCustomer, logsubtab.None,
 					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
 			return false;
 		}
@@ -175,12 +175,12 @@ public class CustomerAdd implements Keywords {
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.Add, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.Add, logelement.None,
 				logaction, str);
 	}
 

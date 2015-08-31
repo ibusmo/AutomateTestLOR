@@ -2,6 +2,7 @@ package keyword.registerandscnanning;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
@@ -43,7 +44,7 @@ public class LoanFormAdd implements Keywords {
 			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
 			javascriptprompt.accept();
 			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "คำขอสินเชื่อ Tab OK");
-		}catch (NullPointerException e) {
+		}catch (NoAlertPresentException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "คำขอสินเชื่อ Tab");
 		}
 		try {
@@ -230,12 +231,12 @@ public class LoanFormAdd implements Keywords {
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.LoanForm, logsubtab.Add, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.Add, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.LoanForm, logsubtab.Add, logelement.None,
 				logaction, str);
 	}
 }

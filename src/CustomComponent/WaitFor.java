@@ -19,4 +19,7 @@ public class WaitFor implements CustomComponent {
 	public void cssSelector(String cssSelector){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 	}
+	public void linkText(String linkText){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(linkText)));
+	}
 }

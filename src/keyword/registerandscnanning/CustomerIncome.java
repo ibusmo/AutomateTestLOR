@@ -192,12 +192,12 @@ public class CustomerIncome implements Keywords{
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFIncome, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFIncome, logelement.None,
 				logaction, null);
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFIncome, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFIncome, logelement.None,
 				logaction, str);
 	}
 }

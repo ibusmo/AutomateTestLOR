@@ -18,18 +18,22 @@ public class LogTag {
 		Logout,
 		Register,
 		WorkBox,
-		RegisScan,
+		RegScanning,
 		NCB,
+		ConsiderComment,
 		None
 	}
 	public enum logtab{
 		WorkBox,
-		RegisCust,
+		RegCustomer,
 		LoanForm,
 		Policy,
 		RequireDoc,
 		AttachFiles,
-		None
+		
+		RegCollate,
+		ExcSummary,
+		None, 
 	} 
 	public enum logsubtab{
 		WorkBox,
@@ -67,6 +71,7 @@ public class LogTag {
 		Popup,
 		Check,
 		Attach,
+		SendWork,
 		None
 	}
 }

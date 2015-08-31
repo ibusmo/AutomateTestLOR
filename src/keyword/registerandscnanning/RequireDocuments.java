@@ -26,9 +26,9 @@ public class RequireDocuments implements Keywords {
 		sendToLogStart();
 		try {
 			// Click เอกสารที่ต้องการ Tab
-			String btnReqDocsTab = "//*[@id='mainTab']/ul/li[9]/a";
-			new WaitFor().xpath(btnReqDocsTab);
-			driver.findElement(By.xpath(btnReqDocsTab)).click();
+			String btnReqDocsTab = "เอกสารที่ต้องการ";
+			new WaitFor().linkText(btnReqDocsTab);
+			driver.findElement(By.linkText(btnReqDocsTab)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "เอกสารที่ต้องการ  Tab");			
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "เอกสารที่ต้องการ Tab");
@@ -76,7 +76,7 @@ public class RequireDocuments implements Keywords {
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RequireDoc, logsubtab.None, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RequireDoc, logsubtab.None, logelement.None,
 				logaction, str);
 	}
 }

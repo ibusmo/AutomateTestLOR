@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/keyword/NCB/CustomerNCB.java=UTF-8
+encoding//src/keyword/NCB/NCB.java=UTF-8
 encoding//src/keyword/helper/GotoApp.java=UTF-8
 encoding//src/keyword/register/Register.java=UTF-8
 encoding//src/keyword/registerandscnanning/AttachFiles.java=UTF-8
@@ -12,5 +12,6 @@ encoding//src/keyword/registerandscnanning/CustomerOtherInfo.java=UTF-8
 encoding//src/keyword/registerandscnanning/LoanFormAdd.java=UTF-8
 encoding//src/keyword/registerandscnanning/LoanFormLongTermLoan.java=UTF-8
 encoding//src/keyword/registerandscnanning/RequireDocuments.java=UTF-8
+encoding//src/keyword/registerandscnanning/SendWork.java=UTF-8
 encoding//src/keyword/registerandscnanning/TabPolicy.java=UTF-8
 encoding//src/mytestpack/mytestpack.java=UTF-8

@@ -68,12 +68,12 @@ public class CustomerNonNCB implements Keywords {
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFNonNCB, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFNonNCB, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.RegisCust, logsubtab.CIFNonNCB, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFNonNCB, logelement.None,
 				logaction, str);
 	}
 }

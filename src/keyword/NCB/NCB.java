@@ -17,7 +17,7 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-public class CustomerNCB implements Keywords {
+public class NCB implements Keywords {
 
 	@Override
 	public void initKeywords() {
@@ -118,7 +118,7 @@ public class CustomerNCB implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
-				logtab.RegisCust, 
+				logtab.RegCustomer, 
 				logsubtab.NCB, 
 				logelement.None, 
 				logaction,
@@ -128,7 +128,7 @@ public class CustomerNCB implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
-				logtab.RegisCust, 
+				logtab.RegCustomer, 
 				logsubtab.NCB, 
 				logelement.None, 
 				logaction,

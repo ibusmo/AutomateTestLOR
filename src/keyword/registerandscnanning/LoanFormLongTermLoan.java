@@ -203,12 +203,12 @@ public class LoanFormLongTermLoan implements Keywords {
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.LongTermLoan, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.LoanForm, logsubtab.LongTermLoan, logelement.None,
 				logaction, null);
 	}
 
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegisScan, logtab.LoanForm, logsubtab.LongTermLoan, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.LoanForm, logsubtab.LongTermLoan, logelement.None,
 				logaction, str);
 	}
 }
