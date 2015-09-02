@@ -3,17 +3,16 @@ package mytestpack;
 import java.util.Random;
 import java.util.Scanner;
 
-import cms.GotoAppCMS;
 import keyword.NCB.NCB;
 import keyword.NCB.NCBSendWork;
 import keyword.assignment.ASSendWork;
 import keyword.assignment.Assignment;
-import keyword.assignment.GetCMSNum;
 import keyword.authenticate.LogIn;
 import keyword.authenticate.LogOut;
 import keyword.basicinfocheck.BICDocuments;
 import keyword.basicinfocheck.BICExecutiveSummary;
 import keyword.basicinfocheck.BICSendWork;
+import keyword.cms.GotoAppCMS;
 import keyword.considerandcommentation.CCDocuments;
 import keyword.considerandcommentation.CCExecutiveSummary;
 import keyword.considerandcommentation.CCSendWork;
@@ -46,7 +45,7 @@ public class mytestpack {
 
 		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
 		new LogIn("PisutC", "testuser").execute();		waitForInterrupt();
-		new GotoAppCMS("1549").execute();				waitForInterrupt();
+		new GotoAppCMS("1548").execute();				waitForInterrupt();
 		new LogOut().execute();			
 		/*
 		String appID = "050909580007";

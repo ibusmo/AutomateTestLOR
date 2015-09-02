@@ -1,4 +1,4 @@
-package cms;
+package keyword.cms;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -7,7 +7,7 @@ import customcomponent.WaitFor;
 import output.LogTag.logaction;
 import output.LogTag.logexestatus;
 
-public class GotoAppCMS extends GetElement{
+public class GotoAppCMS extends BaseCMS{
 	
 	String CMSNum;
 	
@@ -32,14 +32,14 @@ public class GotoAppCMS extends GetElement{
 			// Click บันทึกราคาประเมิน
 			String btnEva = new GetElement().getElement(CMSNum, "EDIT");
 			if(btnEva==null){
-				sendToLogCustom(logexestatus.FAIL, logaction.Click, "บันทึกราคาประเมิน null");
+				sendToLogCustom(logexestatus.FAIL, logaction.Click, "บันทึกราคาประเมิน null with " + CMSNum);
 				return false;  
 			}
 			new WaitFor().xpath(btnEva);
 			driver.findElement(By.xpath(btnEva)).click();
-			sendToLogCustom(logexestatus.PASS, logaction.Click, "บันทึกราคาประเมิน");
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "บันทึกราคาประเมิน " + CMSNum);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Click, "บันทึกราคาประเมิน");
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "บันทึกราคาประเมิน " + CMSNum);
 			return false;
 		}		
 		sendToLogFinish();

@@ -1,18 +1,13 @@
-package cms;
+package keyword.cms;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import customcomponent.WaitFor;
-import keyword.Keywords;
 import output.LogTag.logaction;
-import output.LogTag.logelement;
 import output.LogTag.logexestatus;
-import output.LogTag.logoperation;
-import output.LogTag.logsubtab;
-import output.LogTag.logtab;
 
-public class GetElement implements Keywords {
+public class GetElement extends BaseCMS {
 	
 	public String getElement(String CMSNum, String elementType){
 		int numRows=0;
@@ -49,35 +44,5 @@ public class GetElement implements Keywords {
 			}
 		}
 		return null;		
-	}
-
-	@Override
-	public void initKeywords() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean execute() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void sendToLogStart() {
-		sendToLogCustom(logexestatus.START, logaction.None);
-	}
-
-	@Override
-	public void sendToLogFinish() {
-		sendToLogCustom(logexestatus.FINISH, logaction.None);
-	}
-	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.WorkBox, logtab.None, logsubtab.None, logelement.None,
-				logaction, null);
-	}	
-	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.WorkBox, logtab.None, logsubtab.None, logelement.None,
-				logaction, str);
 	}
 }
