@@ -18,21 +18,40 @@ public class LogTag {
 		Logout,
 		Register,
 		WorkBox,
-		RegisScan,
+		RegScanning,
 		NCB,
-		None
+		ConsComment,
+		BasiInfo,
+		None, RegisScan, Assigment, LoanApp, CMS, CSMColl
 	}
 	public enum logtab{
 		WorkBox,
-		RegisCust,
-		policy,
-		None
+		RegCustomer,
+		LoanForm,
+		Policy,
+		RequireDoc,
+		AttachFiles,
+		
+		RegCollate,
+		ExcSummary,
+		None, RegColl, Assignment, Edit, GetCMS, CollInfo, CMSSendWork, CMSGotoApp, 
 	} 
 	public enum logsubtab{
 		WorkBox,
 		PersonalBox,
+		Add,
+		
+		CIFInfo,
+		CIFOtherInfo,
+		CIFIncome,
+		CIFCareer,
+		CIFExpense,
+		CIFNonNCB,
+		
+		LongTermLoan,
+		
 		NCB,
-		None
+		None, Warrantee, Mortgage, GeneralInfo, LandInfo, BuildingInfo, SupportInfo, EvaMethod, Value, PartPledge
 	} 
 	public enum logelement{
 		None
@@ -50,6 +69,10 @@ public class LogTag {
 		Save,
 		Get,
 		Date,
-		None
+		Popup,
+		Check,
+		Attach,
+		SendWork,
+		None, Checkbox
 	}
 }

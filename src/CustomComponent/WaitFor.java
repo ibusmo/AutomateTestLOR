@@ -1,4 +1,4 @@
-package CustomComponent;
+package customcomponent;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,5 +15,11 @@ public class WaitFor implements CustomComponent {
 	}
 	public void xpath(String xpath){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+	}
+	public void cssSelector(String cssSelector){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+	}
+	public void linkText(String linkText){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(linkText)));
 	}
 }

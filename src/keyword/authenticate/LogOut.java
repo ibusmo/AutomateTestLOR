@@ -24,9 +24,10 @@ public class LogOut implements Keywords {
 	public boolean execute() {
 		sendToLogStart();
 		try{
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")));
+			String btnLogOut = "ออกจากระบบ";
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(btnLogOut)));
 			//executor.executeScript("redirect('j_acegi_logout');", driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")));
-			driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")).click();
+			driver.findElement(By.linkText(btnLogOut)).click();
 			Alert javascriptprompt = driver.switchTo().alert();
 			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
 			javascriptprompt.accept();

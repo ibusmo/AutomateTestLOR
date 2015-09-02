@@ -102,4 +102,8 @@ public class WebDriverEngine {
 				logaction.Start, 
 				webEngine);
 	}
+
+	public static void quit() {
+		driver.quit();
+	}
 }

@@ -1,14 +1,13 @@
 package keyword.NCB;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.DatePicker;
-import CustomComponent.SelectDropdown;
-import CustomComponent.WaitFor;
+import customcomponent.DatePicker;
+import customcomponent.SelectDropdown;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -17,7 +16,7 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-public class CustomerNCB implements Keywords {
+public class NCB implements Keywords {
 
 	@Override
 	public void initKeywords() {
@@ -41,11 +40,12 @@ public class CustomerNCB implements Keywords {
 		try {
 			// Click Input Date //Date Picker
 			String inputDateField = "reportedDt"; // id
-			String dateStr = getCurDate();
-			new DatePicker().pickDate(inputDateField, dateStr);
-			sendToLogCustom(logexestatus.PASS, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
+			DatePicker datePicker = new DatePicker();
+			String dateStr = datePicker.getCurDate();
+			datePicker.idSetDate(inputDateField, dateStr);
+			sendToLogCustom(logexestatus.PASS, logaction.Date, "วันที่ของข้อมูล * " + dateStr);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
+			sendToLogCustom(logexestatus.FAIL, logaction.Date, "วันที่ของข้อมูล * ");
 			return false;
 		}
 		try {
@@ -54,7 +54,7 @@ public class CustomerNCB implements Keywords {
 			String inputValue = "02 : ไม่มี";
 			String selectField = "litigationStatusCode";
 			String selectValue = "02";
-			new SelectDropdown().select(inputField, inputValue, selectField, selectValue);
+			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
@@ -98,13 +98,6 @@ public class CustomerNCB implements Keywords {
 		return true;
 	}
 
-	private String getCurDate() {
-
-		String localTime = "" + String.format("%02d", LocalDateTime.now().getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
-		return localTime;
-	}
-
 	@Override
 	public void sendToLogStart() {
 		sendToLogCustom(logexestatus.START, logaction.None);
@@ -118,7 +111,7 @@ public class CustomerNCB implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
-				logtab.RegisCust, 
+				logtab.RegCustomer, 
 				logsubtab.NCB, 
 				logelement.None, 
 				logaction,
@@ -128,7 +121,7 @@ public class CustomerNCB implements Keywords {
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
 		logCat.sendToLog(logexestatus, 
 				logoperation.NCB, 
-				logtab.RegisCust, 
+				logtab.RegCustomer, 
 				logsubtab.NCB, 
 				logelement.None, 
 				logaction,
