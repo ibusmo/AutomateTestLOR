@@ -1,7 +1,7 @@
 package keyword.assignment;
 
 import keyword.Keywords;
-import keyword.loanapp.LoanappEdit;
+import keyword.loanapp.LoanAppEdit;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
 import output.LogTag.logexestatus;
@@ -22,7 +22,7 @@ public class GetCMSNum implements Keywords {
 	@Override
 	public boolean execute() {
 		sendToLogStart();
-		LoanappEdit getCMS = new LoanappEdit();
+		LoanAppEdit getCMS = new LoanAppEdit();
 		if(getCMS.execute()==false)	return false;
 		CMSNum = getCMS.getCMSNum();
 		sendToLogFinish();

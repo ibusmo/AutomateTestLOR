@@ -14,7 +14,7 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-public class LoanappEdit implements Keywords {
+public class LoanAppEdit implements Keywords {
 	
 	String CMSNo = "";
 

@@ -4,10 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import customcomponent.WaitFor;
+import keyword.Keywords;
 import output.LogTag.logaction;
+import output.LogTag.logelement;
 import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
-public class GetElement extends BaseCMS {
+public class CMSGetElement implements Keywords {
 	
 	public String getElement(String CMSNum, String elementType){
 		int numRows=0;
@@ -25,7 +30,7 @@ public class GetElement extends BaseCMS {
 				String xpathCMSRow = "//*[@id='content']/div/form/table/tbody/tr["+index+"]/td[2]";
 				new WaitFor().xpath(xpathCMSRow);
 				String tmpCMSNum = driver.findElement(By.xpath(xpathCMSRow)).getText();
-				System.out.println(tmpCMSNum);
+				//System.out.println(tmpCMSNum);
 				if(tmpCMSNum.toLowerCase().matches(CMSNum)){
 					String xpathCMSButton = null;
 					switch (elementType){
@@ -44,5 +49,37 @@ public class GetElement extends BaseCMS {
 			}
 		}
 		return null;		
+	}
+	
+	@Override
+	public void sendToLogStart() {
+		sendToLogCustom(logexestatus.START, logaction.None);
+	}
+
+	@Override
+	public void sendToLogFinish() {
+		sendToLogCustom(logexestatus.FINISH, logaction.None);
+	}
+
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
+		logCat.sendToLog(logexestatus, logoperation.CMS, logtab.WorkBox, logsubtab.None, logelement.None,
+				logaction, null);
+	}
+
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
+		logCat.sendToLog(logexestatus, logoperation.CMS, logtab.WorkBox, logsubtab.None, logelement.None,
+				logaction, str);
+	}
+
+	@Override
+	public void initKeywords() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean execute() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

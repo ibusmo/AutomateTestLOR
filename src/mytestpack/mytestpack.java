@@ -12,7 +12,14 @@ import keyword.authenticate.LogOut;
 import keyword.basicinfocheck.BICDocuments;
 import keyword.basicinfocheck.BICExecutiveSummary;
 import keyword.basicinfocheck.BICSendWork;
-import keyword.cms.GotoAppCMS;
+import keyword.cms.CMSBuildingInfo;
+import keyword.cms.CMSEvaluationMethod;
+import keyword.cms.CMSLandInfo;
+import keyword.cms.CMSPartPledge;
+import keyword.cms.CMSSendWork;
+import keyword.cms.CMSSupportInfo;
+import keyword.cms.CMSValue;
+import keyword.cms.CMSGotoApp;
 import keyword.considerandcommentation.CCDocuments;
 import keyword.considerandcommentation.CCExecutiveSummary;
 import keyword.considerandcommentation.CCSendWork;
@@ -21,7 +28,7 @@ import keyword.considerandcommentation.CollateralInfo;
 import keyword.considerandcommentation.CollateralMortgage;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
-import keyword.loanapp.LoanappEdit;
+import keyword.loanapp.LoanAppEdit;
 import keyword.register.Register;
 import keyword.registerandscnanning.CustomerAdd;
 import keyword.registerandscnanning.CustomerCIFInfo;
@@ -45,7 +52,14 @@ public class mytestpack {
 
 		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
 		new LogIn("PisutC", "testuser").execute();		waitForInterrupt();
-		new GotoAppCMS("1548").execute();				waitForInterrupt();
+		new CMSGotoApp("1548").execute();				waitForInterrupt();
+		new CMSLandInfo().execute();					waitForInterrupt();
+		new CMSBuildingInfo().execute(); 				waitForInterrupt();
+		new CMSSupportInfo().execute(); 				waitForInterrupt();
+		new CMSEvaluationMethod().execute(); 			waitForInterrupt();
+		new CMSValue().execute(); 						waitForInterrupt();
+		new CMSPartPledge().execute(); 					waitForInterrupt();
+		new CMSSendWork().execute(); 					waitForInterrupt();
 		new LogOut().execute();			
 		/*
 		String appID = "050909580007";
@@ -73,7 +87,7 @@ public class mytestpack {
 	
 	private static String getCMS(String appID){
 		new GotoApp(appID).execute();					waitForInterrupt();		
-		LoanappEdit getCSM = new LoanappEdit();
+		LoanAppEdit getCSM = new LoanAppEdit();
 		getCSM.execute();
 		return getCSM.getCMSNum();
 	}

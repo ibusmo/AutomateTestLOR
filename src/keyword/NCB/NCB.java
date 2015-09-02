@@ -1,6 +1,5 @@
 package keyword.NCB;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
@@ -41,11 +40,12 @@ public class NCB implements Keywords {
 		try {
 			// Click Input Date //Date Picker
 			String inputDateField = "reportedDt"; // id
-			String dateStr = getCurDate();
-			new DatePicker().pickDate(inputDateField, dateStr);
-			sendToLogCustom(logexestatus.PASS, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
+			DatePicker datePicker = new DatePicker();
+			String dateStr = datePicker.getCurDate();
+			datePicker.idSetDate(inputDateField, dateStr);
+			sendToLogCustom(logexestatus.PASS, logaction.Date, "วันที่ของข้อมูล * " + dateStr);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Date, "วันที่ของข้อมูล * " + getCurDate());
+			sendToLogCustom(logexestatus.FAIL, logaction.Date, "วันที่ของข้อมูล * ");
 			return false;
 		}
 		try {
@@ -96,13 +96,6 @@ public class NCB implements Keywords {
 		}
 		sendToLogFinish();
 		return true;
-	}
-
-	private String getCurDate() {
-
-		String localTime = "" + String.format("%02d", LocalDateTime.now().getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
-		return localTime;
 	}
 
 	@Override

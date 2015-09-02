@@ -4,15 +4,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import customcomponent.WaitFor;
+import keyword.Keywords;
 import output.LogTag.logaction;
+import output.LogTag.logelement;
 import output.LogTag.logexestatus;
+import output.LogTag.logoperation;
+import output.LogTag.logsubtab;
+import output.LogTag.logtab;
 
-public class GotoAppCMS extends BaseCMS{
+public class CMSGotoApp implements Keywords{
 	
 	String CMSNum;
 	
-	public GotoAppCMS(String CMSNum) {
+	public CMSGotoApp(String CMSNum) {
 		this.CMSNum = CMSNum;
+	}
+
+	@Override
+	public void initKeywords() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override
@@ -30,7 +41,7 @@ public class GotoAppCMS extends BaseCMS{
 		}
 		try {
 			// Click บันทึกราคาประเมิน
-			String btnEva = new GetElement().getElement(CMSNum, "EDIT");
+			String btnEva = new CMSGetElement().getElement(CMSNum, "EDIT");
 			if(btnEva==null){
 				sendToLogCustom(logexestatus.FAIL, logaction.Click, "บันทึกราคาประเมิน null with " + CMSNum);
 				return false;  
@@ -44,5 +55,25 @@ public class GotoAppCMS extends BaseCMS{
 		}		
 		sendToLogFinish();
 		return true;
+	}
+	
+	@Override
+	public void sendToLogStart() {
+		sendToLogCustom(logexestatus.START, logaction.None);
+	}
+
+	@Override
+	public void sendToLogFinish() {
+		sendToLogCustom(logexestatus.FINISH, logaction.None);
+	}
+
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
+		logCat.sendToLog(logexestatus, logoperation.CMS, logtab.CMSGotoApp, logsubtab.None, logelement.None,
+				logaction, null);
+	}
+
+	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
+		logCat.sendToLog(logexestatus, logoperation.CMS, logtab.CMSGotoApp, logsubtab.None, logelement.None,
+				logaction, str);
 	}
 }
