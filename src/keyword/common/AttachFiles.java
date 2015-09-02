@@ -4,7 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.WaitFor;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -65,7 +65,7 @@ public class AttachFiles implements Keywords {
 									   //*[@id="divListDocument"]/div[2]/div/table/tbody/tr[2]        /td[7]/button[2]/img
 				new WaitFor().xpath(xpathTmp);
 				String bynTitle = driver.findElement(By.xpath(xpathTmp)).getAttribute("src");
-				System.out.println(bynTitle);
+				//System.out.println(bynTitle);
 				if(bynTitle.toLowerCase().contains("select")){
 					driver.findElement(By.xpath(xpathTmp)).click();
 					//Select File Page

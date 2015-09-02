@@ -3,7 +3,7 @@ package keyword.registerandscnanning;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.WaitFor;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -15,30 +15,23 @@ import output.LogTag.logtab;
 public class CustomerIncome implements Keywords{
 	
 	private String workExpYear;
-	private String Salary;
-	private String Tax;
-	private String SocialSecurity;
-	private String ProvidentFund;
-	private String CooperativeShare;
-	private String ChorOrSor;
+	private String salary;
+	private String tax;
+	private String socialSecurity;
+	private String srovidentFund;
+	private String cooperativeShare;
+	private String chorOrSor;
 	
 	@Override
 	public void initKeywords() {
-		// TODO Auto-generated method stub
-	}
-	public CustomerIncome(String workExpYear, String Salary, String Tax, String SocialSecurity, String ProvidentFund, String CooperativeShare, String ChorOrSor) {
-		this.workExpYear = workExpYear;
-		this.Salary = Salary;
-		this.Tax = Tax;
-		this.SocialSecurity = SocialSecurity;
-		this.ProvidentFund = ProvidentFund;
-		this.CooperativeShare = CooperativeShare;
-		this.ChorOrSor = ChorOrSor;
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
+		workExpYear = "2";
+		salary = "20000";
+		tax = "1000";
+		socialSecurity = "1000";
+		srovidentFund = "1000";
+		cooperativeShare = "1000";
+		chorOrSor = "1000";
+	}	
 	
 	public boolean execute() {
 		sendToLogStart();
@@ -75,7 +68,7 @@ public class CustomerIncome implements Keywords{
 			// Input เงินเดือน
 			String inputregSalary = "regSalary";
 			new WaitFor().id(inputregSalary);
-			driver.findElement(By.id(inputregSalary)).sendKeys(Salary);
+			driver.findElement(By.id(inputregSalary)).sendKeys(salary);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "อัตราเงินเดือน  *" + "อัตราเงินเดือน  *");
 
 			
@@ -90,7 +83,7 @@ public class CustomerIncome implements Keywords{
 			// Input ภาษี
 			String inputregTax = "regTax";
 			new WaitFor().id(inputregTax);
-			driver.findElement(By.id(inputregTax)).sendKeys(Tax);
+			driver.findElement(By.id(inputregTax)).sendKeys(tax);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าภาษี *" + "ค่าภาษี  *");
 
 			
@@ -105,7 +98,7 @@ public class CustomerIncome implements Keywords{
 			// Input ประกันสังคม
 			String inputregSocialSecurity = "regSocialSecurity";
 			new WaitFor().id(inputregSocialSecurity);
-			driver.findElement(By.id(inputregSocialSecurity)).sendKeys(SocialSecurity);
+			driver.findElement(By.id(inputregSocialSecurity)).sendKeys(socialSecurity);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าประกันสังคม " + "ค่าประกันสังคม ");
 
 			
@@ -120,7 +113,7 @@ public class CustomerIncome implements Keywords{
 			// Input กองทุนเลี้ยงชีพ
 			String inputregProvidentFund = "regProvidentFund";
 			new WaitFor().id(inputregProvidentFund);
-			driver.findElement(By.id(inputregProvidentFund)).sendKeys(ProvidentFund);
+			driver.findElement(By.id(inputregProvidentFund)).sendKeys(srovidentFund);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "กองทุนสำรองเลี้ยงชีพ  " + "กองทุนสำรองเลี้ยงชีพ  ");
 
 			
@@ -136,7 +129,7 @@ public class CustomerIncome implements Keywords{
 			// Input หุ้นสหกรณ์
 			String inputregCooperativeShare = "regCooperativeShare";
 			new WaitFor().id(inputregCooperativeShare);
-			driver.findElement(By.id(inputregCooperativeShare)).sendKeys(CooperativeShare);
+			driver.findElement(By.id(inputregCooperativeShare)).sendKeys(cooperativeShare);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าหุ้นสหกรณ์  " + "ค่าหุ้นสหกรณ์ ");
 
 			
@@ -150,7 +143,7 @@ public class CustomerIncome implements Keywords{
 			// Input ฌอส.
 			String inputregChorOrSor = "regChorOrSor";
 			new WaitFor().id(inputregChorOrSor);
-			driver.findElement(By.id(inputregChorOrSor)).sendKeys(ChorOrSor);
+			driver.findElement(By.id(inputregChorOrSor)).sendKeys(chorOrSor);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ฌอส. " + "ฌอส. ");
 
 			

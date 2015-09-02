@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import CustomComponent.SelectDropdown;
-import CustomComponent.SelectPopup;
-import CustomComponent.WaitFor;
+import customcomponent.SelectDropdown;
+import customcomponent.SelectPopup;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -39,14 +39,12 @@ public class CustomerAdd implements Keywords {
 		sendToLogStart();
 		try {
 			// Add Customer
-			String btnAddCustomer = "//div[@id='tabs-1']/div/div/div[2]/button";
+			String btnAddCustomer = "//*[@id='tabs-1']/div/div[1]/div[2]/button";
 			new WaitFor().xpath(btnAddCustomer);
 			driver.findElement(By.xpath(btnAddCustomer)).click();
-			logCat.sendToLog(logexestatus.PASS, logoperation.RegScanning, logtab.RegCustomer, logsubtab.None,
-					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "เพิ่มลูกค้า");
 		} catch (TimeoutException e) {
-			logCat.sendToLog(logexestatus.FAIL, logoperation.RegScanning, logtab.RegCustomer, logsubtab.None,
-					logelement.None, logaction.Click, "เพิ่มลูกค้า ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "เพิ่มลูกค้า");
 			return false;
 		}
 

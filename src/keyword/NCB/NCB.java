@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.DatePicker;
-import CustomComponent.SelectDropdown;
-import CustomComponent.WaitFor;
+import customcomponent.DatePicker;
+import customcomponent.SelectDropdown;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;

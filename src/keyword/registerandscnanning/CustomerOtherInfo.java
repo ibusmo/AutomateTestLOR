@@ -3,8 +3,8 @@ package keyword.registerandscnanning;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.SelectDropdown;
-import CustomComponent.WaitFor;
+import customcomponent.SelectDropdown;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -15,28 +15,23 @@ import output.LogTag.logtab;
 
 public class CustomerOtherInfo  implements Keywords{
 	
-	private String PeriodYear;
-	private String NumberOfChild;
-	private String CurAddrYear;
-	private String WorkCurYear;
-	private String WorkAllYear;
+	private String periodYear;
+	private String numberOfChild;
+	private String curAddrYear;
+	private String workCurYear;
+	private String workAllYear;
 	
 	public CustomerOtherInfo() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public CustomerOtherInfo(String PeriodYear, String NumberOfChild, String CurAddrYear, String WorkCurYear, String WorkAllYear) {
-		this.PeriodYear = PeriodYear;
-		this.NumberOfChild = NumberOfChild;
-		this.CurAddrYear = CurAddrYear;
-		this.WorkCurYear = WorkCurYear;
-		this.WorkAllYear = WorkAllYear;
-		// TODO Auto-generated constructor stub
+		initKeywords();
 	}
 	
 	@Override
 	public void initKeywords() {
-		// TODO Auto-generated method stub
+		periodYear = "1";
+		numberOfChild = "3";
+		curAddrYear = "5";
+		workCurYear = "7";
+		workAllYear = "9";
 	}
 	
 	public boolean execute() {
@@ -55,7 +50,7 @@ public class CustomerOtherInfo  implements Keywords{
 			// input ข้อมูลรายปี
 			String inputCustPeriod = "custPeriodYear";
 			new WaitFor().id(inputCustPeriod);
-			driver.findElement(By.id(inputCustPeriod)).sendKeys(PeriodYear);
+			driver.findElement(By.id(inputCustPeriod)).sendKeys(periodYear);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
@@ -107,7 +102,7 @@ public class CustomerOtherInfo  implements Keywords{
 			// input จำนวนบุตรทังหมด
 			String inputChildAll = "childCountAll";
 			new WaitFor().id(inputChildAll);
-			driver.findElement(By.id(inputChildAll)).sendKeys(NumberOfChild);
+			driver.findElement(By.id(inputChildAll)).sendKeys(numberOfChild);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "จำนวนบุตรทังหมด " + "จำนวนบุตรทังหมด  ");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "จำนวนบุตรทังหมด  " + "จำนวนบุตรทังหมด  ");
@@ -118,7 +113,7 @@ public class CustomerOtherInfo  implements Keywords{
 			//input ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  
 			String inputCurAddrYear = "curAddrYear";
 			new WaitFor().id(inputCurAddrYear);
-			driver.findElement(By.id(inputCurAddrYear)).sendKeys(CurAddrYear);
+			driver.findElement(By.id(inputCurAddrYear)).sendKeys(curAddrYear);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
@@ -157,7 +152,7 @@ public class CustomerOtherInfo  implements Keywords{
 			// Input Type อายุงานปัจจุบัน
 			String inputWorkCurYear = "workCurExpYear";	
 			new WaitFor().id(inputWorkCurYear);
-			driver.findElement(By.id(inputWorkCurYear)).sendKeys(WorkCurYear);
+			driver.findElement(By.id(inputWorkCurYear)).sendKeys(workCurYear);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
@@ -168,7 +163,7 @@ public class CustomerOtherInfo  implements Keywords{
 			// Input Type อายุงานรวม
 			String inputworkAllExpYear = "workAllExpYear";	
 			new WaitFor().id(inputworkAllExpYear);
-			driver.findElement(By.id(inputworkAllExpYear)).sendKeys(WorkAllYear);
+			driver.findElement(By.id(inputworkAllExpYear)).sendKeys(workAllYear);
 			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");

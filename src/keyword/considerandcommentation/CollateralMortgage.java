@@ -1,11 +1,10 @@
 package keyword.considerandcommentation;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import CustomComponent.SelectDropdown;
-import CustomComponent.WaitFor;
+import customcomponent.SelectDropdown;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -22,9 +21,9 @@ public class CollateralMortgage implements Keywords {
 		sendToLogStart();
 		try{ 
 			// Click Subtab จำนองจำนำ
-			String ClickSubtabMontgage = "//*[@id='subTabs']/ul/li[4]/a";
-			new WaitFor().xpath(ClickSubtabMontgage);
-			driver.findElement(By.xpath(ClickSubtabMontgage)).click();
+			String ClickSubtabMontgage = "ข้อมูลจำนอง/จำนำ";
+			new WaitFor().linkText(ClickSubtabMontgage);
+			driver.findElement(By.linkText(ClickSubtabMontgage)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click,  "Click Subtab จำนองจำนำ");
 		}catch(TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click,  "Click Subtab จำนองจำนำ");
@@ -87,9 +86,9 @@ public class CollateralMortgage implements Keywords {
 			String inputguaranteeAmount = "guaranteeAmount";
 			new WaitFor().id(inputguaranteeAmount);
 			driver.findElement(By.id(inputguaranteeAmount)).sendKeys(guaranteeAmounts);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ลำดับ/ครั้งที่ *" + "800000");
+			sendToLogCustom(logexestatus.PASS, logaction.Type, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ลำดับ/ครั้งที่ *" + "800000");
+			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
 			return false;
 		}
 		try{
@@ -132,5 +131,4 @@ public class CollateralMortgage implements Keywords {
 	}
 
 }
-
 

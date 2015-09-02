@@ -1,4 +1,4 @@
-package CustomComponent;
+package customcomponent;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

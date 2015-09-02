@@ -1,16 +1,15 @@
 package keyword.considerandcommentation;
 
 import java.util.Random;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import CustomComponent.SelectDropdown;
-import CustomComponent.SelectPopup;
-import CustomComponent.WaitFor;
+import customcomponent.SelectDropdown;
+import customcomponent.SelectPopup;
+import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -29,9 +28,9 @@ public class CollateralAdd implements Keywords{
 		sendToLogStart();
 		try{
 			// Click Tab หลักประกัน
-			String tabAddColl = "//*[@id='mainTab']/ul/li[6]/a";
-			new WaitFor().xpath(tabAddColl);
-			driver.findElement(By.xpath(tabAddColl)).click();
+			String tabAddColl = "หลักประกัน";
+			new WaitFor().linkText(tabAddColl);
+			driver.findElement(By.linkText(tabAddColl)).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "Click tab หลักประกัน" + "Click tab หลักประกัน");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Click tab หลักประกัน" + "Click tab หลักประกัน");
@@ -78,8 +77,63 @@ public class CollateralAdd implements Keywords{
 		} else {
 			sendToLogCustom(logexestatus.PASS, logaction.Popup, "Browser หลัก");
 		}
-		
+		try{
+			// Click Add สิ่งปลูกสร้าง
+			String btnaddLandBldRel = "addLandBldRelBtn";
+			new WaitFor().id(btnaddLandBldRel);
+			driver.findElement(By.id(btnaddLandBldRel)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "Click Button สิ่งปลูกสร้าง");
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "Click Button สิ่งปลูกสร้าง");
+		}
+		try{
+			// Select PopUp
+			String xpathpopupAddBuilding = "//*[@id='searchNewCollateral']/table[1]/thead/tr/th";
+			WebDriver popupAddBuilding = new SelectPopup().byxpath(xpathpopupAddBuilding, 2);
+			if (popupAddBuilding == null) {
+				sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
+				return false;
+			} else {
+				if (AddBuilding()==false)
+					return false;
+				sendToLogCustom(logexestatus.PASS, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
+			}
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
+		}
+		// Select Main Browser 
+		String xpathMainPage2nd = "//*[@id='content']/div/div/div[1]/text()";
+		WebDriver popupMainPage2nd = new SelectPopup().byxpath(xpathMainPage2nd, 1);
+		if (popupMainPage2nd == null) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
+			return false;
+		} else {
+			sendToLogCustom(logexestatus.PASS, logaction.Popup, "Browser หลัก");
+		}
 		sendToLogFinish();
+		return true;
+	}
+	private boolean AddBuilding() {
+		// TODO Auto-generated method stub
+		try{
+			// Click เลือกสิ่งปลูกสร้างที่ต้องการ
+			String chboxAddBuilding = "collBuildingBOList[0].checkFlag";
+			new WaitFor().name(chboxAddBuilding);
+			driver.findElement(By.name(chboxAddBuilding)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Checkbox, "เลือกสิ่งปลูกสร้างที่ต้องการ");
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Checkbox, "เลือกสิ่งปลูกสร้างที่ต้องการ");
+			return false;
+		}
+		try{
+			String btnChoose = "//*[@id='searchNewCollateral']/div/button[1]";
+			new WaitFor().xpath(btnChoose);
+			driver.findElement(By.xpath(btnChoose)).click();
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "ปุ่มเลือก");
+		}catch (TimeoutException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "ปุ่มเลือก");
+			return false;
+		}
 		return true;
 	}
 	private boolean AddCollateral(){
@@ -91,6 +145,7 @@ public class CollateralAdd implements Keywords{
 			sendToLogCustom(logexestatus.PASS, logaction.Radio, "เพิ่มหลักประกันใหม่");
 		}catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Radio, "เพิ่มหลักประกันใหม่");
+			return false;
 		}
 		try {
 			// Select Dropdown เลือกประเภทหลักประกัน

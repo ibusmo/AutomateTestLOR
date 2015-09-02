@@ -22,7 +22,7 @@ public class LogTag {
 		NCB,
 		ConsComment,
 		BasiInfo,
-		None, RegisScan
+		None, RegisScan, Assigment, LoanApp
 	}
 	public enum logtab{
 		WorkBox,
@@ -34,7 +34,7 @@ public class LogTag {
 		
 		RegCollate,
 		ExcSummary,
-		None, RegColl, 
+		None, RegColl, Assignment, Edit, GetCMS, 
 	} 
 	public enum logsubtab{
 		WorkBox,
