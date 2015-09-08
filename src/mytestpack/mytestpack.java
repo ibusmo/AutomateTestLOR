@@ -7,7 +7,7 @@ import keyword.NCB.NCB;
 import keyword.NCB.NCBSendWork;
 import keyword.assignment.ASSendWork;
 import keyword.assignment.Assignment;
-import keyword.authenticate.LogIn;
+import keyword.authenticate.Login;
 import keyword.authenticate.LogOut;
 import keyword.basicinfocheck.BICDocuments;
 import keyword.basicinfocheck.BICExecutiveSummary;
@@ -42,6 +42,8 @@ import keyword.registerandscnanning.LoanFormAdd;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
+import testdata.CellTag.col;
+import testdata.loginData.ReadExcel;
 import webdriver.WebDriverEngine;
 //26/08/2015 09:56
 public class mytestpack {
@@ -49,53 +51,60 @@ public class mytestpack {
 		LogCat logCat = LogCat.getInstance();
 		WebDriverEngine.getInstance("firefox");		
 		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-
+		
+		//"C:\\Users\\EthanHuntTB1\\Desktop\\poi-test.xlsx"
+		//"POI Worksheet"
+		
+		String CIF = "1357";
+		new Login().execute();	waitForInterrupt();		
+		String appID = register();						waitForInterrupt();
+		/*
+		registerandscanning(appID, CIF);				waitForInterrupt();
+		ncb(appID);										waitForInterrupt();
+		considerAndCommentation(appID);					waitForInterrupt();
+		basicInfoCheck(appID);							waitForInterrupt();
+		new LogOut().execute();	
+		*/
+		/*
+		//Full Application
+		new Login("SurachaiT1", "testuser").execute();	waitForInterrupt();
+		assignment(appID);
+		String CMSNo = getCMS(appID);
+		CMSOp(CMSNo);
+		new LogOut().execute();;
+		*/
+		
+		WebDriverEngine.Close();
+		WebDriverEngine.quit();
+		logCat.endLog();
+		
+	}
+	
+	private static void CMSOp(String cMSNo){
 		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
-		new LogIn("PisutC", "testuser").execute();		waitForInterrupt();
-		new CMSGotoApp("1548").execute();				waitForInterrupt();
+		new Login("PisutC", "testuser").execute();		waitForInterrupt();
+		new CMSGotoApp(cMSNo).execute();				waitForInterrupt();
 		new CMSLandInfo().execute();					waitForInterrupt();
 		new CMSBuildingInfo().execute(); 				waitForInterrupt();
 		new CMSSupportInfo().execute(); 				waitForInterrupt();
 		new CMSEvaluationMethod().execute(); 			waitForInterrupt();
 		new CMSValue().execute(); 						waitForInterrupt();
 		new CMSPartPledge().execute(); 					waitForInterrupt();
-		new CMSSendWork().execute(); 					waitForInterrupt();
+		new CMSSendWork(cMSNo).execute(); 					waitForInterrupt();
 		new LogOut().execute();			
-		/*
-		String appID = "050909580007";
-		String CIF = "1357";
-		
-		new LogIn("BoonthamC", "testuser").execute();	waitForInterrupt();		
-		appID = register();								waitForInterrupt();
-		registerandscanning(appID, CIF);				waitForInterrupt();
-		ncb(appID);										waitForInterrupt();
-		considerAndCommentation(appID);					waitForInterrupt();
-
-		basicInfoCheck(appID);							waitForInterrupt();
-		new LogOut().execute();	
-		
-		//Full Application
-		new LogIn("SurachaiT1", "testuser").execute();	waitForInterrupt();
-		assignment(appID);
-		String CMS = getCMS(appID);
-		new LogOut().execute();							
-		*/
-		WebDriverEngine.Close();
-		WebDriverEngine.quit();
-		logCat.endLog();
 	}
 	
 	private static String getCMS(String appID){
-		new GotoApp(appID).execute();					waitForInterrupt();		
+		new GotoApp(appID).execute();					addSpace();		
 		LoanAppEdit getCSM = new LoanAppEdit();
 		getCSM.execute();
 		return getCSM.getCMSNum();
 	}
 	
 	private static void assignment(String appID) {
-		new GotoApp(appID).execute();					waitForInterrupt();
-		new Assignment().execute();						waitForInterrupt();
-		new ASSendWork().execute();						waitForInterrupt();
+		new GotoApp(appID).execute();					addSpace();
+		new Assignment().execute();						addSpace();
+		new ASSendWork().execute();						addSpace();
 	}
 	
 	private static void basicInfoCheck(String appID) {
@@ -123,12 +132,12 @@ public class mytestpack {
 
 	private static void registerandscanning(String appID, String CIF) {
 		new GotoApp(appID).execute();					addSpace();														
-		new CustomerAdd(CIF).execute();					addSpace();
+		new CustomerAdd(CIF).execute();				addSpace();
 		new CustomerCIFInfo().execute();				addSpace();
 		new CustomerOtherInfo().execute();				addSpace();
 		new CustomerIncome().execute();					addSpace();
-		new CustomerExpenses("8000").execute();			addSpace();
-		new CustomerNonNCB("0").execute();				addSpace();														
+		new CustomerExpenses().execute();				addSpace();
+		new CustomerNonNCB().execute();					addSpace();														
 		new LoanFormAdd().execute();					addSpace();
 		new LoanFormLongTermLoan().execute();			addSpace();		
 		new ReScnDocuments().execute();					addSpace();		
@@ -137,6 +146,13 @@ public class mytestpack {
 	}
 
 	private static String register() {
+		Register register = new Register();				
+		register.execute();								
+		String appID = register.getAppID();				addSpace();
+		return appID;
+	}
+	
+	private static String registerSM2() {
 		Register register = new Register();				
 		register.execute();								
 		String appID = register.getAppID();				addSpace();
