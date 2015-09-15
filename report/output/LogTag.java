@@ -43,7 +43,7 @@ public class LogTag {
 		
 		CIFInfo,
 		CIFOtherInfo,
-		CIFIncome,
+		CIFSalary,
 		CIFCareer,
 		CIFExpense,
 		CIFNonNCB,
@@ -65,7 +65,7 @@ public class LogTag {
 		Click,
 		Radio,
 		Dropdown,
-		Type,
+		Text,
 		Save,
 		Get,
 		Date,

@@ -1,10 +1,8 @@
-package testdata.register;
+package testdata;
 
-import testdata.TestDatas;
 import testdata.CellTag.col;
-import testdata.loginData.ReadExcel;
 
-public class RegisterData implements TestDatas {
+public class RegisterCSMData implements TestDatas {
 
 	String workSheetPath = "register";
 	ReadExcel rdExl;

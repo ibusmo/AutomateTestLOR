@@ -42,9 +42,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().name(inputLandNo);
 			driver.findElement(By.name(inputLandNo)).clear();
 			driver.findElement(By.name(inputLandNo)).sendKeys(landNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input เลขที่ดิน");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input เลขที่ดิน");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input  เลขที่ดิน");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input  เลขที่ดิน");
 			return false;
 		}
 		try{
@@ -53,9 +53,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().name(inputLandBkNo);
 			driver.findElement(By.name(inputLandBkNo)).clear();
 			driver.findElement(By.name(inputLandBkNo)).sendKeys(landBkNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input เลขที่ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input เลขที่ ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input เลขที่ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input เลขที่ ");
 			return false;
 		}
 		try{
@@ -64,9 +64,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().name(inputlandPageNo);
 			driver.findElement(By.name(inputlandPageNo)).clear();
 			driver.findElement(By.name(inputlandPageNo)).sendKeys(landPageNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input หน้าที่");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input หน้าที่");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input หน้าที่");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input หน้าที่");
 			return false;
 		}
 		try{
@@ -75,9 +75,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().name(inputlandRavang);
 			driver.findElement(By.name(inputlandRavang)).clear();
 			driver.findElement(By.name(inputlandRavang)).sendKeys(landRavang);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input เลขที่ระวาง");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input เลขที่ระวาง");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input เลขที่ระวาง");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input เลขที่ระวาง");
 			return false;
 		}
 		try{
@@ -86,9 +86,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().name(inputlandDocPageNo);
 			driver.findElement(By.name(inputlandDocPageNo)).clear();
 			driver.findElement(By.name(inputlandDocPageNo)).sendKeys(landDocPageNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input หน้าสำรวจ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input หน้าสำรวจ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input หน้าสำรวจ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input หน้าสำรวจ");
 			return false;
 		}
 		try{
@@ -97,9 +97,9 @@ public class CMSLandInfo implements Keywords{
 			new WaitFor().id(inputlandLndVol1);
 			driver.findElement(By.id(inputlandLndVol1)).clear();
 			driver.findElement(By.id(inputlandLndVol1)).sendKeys(landLndVol1);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Type input เนื้อที่ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Type input เนื้อที่ ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Type input เนื้อที่ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Type input เนื้อที่ ");
 			return false;
 		}
 		try{

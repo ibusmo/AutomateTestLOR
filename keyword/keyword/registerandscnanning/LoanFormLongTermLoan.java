@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -32,7 +32,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String selectField = "paymentCalculationMethodCode";
 			String selectValue = "15";
 			String jEXE = "changePCM('"+selectValue+"');";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Payment Calculation Method * " + "15 : P&I");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Payment Calculation Method * " + "15 : P&I");
@@ -44,9 +44,9 @@ public class LoanFormLongTermLoan implements Keywords {
 			String payFreqValue = "1";
 			driver.findElement(By.name(inputPayFreq)).clear();
 			driver.findElement(By.name(inputPayFreq)).sendKeys(payFreqValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "Payment Frequency * " + "1");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "Payment Frequency * " + "1");
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Payment Frequency * " + "1");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Payment Frequency * " + "1");
 			return false;
 		}
 		try {
@@ -55,7 +55,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "M : เดือน";
 			String selectField = "paymentFrequencyTermUnitCode"; //name
 			String selectValue = "M";
-			new SelectDropdown().name(inputField, inputValue, selectField, selectValue);
+			new Dropdown().name(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Payment Frequency * " + "M : เดือน");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Payment Frequency * " + "M : เดือน");
@@ -67,7 +67,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "N : Next Business Date";
 			String selectField = "paymentOnHolidayCaseCode"; //name
 			String selectValue = "N";
-			new SelectDropdown().name(inputField, inputValue, selectField, selectValue);
+			new Dropdown().name(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "กรณีวันที่ชำระตรงกับวันหยุด * " + "N : Next Business Date");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กรณีวันที่ชำระตรงกับวันหยุด * " + "N : Next Business Date");
@@ -79,7 +79,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "E : ชำระทุกสิ้นเดือน";
 			String selectField = "paymentDateCode"; //name
 			String selectValue = "E";
-			new SelectDropdown().name(inputField, inputValue, selectField, selectValue);
+			new Dropdown().name(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ชำระทุกวันที่ * " + "E : ชำระทุกสิ้นเดือน");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ชำระทุกวันที่ * " + "E : ชำระทุกสิ้นเดือน");
@@ -124,7 +124,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String selectField = "purposeArrangementId"; //id
 			String selectValue = "24";
 			String jEXE = "changePurposeArrangement("+selectField+");"; //Set this
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "012001 : เพื่อการอุปโภคบริโภคส่วนบุคคล (เฉพาะบุคคลธรรมดา)");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "012001 : เพื่อการอุปโภคบริโภคส่วนบุคคล (เฉพาะบุคคลธรรมดา)");
@@ -136,7 +136,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "11001 : การซื้อที่ดินเปล่า";
 			String selectField = "personalConsumptionId"; //id
 			String selectValue = "53";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "11001 : การซื้อที่ดินเปล่า");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "11001 : การซื้อที่ดินเปล่า");
@@ -148,7 +148,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "0 : Not Commit ธนาคารสามารถยกเลิกวงเงินเมื่อใดก็ได้";
 			String selectField = "commitLineCode"; //name
 			String selectValue = "0";
-			new SelectDropdown().name(inputField, inputValue, selectField, selectValue);
+			new Dropdown().name(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "0 : Not Commit ธนาคารสามารถยกเลิกวงเงินเมื่อใดก็ได้");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "0 : Not Commit ธนาคารสามารถยกเลิกวงเงินเมื่อใดก็ได้");
@@ -160,7 +160,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "05 : ไม่เข้าเงื่อนไข";
 			String selectField = "specialisedLendingCode"; //name
 			String selectValue = "05";
-			new SelectDropdown().name(inputField, inputValue, selectField, selectValue);
+			new Dropdown().name(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "05 : ไม่เข้าเงื่อนไข");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "05 : ไม่เข้าเงื่อนไข");
@@ -172,7 +172,7 @@ public class LoanFormLongTermLoan implements Keywords {
 			String inputValue = "0 : ชำระด้วยตนเอง";
 			String selectField = "paymentMethodCode"; //id
 			String selectValue = "0";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "0 : ชำระด้วยตนเอง");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "0 : ชำระด้วยตนเอง");

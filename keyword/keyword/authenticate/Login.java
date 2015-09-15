@@ -13,7 +13,7 @@ import output.LogTag.logexestatus;
 import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
-import testdata.authenticate.LoginData;
+import testdata.LoginData;
 
 public class Login implements Keywords {
 

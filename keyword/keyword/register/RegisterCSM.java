@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -15,16 +15,16 @@ import output.LogTag.logexestatus;
 import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
-import testdata.register.RegisterData;
+import testdata.RegisterCSMData;
 
-public class RegisterSM2 implements Keywords {
+public class RegisterCSM implements Keywords {
 	
 	
 	String appID = null;
 
-	RegisterData regData = new RegisterData();
+	RegisterCSMData regData = new RegisterCSMData();
 	
-	public RegisterSM2(){
+	public RegisterCSM(){
 		initKeywords();
 	}
 	
@@ -58,7 +58,7 @@ public class RegisterSM2 implements Keywords {
 			String selectValue = regData.drpWorkflowCode;
 			String jsExe = "populatePurposeLoanByWorkFlow('"+selectValue+"','',true,false,'purposeLoanCode');"
 							+"getWorkflowGroup('"+selectValue+"');";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
@@ -81,7 +81,7 @@ public class RegisterSM2 implements Keywords {
 			String inputValue = regData.txtNewsSourceCode;
 			String selectNewsField = "newsSourceCode";
 			String selectNewsValue = regData.drpNewsSourceCode;
-			new SelectDropdown().id(inputNewsField, inputValue, selectNewsField, selectNewsValue);
+			new Dropdown().id(inputNewsField, inputValue, selectNewsField, selectNewsValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ช่องทางการรับข่าวสาร");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ช่องทางการรับข่าวสาร");
@@ -112,9 +112,9 @@ public class RegisterSM2 implements Keywords {
 			driver.findElement(By.name("salePhoneMobile")).sendKeys(regData.txtSalePhoneMobile);
 			driver.findElement(By.name("salePhoneOffice")).sendKeys(regData.txtSalePhoneOffice);
 			driver.findElement(By.name("salePhoneOfficeExt")).sendKeys(regData.txtSalePhoneOfficeExt);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "PhoneNumber");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "PhoneNumber");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "PhoneNumber");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "PhoneNumber");
 			return false;
 		}
 		try{

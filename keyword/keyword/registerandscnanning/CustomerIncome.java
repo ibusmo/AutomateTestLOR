@@ -58,11 +58,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputworkYear);
 			driver.findElement(By.id(inputworkYear)).clear();
 			driver.findElement(By.id(inputworkYear)).sendKeys(workExpYear);;
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานในปัจจุบัน(กรณีเงินเดือน) *" + "อายุงานในปัจจุบัน(กรณีเงินเดือน) *");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "อายุงานในปัจจุบัน(กรณีเงินเดือน) *" + "อายุงานในปัจจุบัน(กรณีเงินเดือน) *");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานในปัจจุบัน(กรณีเงินเดือน) *" + "อายุงานในปัจจุบัน(กรณีเงินเดือน) *");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "อายุงานในปัจจุบัน(กรณีเงินเดือน) *" + "อายุงานในปัจจุบัน(กรณีเงินเดือน) *");
 			return false;
 		}
 		
@@ -74,11 +74,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregSalary);
 			driver.findElement(By.id(inputregSalary)).clear();
 			driver.findElement(By.id(inputregSalary)).sendKeys(salary);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "อัตราเงินเดือน  *" + "อัตราเงินเดือน  *");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "อัตราเงินเดือน  *" + "อัตราเงินเดือน  *");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อัตราเงินเดือน  *" + "อัตราเงินเดือน  *");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "อัตราเงินเดือน  *" + "อัตราเงินเดือน  *");
 			return false;
 		}
 		
@@ -90,11 +90,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregTax);
 			driver.findElement(By.id(inputregTax)).clear();
 			driver.findElement(By.id(inputregTax)).sendKeys(tax);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าภาษี *" + "ค่าภาษี  *");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ค่าภาษี *" + "ค่าภาษี  *");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ค่าภาษี *" + "ค่าภาษี  *");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ค่าภาษี *" + "ค่าภาษี  *");
 			return false;
 		}
 		
@@ -106,11 +106,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregSocialSecurity);
 			driver.findElement(By.id(inputregSocialSecurity)).clear();
 			driver.findElement(By.id(inputregSocialSecurity)).sendKeys(socialSecurity);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าประกันสังคม " + "ค่าประกันสังคม ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ค่าประกันสังคม " + "ค่าประกันสังคม ");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ค่าประกันสังคม " + "ค่าประกันสังคม ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ค่าประกันสังคม " + "ค่าประกันสังคม ");
 			return false;
 		}
 		
@@ -122,11 +122,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregProvidentFund);
 			driver.findElement(By.id(inputregProvidentFund)).clear();
 			driver.findElement(By.id(inputregProvidentFund)).sendKeys(srovidentFund);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "กองทุนสำรองเลี้ยงชีพ  " + "กองทุนสำรองเลี้ยงชีพ  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "กองทุนสำรองเลี้ยงชีพ  " + "กองทุนสำรองเลี้ยงชีพ  ");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "กองทุนสำรองเลี้ยงชีพ  " + "กองทุนสำรองเลี้ยงชีพ  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "กองทุนสำรองเลี้ยงชีพ  " + "กองทุนสำรองเลี้ยงชีพ  ");
 			return false;
 		}
 		
@@ -139,11 +139,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregCooperativeShare);
 			driver.findElement(By.id(inputregCooperativeShare)).clear();
 			driver.findElement(By.id(inputregCooperativeShare)).sendKeys(cooperativeShare);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าหุ้นสหกรณ์  " + "ค่าหุ้นสหกรณ์ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ค่าหุ้นสหกรณ์  " + "ค่าหุ้นสหกรณ์ ");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ค่าหุ้นสหกรณ์ " + "ค่าหุ้นสหกรณ์ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ค่าหุ้นสหกรณ์ " + "ค่าหุ้นสหกรณ์ ");
 			return false;
 		}
 		
@@ -154,11 +154,11 @@ public class CustomerIncome implements Keywords{
 			new WaitFor().id(inputregChorOrSor);
 			driver.findElement(By.id(inputregChorOrSor)).clear();
 			driver.findElement(By.id(inputregChorOrSor)).sendKeys(chorOrSor);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ฌอส. " + "ฌอส. ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ฌอส. " + "ฌอส. ");
 
 			
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ฌอส. " + "ฌอส.  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ฌอส. " + "ฌอส.  ");
 			return false;
 		}
 		
@@ -195,12 +195,12 @@ public class CustomerIncome implements Keywords{
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction) {
-		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFIncome, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFSalary, logelement.None,
 				logaction, null);
 	}
 	
 	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFIncome, logelement.None,
+		logCat.sendToLog(logexestatus, logoperation.RegScanning, logtab.RegCustomer, logsubtab.CIFSalary, logelement.None,
 				logaction, str);
 	}
 }

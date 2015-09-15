@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import customcomponent.SelectDropdown;
-import customcomponent.SelectPopup;
+import customcomponent.Dropdown;
+import customcomponent.Popup;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -46,7 +46,7 @@ public class CustomerAdd implements Keywords {
 
 		// Select PopUp page for เพิ่มผู้ขอสินเชื่อ
 		String xpathPopup = "//html/body/form/table/thead/tr[1]/th";
-		WebDriver popup = new SelectPopup().byxpath(xpathPopup, 2);
+		WebDriver popup = new Popup().byxpath(xpathPopup, 2);
 		if (popup == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มผู้ขอสินเชื่อ");
 			return false;
@@ -83,9 +83,9 @@ public class CustomerAdd implements Keywords {
 			new WaitFor().id(inputCIFNo);
 			driver.findElement(By.id(inputCIFNo)).clear();
 			driver.findElement(By.id(inputCIFNo)).sendKeys(CIFNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "พิมพ์  CIF No." + "พิมพ์  CIF No.");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "พิมพ์  CIF No." + "พิมพ์  CIF No.");
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "พิมพ์  CIF No.");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "พิมพ์  CIF No.");
 			return false;
 		}
 
@@ -106,7 +106,7 @@ public class CustomerAdd implements Keywords {
 			String selectField = "searchedCustType";
 			String selectValue = "B";
 			String jEXE = "populateCorpGroup();";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทผู้ขอสินเชื่อ " + "ผู้ขอสินเชื่อหลัก");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ประเภทผู้ขอสินเชื่อ " + "ผู้ขอสินเชื่อหลัก");
@@ -146,7 +146,7 @@ public class CustomerAdd implements Keywords {
 		}
 		// Return to Main tab //
 		String xpathReturnPopup = "//*[@id='content']/div/div/div[1]";
-		WebDriver returnPopup = new SelectPopup().byxpath(xpathReturnPopup, 1);
+		WebDriver returnPopup = new Popup().byxpath(xpathReturnPopup, 1);
 		if (returnPopup == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
 			return false;

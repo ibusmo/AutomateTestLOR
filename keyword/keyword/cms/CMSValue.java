@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import customcomponent.DatePicker;
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -63,9 +63,9 @@ public class CMSValue implements Keywords {
 			new WaitFor().id(firstApprField);
 			driver.findElement(By.id(firstApprField)).clear();
 			driver.findElement(By.id(firstApprField)).sendKeys(firstApprValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ราคาประเมินที่ดินครั้งแรก * " + firstApprValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ราคาประเมินที่ดินครั้งแรก * " + firstApprValue);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ราคาประเมินที่ดินครั้งแรก * ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ราคาประเมินที่ดินครั้งแรก * ");
 			return false;
 		}
 		try {
@@ -75,9 +75,9 @@ public class CMSValue implements Keywords {
 			new WaitFor().id(firstApprBldField);
 			driver.findElement(By.id(firstApprBldField)).clear();
 			driver.findElement(By.id(firstApprBldField)).sendKeys(firstApprBldValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ราคาประเมินสิ่งปลูกสร้างครั้งแรก * " + firstApprBldValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ราคาประเมินสิ่งปลูกสร้างครั้งแรก * " + firstApprBldValue);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ราคาประเมินสิ่งปลูกสร้างครั้งแรก * ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ราคาประเมินสิ่งปลูกสร้างครั้งแรก * ");
 			return false;
 		}
 		try {
@@ -87,9 +87,9 @@ public class CMSValue implements Keywords {
 			new WaitFor().id(firstApprTotalField);
 			driver.findElement(By.id(firstApprTotalField)).clear();
 			driver.findElement(By.id(firstApprTotalField)).sendKeys(firstApprTotalValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ราคาประเมินรวมครั้งแรก * " + firstApprTotalValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ราคาประเมินรวมครั้งแรก * " + firstApprTotalValue);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ราคาประเมินรวมครั้งแรก * ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ราคาประเมินรวมครั้งแรก * ");
 			return false;
 		}
 		try {
@@ -169,7 +169,7 @@ public class CMSValue implements Keywords {
 			String selectValue = "1";
 			//String jsExe = "disableAllAppraisalField('"+selectValue+"');";
 			//Crash !!!!!!!!!!!!!!! Not Found
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "วิธีการประเมินราคา * " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "วิธีการประเมินราคา * ");
@@ -181,7 +181,7 @@ public class CMSValue implements Keywords {
 			String inputValue = "A : สภาพคล่องสูง";
 			String selectField = "realLiquidityCd";
 			String selectValue = "A";
-			new SelectDropdown().nameNoText(inputField, inputValue, selectField, selectValue);
+			new Dropdown().nameNoText(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "การจัดเกรดทรัพย์/สภาพคล่อง * " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "การจัดเกรดทรัพย์/สภาพคล่อง * ");

@@ -39,9 +39,9 @@ public class CustomerNonNCB implements Keywords {
 			String inputunreportedCoopCompLoan = "unreportedCoopCompLoan";
 			new WaitFor().id(inputunreportedCoopCompLoan);
 			driver.findElement(By.id(inputunreportedCoopCompLoan)).sendKeys(reportedCoopCompLoan);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น" + "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น" + "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น  " + "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น  " + "เงินกู้สหกรณ์ เงินกู้บริษัท เป็นต้น  ");
 		}
 		// SAVE 
 		try{

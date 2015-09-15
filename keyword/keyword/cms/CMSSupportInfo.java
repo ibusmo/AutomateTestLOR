@@ -5,7 +5,7 @@ import keyword.Keywords;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import output.LogTag.logaction;
 import output.LogTag.logelement;
@@ -37,7 +37,7 @@ public class CMSSupportInfo implements Keywords{
 			String selectField = "botCd";
 			String selectValue = "286006";
 			String jsExe = "populateSubBOT('"+selectValue+"', 'subbotCd');";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "รหัสหลักประกัน (ธปท.) *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "รหัสหลักประกัน (ธปท.) *: ");
@@ -49,7 +49,7 @@ public class CMSSupportInfo implements Keywords{
 			String inputValue = "ที่ดินพร้อมสิ่งปลูกสร้าง";
 			String selectField = "subbotCd";
 			String selectValue = "0";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "รหัสหลักประกันย่อย(ธปท.) *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "รหัสหลักประกันย่อย(ธปท.) *: ");
@@ -61,7 +61,7 @@ public class CMSSupportInfo implements Keywords{
 			String inputValue = "1 : อสังหาริมทรัพย์เพื่อที่อยู่อาศัย (Residential Real Estate)";
 			String selectField = "realEstateCd";
 			String selectValue = "1";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทของอสังหาริมทรัพย์ *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ประเภทของอสังหาริมทรัพย์ *: ");
@@ -73,7 +73,7 @@ public class CMSSupportInfo implements Keywords{
 			String inputValue = "เขตสีแดง ที่ดินประเภทพาณิชยกรรม";
 			String selectField = "realUseinfoCd";
 			String selectValue = "2";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ข้อจำกัดของการใช้ประโยชน์ที่ดินตาม พรบ.ผังเมือง *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ข้อจำกัดของการใช้ประโยชน์ที่ดินตาม พรบ.ผังเมือง *: ");

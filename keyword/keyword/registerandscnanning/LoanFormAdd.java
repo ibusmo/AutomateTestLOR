@@ -6,8 +6,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import customcomponent.SelectDropdown;
-import customcomponent.SelectPopup;
+import customcomponent.Dropdown;
+import customcomponent.Popup;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -69,7 +69,7 @@ public class LoanFormAdd implements Keywords {
 		}
 		// Select PopUp page for creditPicklist เพิ่มคำขอสินเชื่อ
 		String xpathcreditPicklist = "//*[@id='addCreditDiv']/table/thead/tr/th";
-		WebDriver popupcreditPicklist = new SelectPopup().byxpath(xpathcreditPicklist, 2);
+		WebDriver popupcreditPicklist = new Popup().byxpath(xpathcreditPicklist, 2);
 		if (popupcreditPicklist == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
 			return false;
@@ -80,7 +80,7 @@ public class LoanFormAdd implements Keywords {
 		}
 		// Select PopUp page for Main Page
 		String xpathMainPage = "//*[@id='content']/div/div/div[1]";
-		WebDriver popupMainPage = new SelectPopup().byxpath(xpathMainPage, 1);
+		WebDriver popupMainPage = new Popup().byxpath(xpathMainPage, 1);
 		if (popupMainPage == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
 			return false;
@@ -99,7 +99,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "productGroupCode";
 			String selectValue = "LN";
 			String jEXE = "changeProductGroupCode(null,false)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "กลุ่มผลิตภัณฑ์ * " + "LN : Consumer Loans");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กลุ่มผลิตภัณฑ์ * " + "LN : Consumer Loans");
@@ -112,7 +112,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "productTypeCode";
 			String selectValue = "7100";
 			String jEXE = "changeProductTypeCode(null)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Product Type * " + "7100 : สินเชื่อที่อยู่อาศัย");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Product Type * " + "7100 : สินเชื่อที่อยู่อาศัย");
@@ -125,7 +125,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "productSubTypeCode";
 			String selectValue = "10001";
 			String jEXE = "changeProductSubTypeCode(null)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Account Sub Type * " + "10001 : สินเชื่อเคหะ");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Account Sub Type * " + "10001 : สินเชื่อเคหะ");
@@ -138,7 +138,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "marketCodeCode";
 			String selectValue = "1007";
 			String jEXE = "changeMarketCodeCode(null)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Market Code * " + "1007 : ลูกค้าทั่วไป");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Market Code * " + "1007 : ลูกค้าทั่วไป");
@@ -151,7 +151,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "campaignCode";
 			String selectValue = "1";
 			String jEXE = "changeCampaignCode(null)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "Campaign Code * " + "1 : ดอกเบี้ยลอยตัวอิงวงเงิน");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "Campaign Code * " + "1 : ดอกเบี้ยลอยตัวอิงวงเงิน");
@@ -163,9 +163,9 @@ public class LoanFormAdd implements Keywords {
 			String creditLimitValue = "1000000";
 			driver.findElement(By.id(inputCreditLimit)).clear();
 			driver.findElement(By.id(inputCreditLimit)).sendKeys(creditLimitValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "วงเงินกู้ * " + "1,000,000");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "วงเงินกู้ * " + "1,000,000");
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "วงเงินกู้ * " + "1,000,000");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "วงเงินกู้ * " + "1,000,000");
 			return false;
 		}
 		try {
@@ -174,9 +174,9 @@ public class LoanFormAdd implements Keywords {
 			String termValue = "360";
 			driver.findElement(By.id(inputTerm)).clear();
 			driver.findElement(By.id(inputTerm)).sendKeys(termValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาผ่อนชำระ * " + "360");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ระยะเวลาผ่อนชำระ * " + "360");
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาผ่อนชำระ * " + "360");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ระยะเวลาผ่อนชำระ * " + "360");
 			return false;
 		}
 		try {
@@ -186,7 +186,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "collTypeId";
 			String selectValue = "2";
 			String jEXE = "changeCollTypeId(null)";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown,
 					"ประเภทหลักประกัน * " + "2 : ที่ดินพร้อมสิ่งปลูกสร้าง");
 		} catch (TimeoutException e) {
@@ -201,7 +201,7 @@ public class LoanFormAdd implements Keywords {
 			String selectField = "ltvCode";
 			String selectValue = "0-100";
 			String jEXE = "changeLtvCode()";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สัดส่วนวงเงินที่ขอกู้ * " + "1 : 0 - 100 %");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "สัดส่วนวงเงินที่ขอกู้ * " + "1 : 0 - 100 %");

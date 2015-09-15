@@ -3,7 +3,7 @@ package keyword.considerandcommentation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -53,7 +53,7 @@ public class CollateralMortgage implements Keywords {
 			String selectField = "mortgageContractRelationTypeCode";
 			String selectValue = "1";
 			String jEXE = "populateDropDownmortgageContractType('"+selectValue+"')";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทนิติกรรม   1 : สัญญาหลัก");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "ประเภทนิติกรรม   1 : สัญญาหลัก");
@@ -65,7 +65,7 @@ public class CollateralMortgage implements Keywords {
 			String inputValue = "1 : สัญญาจำนอง (อสังหาริมทรัพย์)";
 			String selectField = "mortgageContractTypeCode";
 			String selectValue = "1";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทของสัญญา * :   1 : สัญญาจำนอง (อสังหาริมทรัพย์)");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "ประเภทของสัญญา * :   1 : สัญญาจำนอง (อสังหาริมทรัพย์)");
@@ -77,9 +77,9 @@ public class CollateralMortgage implements Keywords {
 			new WaitFor().id(inputmortgageContractSeq);
 			driver.findElement(By.id(inputmortgageContractSeq)).clear();
 			driver.findElement(By.id(inputmortgageContractSeq)).sendKeys(OrderNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ลำดับ/ครั้งที่ *" + "1");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ลำดับ/ครั้งที่ *" + "1");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ลำดับ/ครั้งที่ *" + "1");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ลำดับ/ครั้งที่ *" + "1");
 			return false;
 		}
 		try{
@@ -88,9 +88,9 @@ public class CollateralMortgage implements Keywords {
 			new WaitFor().id(inputguaranteeAmount);
 			driver.findElement(By.id(inputguaranteeAmount)).clear();
 			driver.findElement(By.id(inputguaranteeAmount)).sendKeys(guaranteeAmounts);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ลำดับ/ครั้งที่ *" + guaranteeAmounts);
 			return false;
 		}
 		try{

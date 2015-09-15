@@ -1,4 +1,4 @@
-package testdata.loginData;
+package testdata;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +10,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import testdata.CellTag.col;
+import testdata.CellTag.fieldType;
+import testdata.CellTag.inputType;
 
 public class ReadExcel {
 	
@@ -59,8 +61,57 @@ public class ReadExcel {
 		int row = getRowMap(rowTag);
 		XSSFRow rowTmp = worksheet.getRow(row);		
 		XSSFCell cellTmp = rowTmp.getCell(col);
-		String data = cellTmp==null ? "" : cellTmp.toString();
+		String data = cellTmp==null ? "null" : cellTmp.getRichStringCellValue().toString();
 		return data;
+	}
+	
+	public fieldType getFlType(col colTag, int rowTag) {
+		String ioStr = getString(colTag, rowTag);
+		switch(ioStr){
+		case "id" :
+			return fieldType.id;
+		case "name" :
+			return fieldType.name;
+		case "xpath" :
+			return fieldType.xpath;
+		case "linktext" :
+			return fieldType.linktext;
+		}
+		return null;
+	}	
+	
+	public boolean getRun(col colTag, int rowTag) {
+		String run = getString(colTag, rowTag);
+		switch(run){
+		case "false" :
+			return false;
+		case "true" :
+			return true;
+		}
+		return false;
+	}
+	
+	public inputType getIOType(col colTag, int rowTag) {
+		String typStr = getString(colTag, rowTag);
+		switch(typStr){
+		case "dropdown" :
+			return inputType.dropdown;
+		case "date" :
+			return inputType.date;
+		case "text" :
+			return inputType.text;
+		case "radio" :
+			return inputType.radio;
+		case "button" :
+			return inputType.button;
+		case "checkbox" :
+			return inputType.checkbox;
+		case "alert" :
+			return inputType.alert;
+		case "popup" :
+			return inputType.popup;
+		}
+		return null;
 	}
 
 	private int getColumnMap(col colTag) {	

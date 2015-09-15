@@ -13,7 +13,7 @@ import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
 
-public class LogOut implements Keywords {
+public class Logout implements Keywords {
 
 	@Override
 	public void initKeywords() {

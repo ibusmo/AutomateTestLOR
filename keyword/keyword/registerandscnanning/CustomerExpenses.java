@@ -42,9 +42,9 @@ public class CustomerExpenses implements Keywords {
 			new WaitFor().id(inputExpenseConsumer);
 			driver.findElement(By.id(inputExpenseConsumer)).clear();
 			driver.findElement(By.id(inputExpenseConsumer)).sendKeys(ExpenseOfConsumer);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ค่าใช้จ่ายอุปโภคบริโภค   " + "ค่าใช้จ่ายอุปโภคบริโภค  ");
 		}
 		
 		

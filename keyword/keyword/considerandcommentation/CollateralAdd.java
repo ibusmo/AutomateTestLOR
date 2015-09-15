@@ -7,8 +7,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import customcomponent.SelectDropdown;
-import customcomponent.SelectPopup;
+import customcomponent.Dropdown;
+import customcomponent.Popup;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -56,7 +56,7 @@ public class CollateralAdd implements Keywords{
 		try{
 			// Select PopUp
 			String xpathpopupAddColl = "//*[@id='addCollateralDiv']/table/thead/tr/th";
-			WebDriver popupAddColl = new SelectPopup().byxpath(xpathpopupAddColl, 2);
+			WebDriver popupAddColl = new Popup().byxpath(xpathpopupAddColl, 2);
 			if (popupAddColl == null) {
 				sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
 				return false;
@@ -70,7 +70,7 @@ public class CollateralAdd implements Keywords{
 		}
 		// Select Main Browser 
 		String xpathMainPage = "//*[@id='content']/div/div/div[1]";
-		WebDriver popupMainPage = new SelectPopup().byxpath(xpathMainPage, 1);
+		WebDriver popupMainPage = new Popup().byxpath(xpathMainPage, 1);
 		if (popupMainPage == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
 			return false;
@@ -89,7 +89,7 @@ public class CollateralAdd implements Keywords{
 		try{
 			// Select PopUp
 			String xpathpopupAddBuilding = "//*[@id='searchNewCollateral']/table[1]/thead/tr/th";
-			WebDriver popupAddBuilding = new SelectPopup().byxpath(xpathpopupAddBuilding, 2);
+			WebDriver popupAddBuilding = new Popup().byxpath(xpathpopupAddBuilding, 2);
 			if (popupAddBuilding == null) {
 				sendToLogCustom(logexestatus.FAIL, logaction.Popup, "เพิ่มคำขอสินเชื่อ");
 				return false;
@@ -103,7 +103,7 @@ public class CollateralAdd implements Keywords{
 		}
 		// Select Main Browser 
 		String xpathMainPage2nd = "//*[@id='tabs-2']/div[1]/div/div/div[1]";
-		WebDriver popupMainPage2nd = new SelectPopup().byxpath(xpathMainPage2nd, 1);
+		WebDriver popupMainPage2nd = new Popup().byxpath(xpathMainPage2nd, 1);
 		if (popupMainPage2nd == null) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Popup, "Browser หลัก");
 			return false;
@@ -154,7 +154,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addCollTypeId";
 			String selectValue = "2";
 			String jEXE = "changeCollType('add')";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทหลักประกันหลัก * " + "2 : ที่ดินพร้อมสิ่งปลูกสร้าง");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "ประเภทหลักประกันหลัก * " + "2 : ที่ดินพร้อมสิ่งปลูกสร้าง");
@@ -167,7 +167,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addCollSubTypeId";
 			String selectValue = "6";
 			String jEXE = "showHideDivByCollSubType('add')";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "หลักประกันย่อย *" + "1 : โฉนด");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "หลักประกันย่อย *" + "1 : โฉนด");
@@ -179,9 +179,9 @@ public class CollateralAdd implements Keywords{
 			new WaitFor().id(inputAddLandChanote);
 			driver.findElement(By.id(inputAddLandChanote)).clear();
 			driver.findElement(By.id(inputAddLandChanote)).sendKeys(DocLicenseNumber);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "เลขที่เอกสารสิทธิ์ * " + DocLicenseNumber);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "เลขที่เอกสารสิทธิ์ * " + DocLicenseNumber);
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "เลขที่เอกสารสิทธิ์ * " + DocLicenseNumber);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "เลขที่เอกสารสิทธิ์ * " + DocLicenseNumber);
 			return false;
 		}
 		try{
@@ -191,7 +191,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addLandCountryId";
 			String selectValue = "214";
 			String jEXE = "populateLandProvince('"+selectValue+"','',true ,'addLandProvinceId','addLandDistrictId','addLandSubDistrictId'); ";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "เลือกประเทศ*");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "เลือกประเทศ*");
@@ -204,7 +204,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addLandProvinceId";
 			String selectValue = "8";
 			String jEXE = "populateLandDistrict('"+selectValue+"','',true ,'addLandDistrictId','addLandSubDistrictId')";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "จังหวัด *" + "001 : ปทุมธานี (ธัญบุรี)");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "จังหวัด *" + "001 : ปทุมธานี (ธัญบุรี)");
@@ -217,7 +217,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addLandDistrictId";
 			String selectValue = "640";
 			String jEXE = "populateLandSubDistrict('"+selectValue+"','',true ,'addLandSubDistrictId')";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue, jEXE);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "จังหวัด *" + "001 : ปทุมธานี (ธัญบุรี)");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "จังหวัด *" + "001 : ปทุมธานี (ธัญบุรี)");
@@ -230,7 +230,7 @@ public class CollateralAdd implements Keywords{
 			String selectField = "addLandSubDistrictId";
 			String selectValue = "1";
 			//String jEXE = "populateLandSubDistrict('"+selectValue+"','',true ,'addLandSubDistrictId')";
-			new SelectDropdown().idNoText(inputField, inputValue, selectField, selectValue);
+			new Dropdown().idNoText(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "แขวง/ตำบล*" + "001 : ประชาธิปัตย์ (คลองรังสิตฝั่งเหนือ)");
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "แขวง/ตำบล *" + "001 : ประชาธิปัตย์ (คลองรังสิตฝั่งเหนือ)");
@@ -252,9 +252,9 @@ public class CollateralAdd implements Keywords{
 			new WaitFor().id(bldBuildingNo);
 			driver.findElement(By.id(bldBuildingNo)).clear();
 			driver.findElement(By.id(bldBuildingNo)).sendKeys(buildingNo);
-			sendToLogCustom(logexestatus.PASS, logaction.Type,  "เลขที่สิ่งปลูกสร้าง * " + buildingNo);
+			sendToLogCustom(logexestatus.PASS, logaction.Text,  "เลขที่สิ่งปลูกสร้าง * " + buildingNo);
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type,  "เลขที่สิ่งปลูกสร้าง * " + buildingNo);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text,  "เลขที่สิ่งปลูกสร้าง * " + buildingNo);
 			return false;
 		}
 		try{
@@ -263,9 +263,9 @@ public class CollateralAdd implements Keywords{
 			new WaitFor().id(bldBuildingID);
 			driver.findElement(By.id(bldBuildingID)).clear();
 			driver.findElement(By.id(bldBuildingID)).sendKeys(buildingID);
-			sendToLogCustom(logexestatus.PASS, logaction.Type,  "รหัสประจำบ้าน * " + buildingID);
+			sendToLogCustom(logexestatus.PASS, logaction.Text,  "รหัสประจำบ้าน * " + buildingID);
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type,  "รหัสประจำบ้าน * " + buildingID);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text,  "รหัสประจำบ้าน * " + buildingID);
 			return false;
 		}
 		try{
@@ -274,9 +274,9 @@ public class CollateralAdd implements Keywords{
 			new WaitFor().id(noOfBldBuilding);
 			driver.findElement(By.id(noOfBldBuilding)).clear();
 			driver.findElement(By.id(noOfBldBuilding)).sendKeys(noOfBuilding);
-			sendToLogCustom(logexestatus.PASS, logaction.Type,  "เลขที่สิ่งปลูกสร้าง * " + noOfBuilding);
+			sendToLogCustom(logexestatus.PASS, logaction.Text,  "เลขที่สิ่งปลูกสร้าง * " + noOfBuilding);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type,  "เลขที่สิ่งปลูกสร้าง * " + noOfBuilding);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text,  "เลขที่สิ่งปลูกสร้าง * " + noOfBuilding);
 			return false;
 		}
 		try{
@@ -284,18 +284,18 @@ public class CollateralAdd implements Keywords{
 			String btnSaveColl = "//*[@id='addNewCollateral']/div[51]/button[1]";
 			new WaitFor().xpath(btnSaveColl);
 			driver.findElement(By.xpath(btnSaveColl)).click();
-			sendToLogCustom(logexestatus.PASS, logaction.Type,  "บันทึก");
+			sendToLogCustom(logexestatus.PASS, logaction.Text,  "บันทึก");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type,  "บันทึก");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text,  "บันทึก");
 		}
 		try{
 			// Confirm and SAVE 
 			String btnConfirmSAVE = "//*[@id='chooseCollTypeCollSubType']/div[19]/button[1]";
 			new WaitFor().xpath(btnConfirmSAVE);
 			driver.findElement(By.xpath(btnConfirmSAVE)).click();
-			sendToLogCustom(logexestatus.PASS, logaction.Type,  "ยืนยันบันทึก");
+			sendToLogCustom(logexestatus.PASS, logaction.Text,  "ยืนยันบันทึก");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type,  "ยืนยันบันทึก");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text,  "ยืนยันบันทึก");
 		}
 		sendToLogFinish();
 		return true;

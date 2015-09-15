@@ -3,7 +3,7 @@ package keyword.registerandscnanning;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -52,9 +52,9 @@ public class CustomerOtherInfo  implements Keywords{
 			new WaitFor().id(inputCustPeriod);
 			driver.findElement(By.id(inputCustPeriod)).clear();
 			driver.findElement(By.id(inputCustPeriod)).sendKeys(periodYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ระยะเวลาในการเป็นลูกค้า" + "ระยะเวลาในการเป็นลูกค้า");
 		}
 		
 		try{
@@ -63,11 +63,11 @@ public class CustomerOtherInfo  implements Keywords{
 			String inputValue = "1 : เงินเดือน";
 			String selectField = "incomeSourceCode";
 			String selectValue = "1";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "แหล่งที่มาของรายได้ " + "แหล่งที่มาของรายได้ ");
 			return false;
 		}
 		
@@ -77,11 +77,11 @@ public class CustomerOtherInfo  implements Keywords{
 			String inputValue = "01 : ไม่มีผู้กู้ร่วม/ไม่มีผู้ค้ำประกัน";
 			String selectField = "coborrowerRelatedTypeCode";
 			String selectValue = "01";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ " + "ความสัมพันธ์ของผู้กู้ร่วมที่มีต่อการกู้ ");
 			return false;
 		}
 		
@@ -91,11 +91,11 @@ public class CustomerOtherInfo  implements Keywords{
 			String inputValue = "01 : ไม่มีผู้กู้ร่วม/ไม่มีผู้ค้ำประกัน";
 			String selectField = "garantorRelatedTypeCode";
 			String selectValue = "01";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก  " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก " + "ความสัมพันธ์ของผู้ค้ำประกันกับผู้กู้หลัก ");
 			return false;
 		}
 		
@@ -105,9 +105,9 @@ public class CustomerOtherInfo  implements Keywords{
 			new WaitFor().id(inputChildAll);
 			driver.findElement(By.id(inputChildAll)).clear();
 			driver.findElement(By.id(inputChildAll)).sendKeys(numberOfChild);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "จำนวนบุตรทังหมด " + "จำนวนบุตรทังหมด  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "จำนวนบุตรทังหมด " + "จำนวนบุตรทังหมด  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "จำนวนบุตรทังหมด  " + "จำนวนบุตรทังหมด  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "จำนวนบุตรทังหมด  " + "จำนวนบุตรทังหมด  ");
 			return false;
 		}
 		
@@ -117,9 +117,9 @@ public class CustomerOtherInfo  implements Keywords{
 			new WaitFor().id(inputCurAddrYear);
 			driver.findElement(By.id(inputCurAddrYear)).clear();
 			driver.findElement(By.id(inputCurAddrYear)).sendKeys(curAddrYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน  " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   " + "ระยะเวลาที่อาศัยในที่อยู่ปัจจุบัน   ");
 			return false;
 		}
 		
@@ -129,11 +129,11 @@ public class CustomerOtherInfo  implements Keywords{
 			String inputValue = "01 : บ้านเดี่ยว";
 			String selectField = "houseTypeCode";
 			String selectValue = "01";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทที่พักอาศัย   " + "ประเภทที่พักอาศัย  ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย  ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย  ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ประเภทที่พักอาศัย  " + "ประเภทที่พักอาศัย ");
 			return false;
 		}
 		
@@ -143,11 +143,11 @@ public class CustomerOtherInfo  implements Keywords{
 			String inputValue = "01 : เป็นของตนเอง / คู่สมรส - ปลอดภาระผูกพัน";
 			String selectField = "houseOwnershipCode";
 			String selectValue = "01";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะที่พักอาศัย  " + "สถานะที่พักอาศัย   ");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย  ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "สถานะที่พักอาศัย   " + "สถานะที่พักอาศัย  ");
 			return false;
 		}
 		
@@ -157,9 +157,9 @@ public class CustomerOtherInfo  implements Keywords{
 			new WaitFor().id(inputWorkCurYear);
 			driver.findElement(By.id(inputWorkCurYear)).clear();
 			driver.findElement(By.id(inputWorkCurYear)).sendKeys(workCurYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "อายุงานปัจจุบัน    " + "อายุงานปัจจุบัน   ");
 		}
 		
 		
@@ -169,9 +169,9 @@ public class CustomerOtherInfo  implements Keywords{
 			new WaitFor().id(inputworkAllExpYear);
 			driver.findElement(By.id(inputworkAllExpYear)).clear();
 			driver.findElement(By.id(inputworkAllExpYear)).sendKeys(workAllYear);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "อายุงานรวม  " + "อายุงานรวม ");
 		}catch (TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "อายุงานรวม  " + "อายุงานรวม ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "อายุงานรวม  " + "อายุงานรวม ");
 		}
 		
 		try{

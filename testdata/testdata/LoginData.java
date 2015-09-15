@@ -1,8 +1,6 @@
-package testdata.authenticate;
+package testdata;
 
 import testdata.CellTag.col;
-import testdata.TestDatas;
-import testdata.loginData.ReadExcel;
 
 public class LoginData implements TestDatas {
 

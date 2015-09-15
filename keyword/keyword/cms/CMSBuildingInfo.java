@@ -3,7 +3,7 @@ package keyword.cms;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -49,7 +49,7 @@ public class CMSBuildingInfo implements Keywords{
 			String selectField = "bldCategoryCd";
 			String selectValue = "10";
 			String jsExe = "populateBuildingTypeByBldCategory('"+selectValue+"')";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ประเภทสิ่งปลูกสร้าง*" + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "ประเภทสิ่งปลูกสร้าง*");
@@ -61,9 +61,9 @@ public class CMSBuildingInfo implements Keywords{
 			new WaitFor().name(inputrealBldArea);
 			driver.findElement(By.name(inputrealBldArea)).clear();
 			driver.findElement(By.name(inputrealBldArea)).sendKeys("89");
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "พื้นที่ใช้สอย (ตรม.) *: " + realBldArea);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "พื้นที่ใช้สอย (ตรม.) *: " + realBldArea);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "พื้นที่ใช้สอย (ตรม.) *: " + realBldArea);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "พื้นที่ใช้สอย (ตรม.) *: " + realBldArea);
 			return false;
 		}
 		try{
@@ -72,9 +72,9 @@ public class CMSBuildingInfo implements Keywords{
 			new WaitFor().name(inputbldFloor);
 			driver.findElement(By.name(inputbldFloor)).clear();
 			driver.findElement(By.name(inputbldFloor)).sendKeys(bldFloor);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ชั้นลอย/จำนวนรวมชั้น *: " + bldFloor);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ชั้นลอย/จำนวนรวมชั้น *: " + bldFloor);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ชั้นลอย/จำนวนรวมชั้น *: " + bldFloor);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ชั้นลอย/จำนวนรวมชั้น *: " + bldFloor);
 			return false;
 		}
 		try{
@@ -83,9 +83,9 @@ public class CMSBuildingInfo implements Keywords{
 			new WaitFor().name(inputbldVal);
 			driver.findElement(By.name(inputbldVal)).clear();
 			driver.findElement(By.name(inputbldVal)).sendKeys(bldVal);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "มูลค่าสิ่งปลูกสร้าง *: " + bldVal);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "มูลค่าสิ่งปลูกสร้าง *: " + bldVal);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "มูลค่าสิ่งปลูกสร้าง *: " + bldVal);
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "มูลค่าสิ่งปลูกสร้าง *: " + bldVal);
 			return false;
 		}
 		try{
@@ -94,7 +94,7 @@ public class CMSBuildingInfo implements Keywords{
 			String inputValue = "1 : เป็นเจ้าของที่ดิน";
 			String selectField = "bldLandOwnershipCd";
 			String selectValue = "1";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "เลือกประเภทสิ่งปลูกสร้าง*: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "เลือกประเภทสิ่งปลูกสร้าง*: ");
@@ -106,7 +106,7 @@ public class CMSBuildingInfo implements Keywords{
 			String inputValue = "1 : คอนกรีตเสริมเหล็ก";
 			String selectField = "bldWall";
 			String selectValue = "1";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "ฝา/ผนัง *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "ฝา/ผนัง *: ");
@@ -118,7 +118,7 @@ public class CMSBuildingInfo implements Keywords{
 			String inputValue = "1 : คอนกรีตเสริมเหล็ก";
 			String selectField = "roof";
 			String selectValue = "1";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "หลังคา *: " + inputValue);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown,  "หลังคา *: ");

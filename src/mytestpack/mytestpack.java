@@ -8,7 +8,7 @@ import keyword.NCB.NCBSendWork;
 import keyword.assignment.ASSendWork;
 import keyword.assignment.Assignment;
 import keyword.authenticate.Login;
-import keyword.authenticate.LogOut;
+import keyword.authenticate.Logout;
 import keyword.basicinfocheck.BICDocuments;
 import keyword.basicinfocheck.BICExecutiveSummary;
 import keyword.basicinfocheck.BICSendWork;
@@ -29,56 +29,75 @@ import keyword.considerandcommentation.CollateralMortgage;
 import keyword.helper.GotoApp;
 import keyword.helper.OpenBrowser;
 import keyword.loanapp.LoanAppEdit;
-import keyword.register.Register;
+import keyword.register.RegisterCOM;
+import keyword.register.RegisterCSM;
 import keyword.registerandscnanning.CustomerAdd;
+import keyword.registerandscnanning.CustomerAddCOM;
 import keyword.registerandscnanning.CustomerCIFInfo;
+import keyword.registerandscnanning.CustomerCareerCOM;
+import keyword.registerandscnanning.CustomerExpense;
 import keyword.registerandscnanning.CustomerExpenses;
 import keyword.registerandscnanning.CustomerIncome;
 import keyword.registerandscnanning.CustomerNonNCB;
+import keyword.registerandscnanning.CustomerNonNCBCOM;
 import keyword.registerandscnanning.CustomerOtherInfo;
+import keyword.registerandscnanning.CustomerOtherInfoCOM;
+import keyword.registerandscnanning.CustomerSalaryCOM;
 import keyword.registerandscnanning.ReScnDocuments;
 import keyword.registerandscnanning.RegScnSendWork;
 import keyword.registerandscnanning.LoanFormAdd;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
+import testdata.ReadExcel;
 import testdata.CellTag.col;
-import testdata.loginData.ReadExcel;
 import webdriver.WebDriverEngine;
 //26/08/2015 09:56
 public class mytestpack {
 	public static void main(String[] args){		
 		LogCat logCat = LogCat.getInstance();
 		WebDriverEngine.getInstance("firefox");		
-		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+		new OpenBrowser("https://172.31.1.41:9445/LOR/login.jsp").execute();
+		new Login("AdisakC", "testuser").execute();
 		
 		//"C:\\Users\\EthanHuntTB1\\Desktop\\poi-test.xlsx"
 		//"POI Worksheet"
+		String CIF = "3";
+		//String appID = registerSM2();					waitForInterrupt();
+		String appID = "003309580021";
+		registerAndScanningCOM(appID, CIF);				waitForInterrupt();
 		
-		String CIF = "1357";
-		new Login().execute();	waitForInterrupt();		
-		String appID = register();						waitForInterrupt();
-		/*
-		registerandscanning(appID, CIF);				waitForInterrupt();
-		ncb(appID);										waitForInterrupt();
-		considerAndCommentation(appID);					waitForInterrupt();
-		basicInfoCheck(appID);							waitForInterrupt();
-		new LogOut().execute();	
-		*/
-		/*
-		//Full Application
-		new Login("SurachaiT1", "testuser").execute();	waitForInterrupt();
-		assignment(appID);
-		String CMSNo = getCMS(appID);
-		CMSOp(CMSNo);
-		new LogOut().execute();;
-		*/
-		
+		new Logout().execute();
 		WebDriverEngine.Close();
 		WebDriverEngine.quit();
 		logCat.endLog();
 		
 	}
+	
+	private static String registerSM2() {
+		RegisterCOM registerCOM = new RegisterCOM();		
+		registerCOM.execute();							
+		String appID = registerCOM.getAppID();
+		return appID;
+	}
+	
+	private static void registerAndScanningCOM(String appID, String CIF){
+		new GotoApp(appID).execute();					addSpace();			
+//		new CustomerAddCOM().execute();					addSpace();	
+//		new CustomerOtherInfoCOM().execute();			addSpace();
+//		new CustomerSalaryCOM().execute();				addSpace();
+//		new CustomerCareerCOM().execute();				addSpace();
+//		new CustomerExpense().execute();				addSpace();
+		new CustomerNonNCBCOM().execute();				addSpace();
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private static void CMSOp(String cMSNo){
 		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
@@ -90,8 +109,8 @@ public class mytestpack {
 		new CMSEvaluationMethod().execute(); 			waitForInterrupt();
 		new CMSValue().execute(); 						waitForInterrupt();
 		new CMSPartPledge().execute(); 					waitForInterrupt();
-		new CMSSendWork(cMSNo).execute(); 					waitForInterrupt();
-		new LogOut().execute();			
+		new CMSSendWork(cMSNo).execute(); 				waitForInterrupt();
+		new Logout().execute();			
 	}
 	
 	private static String getCMS(String appID){
@@ -132,7 +151,7 @@ public class mytestpack {
 
 	private static void registerandscanning(String appID, String CIF) {
 		new GotoApp(appID).execute();					addSpace();														
-		new CustomerAdd(CIF).execute();				addSpace();
+		new CustomerAdd(CIF).execute();					addSpace();
 		new CustomerCIFInfo().execute();				addSpace();
 		new CustomerOtherInfo().execute();				addSpace();
 		new CustomerIncome().execute();					addSpace();
@@ -146,14 +165,7 @@ public class mytestpack {
 	}
 
 	private static String register() {
-		Register register = new Register();				
-		register.execute();								
-		String appID = register.getAppID();				addSpace();
-		return appID;
-	}
-	
-	private static String registerSM2() {
-		Register register = new Register();				
+		RegisterCSM register = new RegisterCSM();				
 		register.execute();								
 		String appID = register.getAppID();				addSpace();
 		return appID;
@@ -180,13 +192,6 @@ public class mytestpack {
 		return ""+tmp;
 	}
 }
-
-
-
-
-
-
-
 
 /*
 driver.get("https://10.251.108.203/LOR/login.jsp");

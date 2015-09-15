@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -56,7 +56,7 @@ public class ExecutiveSummary implements Keywords {
 			String inputValue = "A01 : ผู้กู้มีความสามารถในการชำระหนี้ดี";
 			String selectField = "mainCommentCode";
 			String selectValue = "A01";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":เหุตผลหลักที่ใช้ในการพิจารณา *	=A01 : ผู้กู้มีความสามารถในการชำระหนี้ดี");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":เหุตผลหลักที่ใช้ในการพิจารณา *	=A01 : ผู้กู้มีความสามารถในการชำระหนี้ดี");
@@ -68,9 +68,9 @@ public class ExecutiveSummary implements Keywords {
 			String descriptionValue = "ผู้กู้ชำระเงินตรงตามที่กำหนดในสัญญาเสมอเลยฮะ";
 			driver.findElement(By.id(inputDescription)).clear();
 			driver.findElement(By.id(inputDescription)).sendKeys(descriptionValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "รายละเอียด *	" + "ผู้กู้ชำระเงินตรงตามที่กำหนดในสัญญาเสมอเลยฮะ");
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "รายละเอียด *	" + "ผู้กู้ชำระเงินตรงตามที่กำหนดในสัญญาเสมอเลยฮะ");
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "รายละเอียด *	" + "ผู้กู้ชำระเงินตรงตามที่กำหนดในสัญญาเสมอเลยฮะ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "รายละเอียด *	" + "ผู้กู้ชำระเงินตรงตามที่กำหนดในสัญญาเสมอเลยฮะ");
 			return false;
 		}
 		try {

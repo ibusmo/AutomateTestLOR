@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import customcomponent.DatePicker;
-import customcomponent.SelectDropdown;
+import customcomponent.Dropdown;
 import customcomponent.WaitFor;
 import keyword.Keywords;
 import output.LogTag.logaction;
@@ -54,7 +54,7 @@ public class NCB implements Keywords {
 			String inputValue = "02 : ไม่มี";
 			String selectField = "litigationStatusCode";
 			String selectValue = "02";
-			new SelectDropdown().id(inputField, inputValue, selectField, selectValue);
+			new Dropdown().id(inputField, inputValue, selectField, selectValue);
 			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "สถานะฟ้องร้องคดี * " + "02 : ไม่มี");
@@ -78,10 +78,10 @@ public class NCB implements Keywords {
 				new WaitFor().id(inputText.get(i));
 				driver.findElement(By.id(inputText.get(i))).clear();
 				driver.findElement(By.id(inputText.get(i))).sendKeys("0");
-				sendToLogCustom(logexestatus.PASS, logaction.Type, showText.get(i));
+				sendToLogCustom(logexestatus.PASS, logaction.Text, showText.get(i));
 			}
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "Text Field Problem");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "Text Field Problem");
 			return false;
 		}
 		try{

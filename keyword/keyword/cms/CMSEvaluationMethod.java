@@ -54,9 +54,9 @@ public class CMSEvaluationMethod implements Keywords {
 			new WaitFor().name(inputOrganize);
 			driver.findElement(By.name(inputOrganize)).clear();
 			driver.findElement(By.name(inputOrganize)).sendKeys(organizeValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "ประเมินราคาโดย * 	" + organizeValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "ประเมินราคาโดย * 	" + organizeValue);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "ประเมินราคาโดย * 	");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "ประเมินราคาโดย * 	");
 			return false;
 		}
 		try{
@@ -66,9 +66,9 @@ public class CMSEvaluationMethod implements Keywords {
 			new WaitFor().name(inputTeam);
 			driver.findElement(By.name(inputTeam)).clear();
 			driver.findElement(By.name(inputTeam)).sendKeys(teamValue);
-			sendToLogCustom(logexestatus.PASS, logaction.Type, "หน่วยงานผู้อนุมัติราคา * " + teamValue);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, "หน่วยงานผู้อนุมัติราคา * " + teamValue);
 		}catch(TimeoutException e){
-			sendToLogCustom(logexestatus.FAIL, logaction.Type, "หน่วยงานผู้อนุมัติราคา * ");
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, "หน่วยงานผู้อนุมัติราคา * ");
 			return false;
 		}
 		try{
