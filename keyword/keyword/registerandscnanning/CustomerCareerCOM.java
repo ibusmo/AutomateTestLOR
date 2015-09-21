@@ -8,6 +8,7 @@ public class CustomerCareerCOM extends KeywordsCOM {
 	public CustomerCareerCOM() {
 		initKeywords();
 	}
+	
 //	1	รายได้จากการประกอบอาชีพ
 //	2	คลิก
 //	3	iSiG Group

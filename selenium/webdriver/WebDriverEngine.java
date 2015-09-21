@@ -65,6 +65,7 @@ public class WebDriverEngine {
 				driver = new FirefoxDriver();
 			}		
 		}
+		// Config driver here
 		return driver;
 	}
 	

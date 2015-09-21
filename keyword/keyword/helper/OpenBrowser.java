@@ -7,6 +7,7 @@ import output.LogTag.logexestatus;
 import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
+import webdriver.WebDriverEngine;
 
 public class OpenBrowser implements Keywords {
 	private String url;
@@ -27,6 +28,8 @@ public class OpenBrowser implements Keywords {
 	@Override
 	public boolean execute() {
 		driver.get(url);
+		// Config driver here
+		WebDriverEngine.getDriver().manage().window().maximize();
 		sendToLogFinish();
 		return true;
 	}

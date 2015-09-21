@@ -69,7 +69,7 @@ public class Login implements Keywords {
 			sendToLogCustom(logexestatus.PASS, logaction.Fill_again, username + " : " + password);
 		} catch (NoSuchElementException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Fill_again, username + " : " + password);
-			return false;
+			//return false;
 		}
 		sendToLogFinish();
 		return true;

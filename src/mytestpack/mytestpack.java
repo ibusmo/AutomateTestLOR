@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import keyword.NCB.NCB;
+import keyword.NCB.NCBCOM;
 import keyword.NCB.NCBSendWork;
 import keyword.assignment.ASSendWork;
 import keyword.assignment.Assignment;
@@ -19,6 +20,9 @@ import keyword.cms.CMSPartPledge;
 import keyword.cms.CMSSendWork;
 import keyword.cms.CMSSupportInfo;
 import keyword.cms.CMSValue;
+import keyword.cmscom.ListOfCMS;
+import keyword.common.AttachFiles;
+import keyword.common.RequireDocuments;
 import keyword.cms.CMSGotoApp;
 import keyword.considerandcommentation.CCDocuments;
 import keyword.considerandcommentation.CCExecutiveSummary;
@@ -31,6 +35,9 @@ import keyword.helper.OpenBrowser;
 import keyword.loanapp.LoanAppEdit;
 import keyword.register.RegisterCOM;
 import keyword.register.RegisterCSM;
+import keyword.registerandscnanning.CollacteralAddLandAndBuildingCOM;
+import keyword.registerandscnanning.CollacteralAddLandCOM;
+import keyword.registerandscnanning.CollacteralAddWarranter;
 import keyword.registerandscnanning.CustomerAdd;
 import keyword.registerandscnanning.CustomerAddCOM;
 import keyword.registerandscnanning.CustomerCIFInfo;
@@ -46,9 +53,11 @@ import keyword.registerandscnanning.CustomerSalaryCOM;
 import keyword.registerandscnanning.ReScnDocuments;
 import keyword.registerandscnanning.RegScnSendWork;
 import keyword.registerandscnanning.LoanFormAdd;
+import keyword.registerandscnanning.LoanFormAddCOM;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
+import output.LogTag.logoperation;
 import testdata.ReadExcel;
 import testdata.CellTag.col;
 import webdriver.WebDriverEngine;
@@ -57,38 +66,48 @@ public class mytestpack {
 	public static void main(String[] args){		
 		LogCat logCat = LogCat.getInstance();
 		WebDriverEngine.getInstance("firefox");		
-		new OpenBrowser("https://172.31.1.41:9445/LOR/login.jsp").execute();
-		new Login("AdisakC", "testuser").execute();
+//		new OpenBrowser("https://172.31.1.41:9445/LOR/login.jsp").execute();
+//		new Login("AdisakC", "testuser").execute();
+//		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+//		new Login("AdisakC", "testuser").execute();
+//		new OpenBrowser("http://172.31.1.41:9084/LOR/login.jsp").execute();
+//		new Login("NiponM", "testuser").execute();
 		
-		//"C:\\Users\\EthanHuntTB1\\Desktop\\poi-test.xlsx"
-		//"POI Worksheet"
-		String CIF = "3";
-		//String appID = registerSM2();					waitForInterrupt();
-		String appID = "003309580021";
-		registerAndScanningCOM(appID, CIF);				waitForInterrupt();
+//		String CIF = "3";
+//		String appID = registerSM2();					waitForInterrupt();
+//		String appID = "038309580006";
+//		new GotoApp(appID).execute();					waitForInterrupt();		
+//		registerAndScanningCOM(appID, CIF);				waitForInterrupt();
+		
+
+		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
+		WebDriverEngine.getDriver().manage().window().maximize();
+		new Login("PisutC", "testuser").execute();		waitForInterrupt();
+		new ListOfCMS("003301580002").execute();						waitForInterrupt();
 		
 		new Logout().execute();
 		WebDriverEngine.Close();
 		WebDriverEngine.quit();
 		logCat.endLog();
-		
 	}
 	
 	private static String registerSM2() {
-		RegisterCOM registerCOM = new RegisterCOM();		
-		registerCOM.execute();							
-		String appID = registerCOM.getAppID();
-		return appID;
+		RegisterCOM reg = new RegisterCOM(1);		
+		reg.execute();							
+		return reg.getAppID();
 	}
 	
 	private static void registerAndScanningCOM(String appID, String CIF){
-		new GotoApp(appID).execute();					addSpace();			
-//		new CustomerAddCOM().execute();					addSpace();	
-//		new CustomerOtherInfoCOM().execute();			addSpace();
-//		new CustomerSalaryCOM().execute();				addSpace();
-//		new CustomerCareerCOM().execute();				addSpace();
-//		new CustomerExpense().execute();				addSpace();
-		new CustomerNonNCBCOM().execute();				addSpace();
+		new GotoApp(appID).execute();						waitForInterrupt();			
+//		new NCBCOM(1).execute();							waitForInterrupt();	
+		new CustomerAddCOM(1).execute();					waitForInterrupt();	
+//		new CustomerAddCOM(2).execute();					waitForInterrupt();	
+		new LoanFormAddCOM(1).execute();					waitForInterrupt();
+//		new CollacteralAddLandCOM(1).execute();				waitForInterrupt();
+//		new CollacteralAddLandAndBuildingCOM(1).execute();	waitForInterrupt();
+		new CollacteralAddWarranter(1).execute();			waitForInterrupt();
+//		new RequireDocuments().execute();
+//		new AttachFiles().execute();						waitForInterrupt();
 	}	
 	
 	

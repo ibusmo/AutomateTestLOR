@@ -34,7 +34,7 @@ public class LogTag {
 		
 		RegCollate,
 		ExcSummary,
-		None, RegColl, Assignment, Edit, GetCMS, CollInfo, CMSSendWork, CMSGotoApp, 
+		None, RegColl, Assignment, Edit, GetCMS, CollInfo, CMSSendWork, CMSGotoApp, Collateral, NCB, ListofCMS, 
 	} 
 	public enum logsubtab{
 		WorkBox,
@@ -51,7 +51,7 @@ public class LogTag {
 		LongTermLoan,
 		
 		NCB,
-		None, Warrantee, Mortgage, GeneralInfo, LandInfo, BuildingInfo, SupportInfo, EvaMethod, Value, PartPledge
+		None, Warrantee, Mortgage, GeneralInfo, LandInfo, BuildingInfo, SupportInfo, EvaMethod, Value, PartPledge, AddLand, AddLandBuilding, AddWarranter
 	} 
 	public enum logelement{
 		None

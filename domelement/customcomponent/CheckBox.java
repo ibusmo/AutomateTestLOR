@@ -47,4 +47,19 @@ public class CheckBox implements CustomComponent{
 		new WaitFor().xpath(field);
 		driver.findElement(By.xpath(field)).click();
 	}
+	
+//	String isChecked = "false";
+//	try{
+//		isChecked = driver.findElement(By.name(checkBoxAssign)).getAttribute("checked");
+//		if(isChecked==null)	isChecked = "false";
+//
+//		if(!isChecked.matches("true")){
+//			driver.findElement(By.name(checkBoxAssign)).click();
+//		}
+//		
+//		//System.out.println(isChecked);			
+//	}catch(NullPointerException e){
+//		isChecked = "false";
+//	}	
+	
 }

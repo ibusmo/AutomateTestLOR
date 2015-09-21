@@ -1,29 +1,27 @@
 package keyword.common;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
+import customcomponent.AlertHandle;
+import customcomponent.Click;
 import customcomponent.WaitFor;
-import keyword.Keywords;
+import keyword.KeywordsCOM;
 import output.LogTag.logaction;
-import output.LogTag.logelement;
 import output.LogTag.logexestatus;
-import output.LogTag.logoperation;
-import output.LogTag.logsubtab;
-import output.LogTag.logtab;
+import testdata.CellTag.fieldType;
 
-public class AttachFiles implements Keywords {
+public class AttachFiles extends KeywordsCOM {
 	
-	private logoperation logoperation;
-	public AttachFiles(logoperation logoperation){
-		this.logoperation = logoperation;
+	public AttachFiles(){
+		initKeywords();
 	}
 	
 	@Override
 	public void initKeywords() {
-		// TODO Auto-generated method stub
-		
+		super.logoperation 		= output.LogTag.logoperation.RegScanning;
+		super.logtab 			= output.LogTag.logtab.AttachFiles;
+		super.logsubtab 		= output.LogTag.logsubtab.None;	
 	}
 
 	@Override
@@ -32,8 +30,7 @@ public class AttachFiles implements Keywords {
 		try {
 			// Click เอกสารแนบ Tab
 			String btnAttachFilesTab = "เอกสารแนบ";
-			new WaitFor().linkText(btnAttachFilesTab);
-			driver.findElement(By.linkText(btnAttachFilesTab)).click();
+			new Click().auto(fieldType.linktext, btnAttachFilesTab);
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "เอกสารแนบ  Tab");			
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "เอกสารแนบ Tab");
@@ -41,9 +38,7 @@ public class AttachFiles implements Keywords {
 		}
 		try{
 			// Alert
-			Alert javascriptprompt = driver.switchTo().alert();
-			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, javascriptprompt.getText());
-			javascriptprompt.accept();
+			new AlertHandle().execute();
 			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "เอกสารแนบ Tab OK");
 		}catch (NullPointerException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "เอกสารแนบ Tab");
@@ -55,7 +50,7 @@ public class AttachFiles implements Keywords {
 			//String elementOfTable = "#divListDocument > div:nth-child(4) > div > table > tbody > tr";
 			new WaitFor().xpath(elementOfTableX);
 			numRows = driver.findElements(By.xpath(elementOfTableX)).size();
-			sendToLogCustom(logexestatus.PASS, logaction.Check, "There are " +numRows+ " " + " rows.");
+			sendToLogCustom(logexestatus.PASS, logaction.Check, "There are " +(numRows-1)+ " " + " rows.");
 		}catch(TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Check, "Can't get number of rows.");
 		}
@@ -83,19 +78,5 @@ public class AttachFiles implements Keywords {
 		}
 		sendToLogFinish();
 		return true;
-	}
-	
-	@Override
-	public void sendToLogStart() {
-		sendToLogCustom(logexestatus.START, logaction.None, "");
-	}
-
-	@Override
-	public void sendToLogFinish() {
-		sendToLogCustom(logexestatus.FINISH, logaction.None, "");
-	}	
-	public void sendToLogCustom(logexestatus logexestatus, logaction logaction, String str) {
-		logCat.sendToLog(logexestatus, logoperation, logtab.AttachFiles, logsubtab.None, logelement.None,
-				logaction, str);
 	}
 }

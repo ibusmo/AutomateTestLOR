@@ -10,21 +10,23 @@ import testdata.elementObj;
 
 public class Popup implements CustomComponent {
 	
+	int freeTime = 3000;
+	
 	public WebDriver RunPopup(elementObj obj) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX RunPopup");
-		return auto(obj.filedType, obj.fieldName, obj.value);
+		return auto(obj.filedType, obj.fieldName, (int) Math.round(Double.parseDouble(obj.value)));
 	}
 	
-	private WebDriver auto(fieldType filedType, String fieldName, String value) {
+	private WebDriver auto(fieldType filedType, String fieldName, int nWindows) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX auto");
 		switch(filedType){
 		case id:
 			break;
 		case name:
 //			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX filedType");
-			return byname(fieldName, Integer.parseInt(value));
+			return byname(fieldName, nWindows);
 		case xpath:
-			return byxpath(fieldName, Integer.parseInt(value));
+			return byxpath(fieldName, nWindows);
 		case linktext:
 			break;
 		}
@@ -51,7 +53,7 @@ public class Popup implements CustomComponent {
 		
 		//Wait For Elements
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(freeTime);
 		} catch (InterruptedException e) {
 			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
 			e.printStackTrace();
@@ -95,7 +97,7 @@ public class Popup implements CustomComponent {
 		
 		//Wait For Elements
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(freeTime);
 		} catch (InterruptedException e) {
 			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
 			e.printStackTrace();

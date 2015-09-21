@@ -47,6 +47,7 @@ public class LoadElement implements TestDatas {
 			System.out.print("J ");
 			objTmp.run 			= rdExl.getRun(col.J, row(idx));
 			elmObj.add(objTmp);
+			System.out.print(objTmp.nameTag + "\t");
 			System.out.println(objTmp.value);
 		}		
 		rdExl.closeFile();

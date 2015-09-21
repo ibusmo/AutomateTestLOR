@@ -6,10 +6,10 @@ import output.LogTag.logoperation;
 
 public class ReScnDocuments {
 	public boolean execute(){
-		if(new RequireDocuments(logoperation.RegScanning).execute()==false){
+		if(new RequireDocuments().execute()==false){
 			return false;
 		}
-		if(new AttachFiles(logoperation.RegScanning).execute()==false){
+		if(new AttachFiles().execute()==false){
 			return false;
 		}
 		return true;		

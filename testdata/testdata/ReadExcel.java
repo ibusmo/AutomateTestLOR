@@ -61,7 +61,12 @@ public class ReadExcel {
 		int row = getRowMap(rowTag);
 		XSSFRow rowTmp = worksheet.getRow(row);		
 		XSSFCell cellTmp = rowTmp.getCell(col);
-		String data = cellTmp==null ? "null" : cellTmp.getRichStringCellValue().toString();
+		String data;
+		try{
+			data = cellTmp==null ? "null" : cellTmp.getRichStringCellValue().toString();
+		}catch(IllegalStateException e){
+			data = cellTmp==null ? "null" : cellTmp.toString();
+		}
 		return data;
 	}
 	
