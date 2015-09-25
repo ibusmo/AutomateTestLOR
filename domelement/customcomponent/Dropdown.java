@@ -13,7 +13,8 @@ public class Dropdown implements CustomComponent{
 	public void auto(fieldType filedNameType, String selectField, String selectValue, String inputField, String inputValue, String jsExe, boolean noText) {
 		switch(filedNameType){
 		case id:
-			if(jsExe=="null"){
+			if(jsExe.length()<6 && jsExe.toLowerCase().contains("null")){
+				System.out.println("\njsExe " + jsExe + "\n");
 				if(noText==true)
 					idNoText(inputField, inputValue, selectField, selectValue);
 				else
@@ -27,7 +28,8 @@ public class Dropdown implements CustomComponent{
 			}
 			break;
 		case name:
-			if(jsExe=="null"){
+			if(jsExe.length()<6 && jsExe.toLowerCase().contains("null")){
+				System.out.println("\njsExe " + jsExe + "\n");
 				if(noText==true)
 					nameNoText(inputField, inputValue, selectField, selectValue);
 				else
@@ -48,16 +50,12 @@ public class Dropdown implements CustomComponent{
 	public void id(String inputField, String inputValue, String selectField, String selectValue) {
 		new WaitFor().xpath(inputField);
 		new Type().xpath(inputField, inputValue);
-//		driver.findElement(By.xpath(inputField)).clear();
-//		driver.findElement(By.xpath(inputField)).sendKeys(inputValue);
 		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
 		executor.executeScript(jQuery, driver.findElement(By.id(selectField)));
 	}
 	
 	public void idNoText(String inputField, String inputValue, String selectField, String selectValue) {
 		new WaitFor().xpath(inputField);
-		//driver.findElement(By.xpath(inputField)).clear();
-		//driver.findElement(By.xpath(inputField)).sendKeys(inputValue);
 		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
 		executor.executeScript(jQuery, driver.findElement(By.id(selectField)));
 	}
@@ -65,8 +63,6 @@ public class Dropdown implements CustomComponent{
 	public void id(String inputField, String inputValue, String selectField, String selectValue, String jsExe) {
 		new WaitFor().xpath(inputField);
 		new Type().xpath(inputField, inputValue);
-//		driver.findElement(By.xpath(inputField)).clear();
-//		driver.findElement(By.xpath(inputField)).sendKeys(inputValue);
 		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
 		executor.executeScript(jQuery, driver.findElement(By.id(selectField)));
 		executor.executeScript(replaceValue(jsExe, selectValue), driver.findElement(By.id(selectField)));
@@ -74,8 +70,6 @@ public class Dropdown implements CustomComponent{
 	
 	public void idNoText(String inputField, String inputValue, String selectField, String selectValue, String jsExe) {
 		new WaitFor().xpath(inputField);
-		//driver.findElement(By.xpath(inputField)).clear();
-		//driver.findElement(By.xpath(inputField)).sendKeys(inputValue);
 		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
 		executor.executeScript(jQuery, driver.findElement(By.id(selectField)));
 		executor.executeScript(replaceValue(jsExe, selectValue), driver.findElement(By.id(selectField)));

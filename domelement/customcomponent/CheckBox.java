@@ -30,22 +30,26 @@ public class CheckBox implements CustomComponent{
 	
 	public void id(String field){
 		new WaitFor().id(field);
-		driver.findElement(By.id(field)).click();
+		boolean isChecked = driver.findElement(By.id(field)).getAttribute("checked")==null ? false : true;
+		if(!isChecked) driver.findElement(By.id(field)).click();
 	}
 
 	public void name(String field){
 		new WaitFor().name(field);
-		driver.findElement(By.name(field)).click();
+		boolean isChecked = driver.findElement(By.name(field)).getAttribute("checked")==null ? false : true;
+		if(!isChecked) driver.findElement(By.name(field)).click();
 	}
 
 	public void linkText(String field){
 		new WaitFor().linkText(field);
-		driver.findElement(By.linkText(field)).click();
+		boolean isChecked = driver.findElement(By.linkText(field)).getAttribute("checked")==null ? false : true;
+		if(!isChecked) driver.findElement(By.linkText(field)).click();
 	}
 
 	public void xpath(String field){
 		new WaitFor().xpath(field);
-		driver.findElement(By.xpath(field)).click();
+		boolean isChecked = driver.findElement(By.xpath(field)).getAttribute("checked")==null ? false : true;
+		if(!isChecked) driver.findElement(By.xpath(field)).click();
 	}
 	
 //	String isChecked = "false";

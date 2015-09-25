@@ -2,10 +2,10 @@ package keyword.registerandscnanning;
 
 import keyword.KeywordsCOM;
 
-public class CollacteralAddWarranter extends KeywordsCOM {
+public class CollacteralAddAccountingCOM extends KeywordsCOM {
 	
-	public CollacteralAddWarranter(int sheetIndex) {
-		super.workSheetPath = "collateral_addwarranter_" + sheetIndex;
+	public CollacteralAddAccountingCOM(int sheetIndex) {
+		super.workSheetPath = "collateral_addaccounting_" + sheetIndex;
 		initKeywords();
 	}
 	
@@ -13,9 +13,9 @@ public class CollacteralAddWarranter extends KeywordsCOM {
 	public void initKeywords() {
 		super.logoperation 		= output.LogTag.logoperation.RegScanning;
 		super.logtab 			= output.LogTag.logtab.Collateral;
-		super.logsubtab 		= output.LogTag.logsubtab.AddWarranter;
+		super.logsubtab 		= output.LogTag.logsubtab.AddAccounting;
 
-		super.sizeOfData = 186;
+		super.sizeOfData = 39;
 		super.offsetRow = 2;
 
 		loadData();

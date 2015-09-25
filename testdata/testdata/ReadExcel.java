@@ -12,6 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import testdata.CellTag.col;
 import testdata.CellTag.fieldType;
 import testdata.CellTag.inputType;
+import testdata.CellTag.sheetType;
 
 public class ReadExcel {
 	
@@ -101,6 +102,8 @@ public class ReadExcel {
 		switch(typStr){
 		case "dropdown" :
 			return inputType.dropdown;
+		case "dropdownx" :
+			return inputType.dropdownx;
 		case "date" :
 			return inputType.date;
 		case "text" :
@@ -115,6 +118,26 @@ public class ReadExcel {
 			return inputType.alert;
 		case "popup" :
 			return inputType.popup;
+		}
+		return null;
+	}
+	
+	public sheetType getSheetType(col colTag, int rowTag){
+		String sheetStr = getString(colTag, rowTag).toLowerCase();
+		switch(sheetStr){
+			case "register_com" :					return sheetType.Register;
+			
+			case "ncb" :							return sheetType.NCB;
+			
+			case "customer_add" :					return sheetType.AddCustomer;
+			
+			case "loanform_add" :					return sheetType.AddLoan;
+			
+			case "colleteral_addlandbuilding" :		return sheetType.CollLandBuiling;
+			case "colleteral_addwarranter" :		return sheetType.CollWarranter;
+			case "colleteral_addland" :				return sheetType.CollLand;
+			
+			case "document" :						return sheetType.document;
 		}
 		return null;
 	}

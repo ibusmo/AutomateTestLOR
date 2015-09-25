@@ -3,6 +3,7 @@ package mytestpack;
 import java.util.Random;
 import java.util.Scanner;
 
+import config.TestConfig;
 import keyword.NCB.NCB;
 import keyword.NCB.NCBCOM;
 import keyword.NCB.NCBSendWork;
@@ -22,7 +23,9 @@ import keyword.cms.CMSSupportInfo;
 import keyword.cms.CMSValue;
 import keyword.cmscom.ListOfCMS;
 import keyword.common.AttachFiles;
+import keyword.common.AttachFilesCOM;
 import keyword.common.RequireDocuments;
+import keyword.common.RequireDocumentsCOM;
 import keyword.cms.CMSGotoApp;
 import keyword.considerandcommentation.CCDocuments;
 import keyword.considerandcommentation.CCExecutiveSummary;
@@ -35,9 +38,11 @@ import keyword.helper.OpenBrowser;
 import keyword.loanapp.LoanAppEdit;
 import keyword.register.RegisterCOM;
 import keyword.register.RegisterCSM;
+import keyword.registerandscnanning.CollacteralAddAccountingCOM;
+import keyword.registerandscnanning.CollacteralAddBuildingCOM;
 import keyword.registerandscnanning.CollacteralAddLandAndBuildingCOM;
 import keyword.registerandscnanning.CollacteralAddLandCOM;
-import keyword.registerandscnanning.CollacteralAddWarranter;
+import keyword.registerandscnanning.CollacteralAddWarranterCOM;
 import keyword.registerandscnanning.CustomerAdd;
 import keyword.registerandscnanning.CustomerAddCOM;
 import keyword.registerandscnanning.CustomerCIFInfo;
@@ -68,24 +73,34 @@ public class mytestpack {
 		WebDriverEngine.getInstance("firefox");		
 //		new OpenBrowser("https://172.31.1.41:9445/LOR/login.jsp").execute();
 //		new Login("AdisakC", "testuser").execute();
-//		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-//		new Login("AdisakC", "testuser").execute();
-//		new OpenBrowser("http://172.31.1.41:9084/LOR/login.jsp").execute();
-//		new Login("NiponM", "testuser").execute();
 		
-//		String CIF = "3";
-//		String appID = registerSM2();					waitForInterrupt();
-//		String appID = "038309580006";
-//		new GotoApp(appID).execute();					waitForInterrupt();		
-//		registerAndScanningCOM(appID, CIF);				waitForInterrupt();
+		TestConfig tc = new TestConfig();
+		tc.loadData();
+
+		new OpenBrowser("http://172.31.1.41:9084/LOR/login.jsp").execute();
+		new Login("NiponM", "testuser").execute();
+		String appID = registerSM2();					waitForInterrupt();
+		registerAndScanningCOM(appID, "Dummy");				waitForInterrupt();
 		
 
-		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
-		WebDriverEngine.getDriver().manage().window().maximize();
-		new Login("PisutC", "testuser").execute();		waitForInterrupt();
-		new ListOfCMS("003301580002").execute();						waitForInterrupt();
+//		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+//		new Login("AdisakC", "testuser").execute();
+//		String appID = register();						waitForInterrupt();
+//		registerandscanning(appID, "1357");				waitForInterrupt();
+//		ncb(appID);										waitForInterrupt();
+//		considerAndCommentation(appID);					waitForInterrupt();
+//		new Logout().execute();
+//		
+//		new Login("JirapornS1", "testuser").execute();		
+//		basicInfoCheck(appID);							waitForInterrupt();
+//		new Logout().execute();
+//		
+//		new Login("SurachaiT1", "testuser").execute();		
+//		assignment(appID);								waitForInterrupt();
+//		new Logout().execute();
+
+//		CMSV2("003309580011");	
 		
-		new Logout().execute();
 		WebDriverEngine.Close();
 		WebDriverEngine.quit();
 		logCat.endLog();
@@ -99,16 +114,26 @@ public class mytestpack {
 	
 	private static void registerAndScanningCOM(String appID, String CIF){
 		new GotoApp(appID).execute();						waitForInterrupt();			
-//		new NCBCOM(1).execute();							waitForInterrupt();	
+		new NCBCOM(1).execute();							waitForInterrupt();	
 		new CustomerAddCOM(1).execute();					waitForInterrupt();	
 //		new CustomerAddCOM(2).execute();					waitForInterrupt();	
 		new LoanFormAddCOM(1).execute();					waitForInterrupt();
-//		new CollacteralAddLandCOM(1).execute();				waitForInterrupt();
 //		new CollacteralAddLandAndBuildingCOM(1).execute();	waitForInterrupt();
-		new CollacteralAddWarranter(1).execute();			waitForInterrupt();
-//		new RequireDocuments().execute();
-//		new AttachFiles().execute();						waitForInterrupt();
+		new CollacteralAddBuildingCOM(1).execute();			waitForInterrupt();
+//		new CollacteralAddLandCOM(1).execute();				waitForInterrupt();
+//		new CollacteralAddAccountingCOM(1).execute();		waitForInterrupt();
+//		new CollacteralAddWarranterCOM(1).execute();		waitForInterrupt();
+		new RequireDocumentsCOM().execute();
+		new AttachFilesCOM().execute();						waitForInterrupt();
 	}	
+	
+	private static void CMSV2(String appID){
+		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
+		WebDriverEngine.getDriver().manage().window().maximize();
+		new Login("PisutC", "testuser").execute();						waitForInterrupt();
+		new ListOfCMS(appID).execute();								waitForInterrupt();
+		new Logout().execute();
+	}
 	
 	
 	
@@ -211,25 +236,3 @@ public class mytestpack {
 		return ""+tmp;
 	}
 }
-
-/*
-driver.get("https://10.251.108.203/LOR/login.jsp");
-
-driver.findElement(By.id("j_username")).sendKeys("adisakc");
-driver.findElement(By.id("j_password")).sendKeys("testuser");
-driver.findElement(By.id("wp-submit")).click();
-/*
-/*
-  driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")).click();
-
-  Robot robot = new Robot();
-  robot.keyPress(KeyEvent.VK_ENTER);
- */
-/*
-JavascriptExecutor executor = (JavascriptExecutor) driver;
-executor.executeScript("redirect('j_acegi_logout');", driver.findElement(By.xpath("//*[@id='menu-vertical']/ul/li[9]/div/a")));
-
-String i = driver.getCurrentUrl();
-System.out.println(i);
-driver.close();
-*/

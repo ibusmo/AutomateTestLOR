@@ -1,7 +1,9 @@
 package keyword;
 
 import java.util.List;
+import java.util.Random;
 
+import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +25,7 @@ import output.LogTag.logtab;
 import testdata.LoadElement;
 import testdata.elementObj;
 import testdata.CellTag.fieldType;
+import testdata.CellTag.inputType;
 
 public abstract class KeywordsCOM implements Keywords {
 
@@ -66,6 +69,7 @@ public abstract class KeywordsCOM implements Keywords {
 					return false;
 				break;
 			case dropdown:
+			case dropdownx:
 				if(caseDropdown(obj)==false)
 					return false;
 				break;
@@ -112,6 +116,9 @@ public abstract class KeywordsCOM implements Keywords {
 		}catch(NoAlertPresentException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, obj.nameTag + ": " + obj.dataTag);
 			//return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
@@ -134,6 +141,9 @@ public abstract class KeywordsCOM implements Keywords {
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Date, obj.nameTag + ": " + obj.dataTag);
 			return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Date, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
@@ -145,6 +155,9 @@ public abstract class KeywordsCOM implements Keywords {
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Checkbox, obj.nameTag + ": " + obj.dataTag);
 			return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Checkbox, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
@@ -156,28 +169,67 @@ public abstract class KeywordsCOM implements Keywords {
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Radio, obj.nameTag + ": " + obj.dataTag);
 			return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Radio, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
 
+//	protected boolean caseText(elementObj obj) {
+//		try{
+//			new Type().RunText(obj);
+//			sendToLogCustom(logexestatus.PASS, logaction.Text, obj.nameTag + ": " + obj.dataTag);
+//		}catch (TimeoutException e){
+//			sendToLogCustom(logexestatus.FAIL, logaction.Text, obj.nameTag + ": " + obj.dataTag);
+//			return false;
+//		}
+//		return true;
+//	}
+	
 	protected boolean caseText(elementObj obj) {
+		//@Override Method for GENERATE NUMBER
 		try{
+			obj.dataTag = obj.value!="" && obj.value!="null" ? getNum((int)Math.round(Double.parseDouble(obj.value))) : obj.dataTag;
+			new Type().RunText(obj);
+			sendToLogCustom(logexestatus.PASS, logaction.Text, obj.nameTag + ": " + obj.dataTag);
+		}catch(NumberFormatException e){
 			new Type().RunText(obj);
 			sendToLogCustom(logexestatus.PASS, logaction.Text, obj.nameTag + ": " + obj.dataTag);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Text, obj.nameTag + ": " + obj.dataTag);
 			return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Text, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
-
+	
+	private String getNum(int point){
+		  Random ran = new Random();
+		  int low = (int) Math.pow(10, point-1);
+		  int high = (int) Math.pow(10, point)-low;
+		  int tmp = ran.nextInt(high) + low;
+		  return ""+tmp;
+	}
+	
 	protected boolean caseDropdown(elementObj obj) {
 		try{
-			new Dropdown().RunDropdown(obj, false);
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag);
+			if(obj.inputType==inputType.dropdownx){
+				new Dropdown().RunDropdown(obj, true);
+				sendToLogCustom(logexestatus.PASS, logaction.DropdownNoText, obj.nameTag + ": " + obj.dataTag);
+			}
+			else{
+				new Dropdown().RunDropdown(obj, false);
+				sendToLogCustom(logexestatus.PASS, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag);
+			}
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag);
 			return false;
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}
@@ -190,8 +242,15 @@ public abstract class KeywordsCOM implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, obj.nameTag + ": " + obj.dataTag);
 			if(obj.filedType == fieldType.linktext)	{
 				//Nothing TO DO
-			}else
+			}
+			else if(obj.dataTag.toLowerCase().contains("DRAFT")){
+				//Nothing TO DO
+			}else{
 				return false;
+			}
+		}catch (InvalidElementStateException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;			
 		}
 		return true;
 	}	

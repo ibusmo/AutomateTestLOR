@@ -9,9 +9,9 @@ import output.LogTag.logaction;
 import output.LogTag.logexestatus;
 import testdata.CellTag.fieldType;
 
-public class RequireDocuments extends KeywordsCOM {
+public class RequireDocumentsCOM extends KeywordsCOM {
 
-	public RequireDocuments(){
+	public RequireDocumentsCOM(){
 		initKeywords();
 	}
 	
@@ -28,6 +28,7 @@ public class RequireDocuments extends KeywordsCOM {
 		try {
 			// Click เอกสารที่ต้องการ Tab
 			String btnReqDocsTab = "เอกสารที่ต้องการ";
+			btnReqDocsTab = "ใบตรวจสอบเอกสาร";
 			new Click().auto(fieldType.linktext, btnReqDocsTab);
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "เอกสารที่ต้องการ  Tab");			
 		} catch (TimeoutException e) {

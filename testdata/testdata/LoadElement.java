@@ -3,6 +3,7 @@ package testdata;
 import java.util.ArrayList;
 import java.util.List;
 
+import config.ConfigElementObj;
 import testdata.CellTag.col;
 
 public class LoadElement implements TestDatas {
@@ -11,12 +12,17 @@ public class LoadElement implements TestDatas {
 	int sizeOfData;
 	int offsetRow;
 	List<elementObj> elmObj;
+	List<ConfigElementObj> configElementObj;
 	ReadExcel rdExl;
 	
 	public LoadElement(String workSheetPath, int sizeOfData, int offsetRow){
 		this.workSheetPath = workSheetPath;
 		this.offsetRow = offsetRow;
 		this.sizeOfData = sizeOfData;
+	}
+
+	private int row(int r){
+		return r + offsetRow;
 	}
 	
 	@Override
@@ -69,11 +75,40 @@ public class LoadElement implements TestDatas {
 		return true;
 	}
 
-	private int row(int r){
-		return r + offsetRow;
-	}
-
 	public List<elementObj> getObject() {
 		return elmObj;
+	}
+
+	public boolean loadConfigData() {
+		rdExl = new ReadExcel(workBookPath, workSheetPath);
+		configElementObj = new ArrayList<ConfigElementObj>();
+		for(int idx=1; idx<=sizeOfData; idx++){
+			System.out.print(idx + " ");
+			
+			ConfigElementObj objTmp = new ConfigElementObj();			
+																		System.out.print("B ");
+			objTmp.process 	= rdExl.getString(col.B, row(idx));
+																		System.out.print("C ");
+			objTmp.sheet 	= rdExl.getSheetType(col.C, row(idx));
+																		System.out.print("D ");
+			objTmp.index 	= rdExl.getString(col.D, row(idx));
+																		System.out.print("E ");
+			objTmp.remark 	= rdExl.getString(col.E, row(idx));
+
+			configElementObj.add(objTmp);
+
+			System.out.print("\t");
+			System.out.print(objTmp.process + "\t");
+			System.out.print(objTmp.sheet + "\t");
+			System.out.print(objTmp.index + "\t");
+			System.out.print(objTmp.remark + "\t");
+			System.out.println();
+		}		
+		rdExl.closeFile();
+		return true;
+	}
+
+	public List<ConfigElementObj> getConfigObject() {
+		return configElementObj;
 	}
 }

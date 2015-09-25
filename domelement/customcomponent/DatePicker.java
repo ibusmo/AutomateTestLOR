@@ -14,13 +14,13 @@ public class DatePicker implements CustomComponent{
 	}
 	
 	private void auto(fieldType filedType, String inputDateField, String dateStr) {
-		if(dateStr=="today"){
+		if(dateStr.matches("today")){
 			dateStr = getCurDate();
 		}
-		else if(dateStr=="yesterday"){
+		else if(dateStr.matches("yesterday")){
 			dateStr = getPrevDate();
 		}
-		else if(dateStr=="tomorrow"){
+		else if(dateStr.matches("tomorrow")){
 			dateStr = getNextDate();
 		}
 		switch(filedType){
@@ -49,18 +49,24 @@ public class DatePicker implements CustomComponent{
 	}	
 	
 	public String getCurDate() {
-		String localTime = "" + String.format("%02d", LocalDateTime.now().getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
+		String D = String.format("%02d", LocalDateTime.now().getDayOfMonth());
+		String M = String.format("%02d", LocalDateTime.now().getMonthValue());
+		int Y = LocalDateTime.now().getYear() < 2500 ? LocalDateTime.now().plusYears(543).getYear() : LocalDateTime.now().getYear();
+		String localTime = D + "/" + M + "/" + Y;
 		return localTime;
 	}	
 	public String getPrevDate() {
-		String localTime = "" + String.format("%02d", LocalDateTime.now().minusDays(1).getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
+		String D = String.format("%02d", LocalDateTime.now().minusDays(1).getDayOfMonth());
+		String M = String.format("%02d", LocalDateTime.now().getMonthValue());
+		int Y = LocalDateTime.now().getYear() < 2500 ? LocalDateTime.now().plusYears(543).getYear() : LocalDateTime.now().getYear();
+		String localTime = D + "/" + M + "/" + Y;
 		return localTime;
 	}
 	public String getNextDate() {
-		String localTime = "" + String.format("%02d", LocalDateTime.now().plusDays(1).getDayOfMonth()) + "/"
-				+ String.format("%02d", LocalDateTime.now().getMonthValue()) + "/" + LocalDateTime.now().getYear();
+		String D = String.format("%02d", LocalDateTime.now().plusDays(1).getDayOfMonth());
+		String M = String.format("%02d", LocalDateTime.now().getMonthValue());
+		int Y = LocalDateTime.now().getYear() < 2500 ? LocalDateTime.now().plusYears(543).getYear() : LocalDateTime.now().getYear();
+		String localTime = D + "/" + M + "/" + Y;
 		return localTime;
 	}
 }

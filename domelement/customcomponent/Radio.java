@@ -18,7 +18,7 @@ public class Radio implements CustomComponent{
 		case id:
 			break;
 		case name:
-			name(fieldName, Integer.parseInt(value));
+			name(fieldName, (int) Math.round(Double.parseDouble(value)));
 			break;
 		case xpath:
 			break;

@@ -1,10 +1,7 @@
 package keyword.register;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
 
 import customcomponent.Dropdown;
 import customcomponent.WaitFor;
@@ -15,14 +12,11 @@ import output.LogTag.logexestatus;
 import output.LogTag.logoperation;
 import output.LogTag.logsubtab;
 import output.LogTag.logtab;
-import testdata.RegisterCSMData;
 
 public class RegisterCSM implements Keywords {
 	
 	
 	String appID = null;
-
-	RegisterCSMData regData = new RegisterCSMData();
 	
 	public RegisterCSM(){
 		initKeywords();
@@ -30,11 +24,7 @@ public class RegisterCSM implements Keywords {
 	
 	@Override
 	public void initKeywords() {
-		if(regData.loadData()){
-			sendToLogCustom(logexestatus.PASS, logaction.LoadData);
-		}else{
-			sendToLogCustom(logexestatus.FAIL, logaction.LoadData);			
-		}
+		
 	}
 
 	@Override
@@ -53,9 +43,9 @@ public class RegisterCSM implements Keywords {
 		try{		
 			//Select DropDown กลุ่มลูกค้าสินเชื่อ *	
 			String inputField = "//*[@id='applicationForm']/div[3]/div/div/div[2]/div[2]/input";
-			String inputValue = regData.txtWorkflowCode;
+			String inputValue = "CSM : สินเชื่อรายย่อย";
 			String selectField = "workflowCode";
-			String selectValue = regData.drpWorkflowCode;
+			String selectValue = "CSM";
 			String jsExe = "populatePurposeLoanByWorkFlow('"+selectValue+"','',true,false,'purposeLoanCode');"
 							+"getWorkflowGroup('"+selectValue+"');";
 			new Dropdown().id(inputField, inputValue, selectField, selectValue, jsExe);
@@ -64,6 +54,7 @@ public class RegisterCSM implements Keywords {
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, "กลุ่มลูกค้าสินเชื่อ *");
 			return false;
 		}
+		/*
 		try{
 			//Radio Button การตรวจสอบสมาชิกในคำขอ ไม่ตรวจสอบ
 			int radioValue = Integer.parseInt(regData.rdoGroupCheck);
@@ -116,7 +107,7 @@ public class RegisterCSM implements Keywords {
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Text, "PhoneNumber");
 			return false;
-		}
+		}*/
 		try{
 			//Button Click บันทึก
 			String buttonSave = "//*[@id='applicationForm']/div[3]/div/div/div[26]/button[1]";

@@ -21,14 +21,14 @@ public class Popup implements CustomComponent {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX auto");
 		switch(filedType){
 		case id:
-			break;
+			return byid(fieldName, nWindows);
 		case name:
 //			System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX filedType");
 			return byname(fieldName, nWindows);
 		case xpath:
 			return byxpath(fieldName, nWindows);
 		case linktext:
-			break;
+			return bylinktext(fieldName, nWindows);
 		}
 		return null;
 	}
@@ -75,7 +75,7 @@ public class Popup implements CustomComponent {
 		}
 		return null;
 	}
-	
+
 	public WebDriver byname(String name, int numPopup) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX byname");
 		//Wait for POPUP
@@ -109,6 +109,95 @@ public class Popup implements CustomComponent {
 			popup = driver.switchTo().window(winHandle);
 			try {
 				if (popup.findElement(By.name(name)).isDisplayed()) {
+					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+					return popup;
+				}
+			} catch (NoSuchElementException e) {
+				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			}
+			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
+		}
+		return null;
+	}
+	
+
+	public WebDriver byid(String id, int numPopup) {
+//		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX byname");
+		//Wait for POPUP
+		int timeCount = 1;
+		do {
+			driver.getWindowHandles();
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
+			}
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				return null;
+			}
+		} while (driver.getWindowHandles().size() != numPopup);
+		
+		//Wait For Elements
+		try {
+			Thread.sleep(freeTime);
+		} catch (InterruptedException e) {
+			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+			e.printStackTrace();
+		}
+		
+		//SELECT POPUP
+		for (String winHandle : driver.getWindowHandles()) {
+			WebDriver popup = null;
+			popup = driver.switchTo().window(winHandle);
+			try {
+				if (popup.findElement(By.id(id)).isDisplayed()) {
+					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+					return popup;
+				}
+			} catch (NoSuchElementException e) {
+				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			}
+			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
+		}
+		return null;
+	}
+	
+	public WebDriver bylinktext(String linktext, int numPopup) {
+//		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX byname");
+		//Wait for POPUP
+		int timeCount = 1;
+		do {
+			driver.getWindowHandles();
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
+			}
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				return null;
+			}
+		} while (driver.getWindowHandles().size() != numPopup);
+		
+		//Wait For Elements
+		try {
+			Thread.sleep(freeTime);
+		} catch (InterruptedException e) {
+			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+			e.printStackTrace();
+		}
+		
+		//SELECT POPUP
+		for (String winHandle : driver.getWindowHandles()) {
+			WebDriver popup = null;
+			popup = driver.switchTo().window(winHandle);
+			try {
+				if (popup.findElement(By.linkText(linktext)).isDisplayed()) {
 					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
 					return popup;
 				}
