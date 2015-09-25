@@ -10,7 +10,7 @@ import testdata.elementObj;
 
 public class Popup implements CustomComponent {
 	
-	int freeTime = 3000;
+	int freeTime = 500;
 	
 	public WebDriver RunPopup(elementObj obj) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX RunPopup");

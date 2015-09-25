@@ -121,4 +121,16 @@ public class Dropdown implements CustomComponent{
 		str = str.replaceAll("this", val);
 		return str;
 	}
+
+	public void id(String selectField, String selectValue, String jEXE) {
+		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
+		executor.executeScript(jQuery, driver.findElement(By.id(selectField)));
+		executor.executeScript(replaceValue(jEXE, selectValue), driver.findElement(By.id(selectField)));		
+	}
+	
+	public void name(String selectField, String selectValue, String jsExe) {
+		String jQuery = "$(\"select[name*='"+selectField+"']\").val( '"+selectValue+"' );";
+		executor.executeScript(jQuery, driver.findElement(By.name(selectField)));
+		executor.executeScript(replaceValue(jsExe, selectValue), driver.findElement(By.name(selectField)));
+	}
 }

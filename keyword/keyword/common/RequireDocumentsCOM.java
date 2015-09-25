@@ -17,7 +17,7 @@ public class RequireDocumentsCOM extends KeywordsCOM {
 	
 	@Override
 	public void initKeywords() {
-		super.logoperation 		= output.LogTag.logoperation.RegScanning;
+		super.logoperation 		= output.LogTag.logoperation.RequireDoc;
 		super.logtab 			= output.LogTag.logtab.RequireDoc;
 		super.logsubtab 		= output.LogTag.logsubtab.None;	
 	}

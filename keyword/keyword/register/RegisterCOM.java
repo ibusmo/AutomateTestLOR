@@ -25,7 +25,7 @@ public class RegisterCOM extends KeywordsCOM {
 		super.logtab 			= output.LogTag.logtab.None;
 		super.logsubtab 		= output.LogTag.logsubtab.None;
 
-		super.sizeOfData = 26;
+		super.sizeOfData = 24;
 		super.offsetRow = 2;
 
 		loadData();

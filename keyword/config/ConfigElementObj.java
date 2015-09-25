@@ -6,6 +6,6 @@ public class ConfigElementObj {
 	//structure	
 	public String process;
 	public sheetType sheet;
-	public String index;
+	public int index;
 	public String remark;
 }

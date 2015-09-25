@@ -91,7 +91,11 @@ public class LoadElement implements TestDatas {
 																		System.out.print("C ");
 			objTmp.sheet 	= rdExl.getSheetType(col.C, row(idx));
 																		System.out.print("D ");
-			objTmp.index 	= rdExl.getString(col.D, row(idx));
+			try{
+				objTmp.index 	= (int)Double.parseDouble(rdExl.getString(col.D, row(idx)));
+			}catch(NumberFormatException e){
+				objTmp.index = 0;
+			}														
 																		System.out.print("E ");
 			objTmp.remark 	= rdExl.getString(col.E, row(idx));
 

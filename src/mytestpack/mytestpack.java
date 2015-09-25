@@ -3,6 +3,7 @@ package mytestpack;
 import java.util.Random;
 import java.util.Scanner;
 
+import config.ConfigElementObj;
 import config.TestConfig;
 import keyword.NCB.NCB;
 import keyword.NCB.NCBCOM;
@@ -22,10 +23,9 @@ import keyword.cms.CMSSendWork;
 import keyword.cms.CMSSupportInfo;
 import keyword.cms.CMSValue;
 import keyword.cmscom.ListOfCMS;
-import keyword.common.AttachFiles;
 import keyword.common.AttachFilesCOM;
-import keyword.common.RequireDocuments;
 import keyword.common.RequireDocumentsCOM;
+import keyword.common.SendWorkCOM;
 import keyword.cms.CMSGotoApp;
 import keyword.considerandcommentation.CCDocuments;
 import keyword.considerandcommentation.CCExecutiveSummary;
@@ -46,15 +46,10 @@ import keyword.registerandscnanning.CollacteralAddWarranterCOM;
 import keyword.registerandscnanning.CustomerAdd;
 import keyword.registerandscnanning.CustomerAddCOM;
 import keyword.registerandscnanning.CustomerCIFInfo;
-import keyword.registerandscnanning.CustomerCareerCOM;
-import keyword.registerandscnanning.CustomerExpense;
 import keyword.registerandscnanning.CustomerExpenses;
 import keyword.registerandscnanning.CustomerIncome;
 import keyword.registerandscnanning.CustomerNonNCB;
-import keyword.registerandscnanning.CustomerNonNCBCOM;
 import keyword.registerandscnanning.CustomerOtherInfo;
-import keyword.registerandscnanning.CustomerOtherInfoCOM;
-import keyword.registerandscnanning.CustomerSalaryCOM;
 import keyword.registerandscnanning.ReScnDocuments;
 import keyword.registerandscnanning.RegScnSendWork;
 import keyword.registerandscnanning.LoanFormAdd;
@@ -62,67 +57,101 @@ import keyword.registerandscnanning.LoanFormAddCOM;
 import keyword.registerandscnanning.LoanFormLongTermLoan;
 import keyword.registerandscnanning.TabPolicy;
 import output.LogCat;
-import output.LogTag.logoperation;
-import testdata.ReadExcel;
-import testdata.CellTag.col;
 import webdriver.WebDriverEngine;
 //26/08/2015 09:56
 public class mytestpack {
 	public static void main(String[] args){		
+		//Init LOG and DRIVER
 		LogCat logCat = LogCat.getInstance();
-		WebDriverEngine.getInstance("firefox");		
-//		new OpenBrowser("https://172.31.1.41:9445/LOR/login.jsp").execute();
-//		new Login("AdisakC", "testuser").execute();
+		WebDriverEngine.getInstance("firefox");	
 		
+		//Load CONFIGURATION
 		TestConfig tc = new TestConfig();
 		tc.loadData();
-
-		new OpenBrowser("http://172.31.1.41:9084/LOR/login.jsp").execute();
-		new Login("NiponM", "testuser").execute();
-		String appID = registerSM2();					waitForInterrupt();
-		registerAndScanningCOM(appID, "Dummy");				waitForInterrupt();
 		
-
-//		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
-//		new Login("AdisakC", "testuser").execute();
-//		String appID = register();						waitForInterrupt();
-//		registerandscanning(appID, "1357");				waitForInterrupt();
-//		ncb(appID);										waitForInterrupt();
-//		considerAndCommentation(appID);					waitForInterrupt();
-//		new Logout().execute();
-//		
-//		new Login("JirapornS1", "testuser").execute();		
-//		basicInfoCheck(appID);							waitForInterrupt();
-//		new Logout().execute();
-//		
-//		new Login("SurachaiT1", "testuser").execute();		
-//		assignment(appID);								waitForInterrupt();
-//		new Logout().execute();
-
-//		CMSV2("003309580011");	
+		//OPERATING
+		String appID = null;
+		for(ConfigElementObj obj : tc.configElementObj){
+			switch(obj.sheet){
+				case Login:
+					if(obj.process.toLowerCase().contains("lor")){
+						LORLogin(obj.remark);								waitForInterrupt();
+					}
+					else if(obj.process.toLowerCase().contains("cms")){
+						CMSLogin(obj.remark);								waitForInterrupt();
+					}
+					break;
+				case Logout:
+					new Logout().execute();									waitForInterrupt();
+					break;
+				case Register:
+					appID = registerSM2(obj.index);							waitForInterrupt();
+					break;
+				case GotoApp:
+					String tmpAppID = obj.remark.length()>5 ? obj.remark : appID;
+					new GotoApp(tmpAppID).execute();						waitForInterrupt();
+					break;
+				case NCB:
+					new NCBCOM(obj.index).execute();						waitForInterrupt();	
+					break;
+				case AddCustomer:	
+					new CustomerAddCOM(obj.index).execute();				waitForInterrupt();	
+					break;
+				case AddLoan:
+					new LoanFormAddCOM(obj.index).execute();				waitForInterrupt();
+					break;
+					
+				case CollLand:
+					new CollacteralAddLandCOM(obj.index).execute();			waitForInterrupt();
+					break;
+				case CollBuilding:
+					new CollacteralAddBuildingCOM(obj.index).execute();		waitForInterrupt();
+					break;
+				case CollLandBuiling:
+					new CollacteralAddLandAndBuildingCOM(obj.index).execute();	waitForInterrupt();
+					break;
+				case CollAccounting:
+					new CollacteralAddAccountingCOM(obj.index).execute();	waitForInterrupt();
+					break;
+				case CollWarranter:
+					new CollacteralAddWarranterCOM(obj.index).execute();	waitForInterrupt();
+					break;
+					
+				case Document:
+					new RequireDocumentsCOM().execute();					waitForInterrupt();
+					new AttachFilesCOM().execute();							waitForInterrupt();
+					break;
+					
+				case SendWork:
+					new SendWorkCOM().execute();					waitForInterrupt();
+					break;
+			default:
+				break;
+			}
+		}
 		
 		WebDriverEngine.Close();
 		WebDriverEngine.quit();
 		logCat.endLog();
 	}
 	
-	private static String registerSM2() {
-		RegisterCOM reg = new RegisterCOM(1);		
+	private static String registerSM2(int index) {
+		RegisterCOM reg = new RegisterCOM(index);		
 		reg.execute();							
 		return reg.getAppID();
 	}
 	
-	private static void registerAndScanningCOM(String appID, String CIF){
-		new GotoApp(appID).execute();						waitForInterrupt();			
-		new NCBCOM(1).execute();							waitForInterrupt();	
+	private static void registerAndScanningCOM(String appID){		
+		new GotoApp(appID).execute();			waitForInterrupt();
+		new NCBCOM(1).execute();		waitForInterrupt();	
 		new CustomerAddCOM(1).execute();					waitForInterrupt();	
-//		new CustomerAddCOM(2).execute();					waitForInterrupt();	
+		new CustomerAddCOM(2).execute();					waitForInterrupt();	
 		new LoanFormAddCOM(1).execute();					waitForInterrupt();
-//		new CollacteralAddLandAndBuildingCOM(1).execute();	waitForInterrupt();
+		new CollacteralAddLandAndBuildingCOM(1).execute();	waitForInterrupt();
 		new CollacteralAddBuildingCOM(1).execute();			waitForInterrupt();
-//		new CollacteralAddLandCOM(1).execute();				waitForInterrupt();
-//		new CollacteralAddAccountingCOM(1).execute();		waitForInterrupt();
-//		new CollacteralAddWarranterCOM(1).execute();		waitForInterrupt();
+		new CollacteralAddLandCOM(1).execute();				waitForInterrupt();
+		new CollacteralAddAccountingCOM(1).execute();		waitForInterrupt();
+		new CollacteralAddWarranterCOM(1).execute();		waitForInterrupt();
 		new RequireDocumentsCOM().execute();
 		new AttachFilesCOM().execute();						waitForInterrupt();
 	}	
@@ -135,6 +164,18 @@ public class mytestpack {
 		new Logout().execute();
 	}
 	
+	private static void LORLogin(String user){
+		new OpenBrowser("http://172.31.1.41:55011/LOR/login.jsp").execute();
+		new Login(user, "testuser").execute();
+	}
+	private static void CMSLogin(String user){
+		new OpenBrowser("http://172.31.1.42:9080/CMS/login.jsp").execute();
+		new Login(user, "testuser").execute();
+	}
+	
+	private static void LORLogout(){
+		new Logout().execute();
+	}
 	
 	
 	
@@ -218,7 +259,7 @@ public class mytestpack {
 	private static void waitForInterrupt() {
 		@SuppressWarnings("resource")
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Enter the first number");
+		System.out.println("Enter to continue");
 		// get user input for a
 		@SuppressWarnings("unused")
 		String x = reader.nextLine();					addSpace();
@@ -234,5 +275,25 @@ public class mytestpack {
 		int high = (int) Math.pow(10, point)-low;
 		int tmp = ran.nextInt(high) + low;
 		return ""+tmp;
+	}
+	
+	public static void LORAsCMS(){
+		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
+		new Login("AdisakC", "testuser").execute();
+		String appID = register();						waitForInterrupt();
+		registerandscanning(appID, "1357");				waitForInterrupt();
+		ncb(appID);										waitForInterrupt();
+		considerAndCommentation(appID);					waitForInterrupt();
+		new Logout().execute();
+		
+		new Login("JirapornS1", "testuser").execute();		
+		basicInfoCheck(appID);							waitForInterrupt();
+		new Logout().execute();
+		
+		new Login("SurachaiT1", "testuser").execute();		
+		assignment(appID);								waitForInterrupt();
+		new Logout().execute();
+	
+		CMSV2("003309580011");	
 	}
 }

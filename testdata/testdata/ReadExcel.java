@@ -124,8 +124,15 @@ public class ReadExcel {
 	
 	public sheetType getSheetType(col colTag, int rowTag){
 		String sheetStr = getString(colTag, rowTag).toLowerCase();
-		switch(sheetStr){
+		switch(sheetStr){			
+			case "lor" :							return sheetType.LOR;
+			case "cms" :							return sheetType.CMS;
+			case "login" :							return sheetType.Login;
+			case "logout" :							return sheetType.Logout;
+		
 			case "register_com" :					return sheetType.Register;
+			
+			case "gotoapp" :						return sheetType.GotoApp;
 			
 			case "ncb" :							return sheetType.NCB;
 			
@@ -136,8 +143,9 @@ public class ReadExcel {
 			case "colleteral_addlandbuilding" :		return sheetType.CollLandBuiling;
 			case "colleteral_addwarranter" :		return sheetType.CollWarranter;
 			case "colleteral_addland" :				return sheetType.CollLand;
-			
-			case "document" :						return sheetType.document;
+
+			case "document" :						return sheetType.Document;
+			case "sendwork" :						return sheetType.SendWork;
 		}
 		return null;
 	}

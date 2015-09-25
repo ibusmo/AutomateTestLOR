@@ -34,6 +34,6 @@ public class CellTag {
 		CMSLand,
 		CMSBuilding, 
 		
-		document
+		Document, LOR, CMS, GotoApp, Login, Logout, SendWork
 	}
 }
