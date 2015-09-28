@@ -14,7 +14,6 @@ public class Dropdown implements CustomComponent{
 		switch(filedNameType){
 		case id:
 			if(jsExe.length()<6 && jsExe.toLowerCase().contains("null")){
-				System.out.println("\njsExe " + jsExe + "\n");
 				if(noText==true)
 					idNoText(inputField, inputValue, selectField, selectValue);
 				else
@@ -29,7 +28,6 @@ public class Dropdown implements CustomComponent{
 			break;
 		case name:
 			if(jsExe.length()<6 && jsExe.toLowerCase().contains("null")){
-				System.out.println("\njsExe " + jsExe + "\n");
 				if(noText==true)
 					nameNoText(inputField, inputValue, selectField, selectValue);
 				else
@@ -116,11 +114,6 @@ public class Dropdown implements CustomComponent{
 		executor.executeScript(jQuery, driver.findElement(By.name(selectField)));
 		executor.executeScript(replaceValue(jsExe, selectValue), driver.findElement(By.name(selectField)));
 	}
-	private String replaceValue(String str, String val){
-		str = str.replaceAll("this.value", "'"+val+"'");
-		str = str.replaceAll("this", val);
-		return str;
-	}
 
 	public void id(String selectField, String selectValue, String jEXE) {
 		String jQuery = "$('#"+selectField+"').val('"+selectValue+"');";
@@ -132,5 +125,11 @@ public class Dropdown implements CustomComponent{
 		String jQuery = "$(\"select[name*='"+selectField+"']\").val( '"+selectValue+"' );";
 		executor.executeScript(jQuery, driver.findElement(By.name(selectField)));
 		executor.executeScript(replaceValue(jsExe, selectValue), driver.findElement(By.name(selectField)));
+	}
+	
+	private String replaceValue(String str, String val){
+		str = str.replaceAll("this.value", "'"+val+"'");
+		str = str.replaceAll("this", val);
+		return str;
 	}
 }

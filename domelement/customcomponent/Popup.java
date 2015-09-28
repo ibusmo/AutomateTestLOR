@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-import output.LogCat;
+import log.LogCat;
 import testdata.CellTag.fieldType;
 import testdata.elementObj;
 
 public class Popup implements CustomComponent {
 	
-	int freeTime = 500;
+	int freeTime = 1000;
 	
 	public WebDriver RunPopup(elementObj obj) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX RunPopup");
@@ -51,29 +51,34 @@ public class Popup implements CustomComponent {
 			}
 		} while (driver.getWindowHandles().size() != numPopup);
 		
-		//Wait For Elements
-		try {
-			Thread.sleep(freeTime);
-		} catch (InterruptedException e) {
-			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
-			e.printStackTrace();
-		}
-		
-		//SELECT POPUP
-		for (String winHandle : driver.getWindowHandles()) {
-			WebDriver popup = null;
-			popup = driver.switchTo().window(winHandle);
+		timeCount = 1;
+		do {
 			try {
-				if (popup.findElement(By.xpath(xpath)).isDisplayed()) {
-					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
-					return popup;
+				Thread.sleep(200);
+				//SELECT POPUP
+				for (String winHandle : driver.getWindowHandles()) {
+					WebDriver popup = null;
+					popup = driver.switchTo().window(winHandle);
+					try {
+						if (popup.findElement(By.xpath(xpath)).isDisplayed()) {
+							LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+							return popup;
+						}
+					} catch (NoSuchElementException e) {
+						// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+					}
 				}
-			} catch (NoSuchElementException e) {
-				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
 			}
-			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
-		}
-		return null;
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Verify Element CRASH !!!");
+				return null;
+			}
+		} while (true);
 	}
 
 	public WebDriver byname(String name, int numPopup) {
@@ -94,30 +99,35 @@ public class Popup implements CustomComponent {
 				return null;
 			}
 		} while (driver.getWindowHandles().size() != numPopup);
-		
-		//Wait For Elements
-		try {
-			Thread.sleep(freeTime);
-		} catch (InterruptedException e) {
-			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
-			e.printStackTrace();
-		}
-		
-		//SELECT POPUP
-		for (String winHandle : driver.getWindowHandles()) {
-			WebDriver popup = null;
-			popup = driver.switchTo().window(winHandle);
+
+		timeCount = 1;
+		do {
 			try {
-				if (popup.findElement(By.name(name)).isDisplayed()) {
-					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
-					return popup;
+				Thread.sleep(200);
+				//SELECT POPUP
+				for (String winHandle : driver.getWindowHandles()) {
+					WebDriver popup = null;
+					popup = driver.switchTo().window(winHandle);
+					try {
+						if (popup.findElement(By.name(name)).isDisplayed()) {
+							LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+							return popup;
+						}
+					} catch (NoSuchElementException e) {
+						// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+					}
 				}
-			} catch (NoSuchElementException e) {
-				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
 			}
-			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
-		}
-		return null;
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Verify Element CRASH !!!");
+				return null;
+			}
+		} while (true);
 	}
 	
 
@@ -140,29 +150,34 @@ public class Popup implements CustomComponent {
 			}
 		} while (driver.getWindowHandles().size() != numPopup);
 		
-		//Wait For Elements
-		try {
-			Thread.sleep(freeTime);
-		} catch (InterruptedException e) {
-			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
-			e.printStackTrace();
-		}
-		
-		//SELECT POPUP
-		for (String winHandle : driver.getWindowHandles()) {
-			WebDriver popup = null;
-			popup = driver.switchTo().window(winHandle);
+		timeCount = 1;
+		do {
 			try {
-				if (popup.findElement(By.id(id)).isDisplayed()) {
-					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
-					return popup;
+				Thread.sleep(200);
+				//SELECT POPUP
+				for (String winHandle : driver.getWindowHandles()) {
+					WebDriver popup = null;
+					popup = driver.switchTo().window(winHandle);
+					try {
+						if (popup.findElement(By.id(id)).isDisplayed()) {
+							LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+							return popup;
+						}
+					} catch (NoSuchElementException e) {
+						// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+					}
 				}
-			} catch (NoSuchElementException e) {
-				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
 			}
-			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
-		}
-		return null;
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Verify Element CRASH !!!");
+				return null;
+			}
+		} while (true);
 	}
 	
 	public WebDriver bylinktext(String linktext, int numPopup) {
@@ -184,28 +199,33 @@ public class Popup implements CustomComponent {
 			}
 		} while (driver.getWindowHandles().size() != numPopup);
 		
-		//Wait For Elements
-		try {
-			Thread.sleep(freeTime);
-		} catch (InterruptedException e) {
-			LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
-			e.printStackTrace();
-		}
-		
-		//SELECT POPUP
-		for (String winHandle : driver.getWindowHandles()) {
-			WebDriver popup = null;
-			popup = driver.switchTo().window(winHandle);
+		timeCount = 1;
+		do {
 			try {
-				if (popup.findElement(By.linkText(linktext)).isDisplayed()) {
-					LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
-					return popup;
+				Thread.sleep(200);
+				//SELECT POPUP
+				for (String winHandle : driver.getWindowHandles()) {
+					WebDriver popup = null;
+					popup = driver.switchTo().window(winHandle);
+					try {
+						if (popup.findElement(By.linkText(linktext)).isDisplayed()) {
+							LogCat.getInstance().sendToLog("[SELECT]\t" + driver.getCurrentUrl());
+							return popup;
+						}
+					} catch (NoSuchElementException e) {
+						// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+					}
 				}
-			} catch (NoSuchElementException e) {
-				// LogCat.getInstance().sendToLog("GET POPUP CRASH !!!");
+			} catch (InterruptedException e) {
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Wait for popup " + " Thread Error");	
+				e.printStackTrace();			
 			}
-			LogCat.getInstance().sendToLog("[POPUP]\t" + driver.getCurrentUrl());
-		}
-		return null;
+			timeCount++;
+			if (timeCount > 100) {
+				// break;
+				LogCat.getInstance().sendToLog("[POPUP]\t" + "Verify Element CRASH !!!");
+				return null;
+			}
+		} while (true);
 	}
 }

@@ -6,13 +6,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import output.LogCat;
-import output.LogTag.logaction;
-import output.LogTag.logelement;
-import output.LogTag.logexestatus;
-import output.LogTag.logoperation;
-import output.LogTag.logsubtab;
-import output.LogTag.logtab;
+import log.LogCat;
+import log.LogTag.logaction;
+import log.LogTag.logelement;
+import log.LogTag.logexestatus;
+import log.LogTag.logoperation;
+import log.LogTag.logsubtab;
+import log.LogTag.logtab;
 
 public class WebDriverEngine {
 	private static WebDriverEngine instance    =  null;
