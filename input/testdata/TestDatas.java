@@ -1,6 +1,8 @@
 package testdata;
 
+import mytestpack.EnvironmentVariable;
+
 public interface TestDatas {
-	String workBookPath = "C:\\Users\\EthanHuntTB1\\Desktop\\testdata.xlsx";
+	String workBookPath = EnvironmentVariable.excelPath;
 	public boolean loadData();
 }

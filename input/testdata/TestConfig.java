@@ -11,7 +11,7 @@ import log.LogTag.logsubtab;
 import log.LogTag.logtab;
 import testdata.CellTag.col;
 
-public class TestConfig implements TestDatas{
+public class TestConfig implements TestDatas {
 
 	private LogCat logCat = LogCat.getInstance();
 	private LoadElement regData;
@@ -31,6 +31,7 @@ public class TestConfig implements TestDatas{
 		offsetRow = 2;
 	}
 
+	@Override
 	public boolean loadData(){
 		regData = new LoadElement(workSheetPath, sizeOfData, offsetRow);
 		if(regData.loadConfigData()){

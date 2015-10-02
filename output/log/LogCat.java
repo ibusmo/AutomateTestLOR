@@ -9,17 +9,30 @@ import log.LogTag.logexestatus;
 import log.LogTag.logoperation;
 import log.LogTag.logsubtab;
 import log.LogTag.logtab;
+import mytestpack.EnvironmentVariable;
 
 public class LogCat {
 	private static LogCat instance = null;
 	private static List<String> logString = null;
 	private static LogToFile logToFile = null;
+	private static String filePath = null;
 	
 	public static LogCat getInstance(){
 		if(instance == null){
+			filePath = EnvironmentVariable.logPath;
 			instance = new LogCat();
 			logString = new ArrayList<String>();
-			logToFile = new LogToFile();
+			logToFile = new LogToFile(filePath);
+		}
+		return instance;
+	}
+	
+	public static LogCat getInstance(String filePathStr){
+		if(instance == null){
+			filePath = filePathStr;
+			instance = new LogCat();
+			logString = new ArrayList<String>();
+			logToFile = new LogToFile(filePath);
 		}
 		return instance;
 	}

@@ -1,4 +1,4 @@
-package COM.creditapplication;
+package COM.prescreen;
 
 import base.KeywordsCOM;
 
@@ -15,7 +15,7 @@ public class CustomerAddCOM extends KeywordsCOM {
 		super.logtab 			= log.LogTag.logtab.RegCustomer;
 		super.logsubtab 		= log.LogTag.logsubtab.Add;
 
-		super.sizeOfData = 177;
+		super.sizeOfData = 182;
 		super.offsetRow = 2;
 
 		loadData();

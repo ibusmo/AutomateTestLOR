@@ -7,7 +7,7 @@ import testdata.CellTag.fieldType;
 public class Click implements CustomComponent{	
 	
 	public void RunButton(elementObj obj) {
-			auto(obj.filedType, obj.fieldName);
+			auto(obj.fieldType, obj.fieldName);
 	}
 	
 	public void auto(fieldType filedType, String fieldName) {

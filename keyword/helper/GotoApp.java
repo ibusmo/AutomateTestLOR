@@ -7,7 +7,6 @@ import base.KeywordsCSM;
 import customcomponent.Click;
 import customcomponent.Radio;
 import customcomponent.Type;
-import log.LogCat;
 import log.LogTag.logaction;
 import log.LogTag.logelement;
 import log.LogTag.logexestatus;
@@ -32,14 +31,15 @@ public class GotoApp implements KeywordsCSM {
 	public boolean execute() {
 		sendToLogStart();
 
-		//Wait For Elements
-		try {
-			Thread.sleep(3000);
-			LogCat.getInstance().sendToLog("[DELAY]\t" + "Wait for app " + " ...");	
-		} catch (InterruptedException e) {
-			LogCat.getInstance().sendToLog("[DELAY]\t" + "Wait for app " + " Thread Error");	
-			e.printStackTrace();
-		}
+//		//Wait For Elements
+//		try {
+//			Thread.sleep(3000);
+//			LogCat.getInstance().sendToLog("[DELAY]\t" + "Wait for app " + " ...");	
+//		} catch (InterruptedException e) {
+//			LogCat.getInstance().sendToLog("[DELAY]\t" + "Wait for app " + " Thread Error");	
+//			e.printStackTrace();
+//		}
+		
 		try{
 			//Click WorkBox Tab
 			String btnWorkBoxTab = "กล่องงาน";

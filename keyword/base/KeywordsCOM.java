@@ -3,6 +3,7 @@ package base;
 
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import org.openqa.selenium.InvalidElementStateException;
@@ -237,6 +238,9 @@ public abstract class KeywordsCOM{
 		}catch (InvalidElementStateException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
 			return false;			
+		}catch(NoSuchElementException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, obj.nameTag + ": " + obj.dataTag + " " + e.getMessage());
+			return false;				
 		}
 		return true;
 	}
@@ -247,7 +251,7 @@ public abstract class KeywordsCOM{
 			sendToLogCustom(logexestatus.PASS, logaction.Click, obj.nameTag + ": " + obj.dataTag);
 		}catch (TimeoutException e){
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, obj.nameTag + ": " + obj.dataTag);
-			if(obj.filedType == fieldType.linktext)	{
+			if(obj.fieldType == fieldType.linktext)	{
 				//Nothing TO DO
 			}
 			else if(obj.dataTag.toLowerCase().contains("DRAFT")){

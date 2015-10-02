@@ -1,11 +1,11 @@
-package CSM.NCB;
+package COM.prescreen;
 
 import base.KeywordsCOM;
 
-public class NCBCOM extends KeywordsCOM {
+public class NCBOptionCOM extends KeywordsCOM {
 
-	public NCBCOM(int sheetIndex) {
-		super.workSheetPath = "NCB_" + sheetIndex;
+	public NCBOptionCOM(int sheetIndex) {
+		super.workSheetPath = "NCB_option_" + sheetIndex;
 		initKeywords();
 	}
 	

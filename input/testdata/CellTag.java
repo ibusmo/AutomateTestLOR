@@ -20,9 +20,9 @@ public class CellTag {
 		Register,
 		AddCustomer,
 		
-		NCB,
+		NCBOption,
 		
-		AddLoan,
+		AddLoanCOM,
 		
 		CollLandBuilding,
 		CollLand,
@@ -34,6 +34,7 @@ public class CellTag {
 		CMSLand,
 		CMSBuilding, 
 		
-		Document, LOR, CMS, GotoApp, Login, Logout, SendWork, CMSValuation, None
+		Document, ReqDoc, AttachDoc, 
+		LOR, CMS, GotoApp, Login, Logout, SendWork, CMSValuation, None, EndWork, Wait, ExcutiveSummary, NCBSummary, SearchWorkBox, AddCustomerOrg, CollWarranterOrg, AddLoanDDA
 	}
 }

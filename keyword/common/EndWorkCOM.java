@@ -12,16 +12,16 @@ import log.LogTag.logaction;
 import log.LogTag.logexestatus;
 import base.KeywordsCOM;
 
-public class SendWorkCOM extends KeywordsCOM {
+public class EndWorkCOM extends KeywordsCOM {
 
-	public SendWorkCOM(){
+	public EndWorkCOM(){
 		initKeywords();
 	}
 	
 	@Override
 	public void initKeywords() {
-		super.logoperation 		= log.LogTag.logoperation.SendWork;
-		super.logtab 			= log.LogTag.logtab.SendWork;
+		super.logoperation 		= log.LogTag.logoperation.EndWork;
+		super.logtab 			= log.LogTag.logtab.EndWork;
 		super.logsubtab 		= log.LogTag.logsubtab.None;	
 	}
 
@@ -29,7 +29,7 @@ public class SendWorkCOM extends KeywordsCOM {
 	public boolean execute() {
 		sendToLogStart();
 		try {
-			// Click Send ส่งงานต่อ
+			// Click Tab ส่งงาน
 			new Click().linkText("ส่งงาน");
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "Tab ส่งงาน");
 		} catch (TimeoutException e) {
@@ -44,18 +44,24 @@ public class SendWorkCOM extends KeywordsCOM {
 			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "ส่งงาน Tab");
 		}
 		try {
-			// Select DropDown :กรุณาเลือกทางเลือก =ส่งงานต่อ
-			new Dropdown().id("//*[@id='btnSendDiv']/table[1]/tbody/tr[1]/td/div[2]/input", "ส่งงานต่อ",
-								"responses", "Next", 
+			// Select DropDown :กรุณาเลือกทางเลือก =จบการทำงาน
+			new Dropdown().id("//*[@id='btnSendDiv']/table[1]/tbody/tr[1]/td/div[2]/input", "จบการทำงาน",
+								"responses", "End", 
 								"showHideDivByEndReason(this.value);");
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":กรุณาเลือกทางเลือก =ส่งงานต่อ");
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":กรุณาเลือกทางเลือก =จบการทำงาน");
 		}catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":กรุณาเลือกทางเลือก =ส่งงานต่อ");
-			e.getStackTrace();
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":กรุณาเลือกทางเลือก =จบการทำงาน");
 			//return false;
 		}catch (NoSuchElementException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":กรุณาเลือกทางเลือก =ส่งงานต่อ");
-			e.getStackTrace();
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":กรุณาเลือกทางเลือก =จบการทำงาน");
+			//return false;
+		}
+		try {
+			// Select DropDown :เหตุผลการยกเลิก =CC : ลูกค้าปฏิเสธ
+			new Dropdown().id("selectedEndReason", "CC");
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":เหตุผลการยกเลิก =CC : ลูกค้าปฏิเสธ");
+		} catch (NoSuchElementException e) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":เหตุผลการยกเลิก =CC : ลูกค้าปฏิเสธ");
 			//return false;
 		}
 		try {

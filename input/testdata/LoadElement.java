@@ -5,7 +5,7 @@ import java.util.List;
 
 import testdata.CellTag.col;
 
-public class LoadElement implements TestDatas {
+public class LoadElement implements TestDatas{
 
 	String workSheetPath;
 	int sizeOfData;
@@ -43,7 +43,7 @@ public class LoadElement implements TestDatas {
 			System.out.print("F ");
 			objTmp.fieldName 	= rdExl.getString(col.F, row(idx));
 			System.out.print("G ");
-			objTmp.filedType 	= rdExl.getFlType(col.G, row(idx));
+			objTmp.fieldType 	= rdExl.getFlType(col.G, row(idx));
 			System.out.print("H ");
 			objTmp.fieldOpnal 	= rdExl.getString(col.H, row(idx));
 			System.out.print("I ");

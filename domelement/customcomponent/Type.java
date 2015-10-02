@@ -7,7 +7,7 @@ import testdata.CellTag.fieldType;
 public class Type implements CustomComponent{
 	
 	public void RunText(elementObj obj) {
-		auto(obj.filedType, obj.fieldName, obj.dataTag);
+		auto(obj.fieldType, obj.fieldName, obj.dataTag);
 	}
 	
 	public void auto(fieldType filedType, String field, String value) {

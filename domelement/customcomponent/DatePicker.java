@@ -10,7 +10,7 @@ import testdata.elementObj;
 public class DatePicker implements CustomComponent{
 	
 	public void runDatePicker(elementObj obj){
-		auto(obj.filedType, obj.fieldName, obj.dataTag);
+		auto(obj.fieldType, obj.fieldName, obj.dataTag);
 	}
 	
 	private void auto(fieldType filedType, String inputDateField, String dateStr) {

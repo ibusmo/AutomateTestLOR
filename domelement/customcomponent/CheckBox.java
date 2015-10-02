@@ -8,7 +8,7 @@ import testdata.CellTag.fieldType;
 public class CheckBox implements CustomComponent{
 	
 	public void RunCheckBox(elementObj obj) {
-		auto(obj.filedType, obj.fieldName);
+		auto(obj.fieldType, obj.fieldName);
 	}
 	
 	public void auto(fieldType filedType, String fieldName) {

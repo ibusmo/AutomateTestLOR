@@ -133,21 +133,32 @@ public class ReadExcel {
 
 		else if(sheetStr.contains("gotoapp"))			return sheetType.GotoApp;
 
-		else if(sheetStr.contains("ncb"))				return sheetType.NCB;
+		else if(sheetStr.contains("ncb_option"))		return sheetType.NCBOption;
 
+		else if(sheetStr.contains("customer_org"))		return sheetType.AddCustomerOrg;
 		else if(sheetStr.contains("customer"))			return sheetType.AddCustomer;
 
-		else if(sheetStr.contains("loanform"))			return sheetType.AddLoan;
+		else if(sheetStr.contains("loanform_com"))			return sheetType.AddLoanCOM;
+		else if(sheetStr.contains("loanform_dda"))			return sheetType.AddLoanDDA;
 
 		else if(sheetStr.contains("landbuilding"))		return sheetType.CollLandBuilding;
 		else if(sheetStr.contains("building"))			return sheetType.CollBuilding;
 		else if(sheetStr.contains("land"))				return sheetType.CollLand;
+		else if(sheetStr.contains("warranter_org"))		return sheetType.CollWarranterOrg;
 		else if(sheetStr.contains("warranter"))			return sheetType.CollWarranter;
 
 		else if(sheetStr.contains("valuation"))			return sheetType.CMSValuation;
 		
 		else if(sheetStr.contains("document"))			return sheetType.Document;
 		else if(sheetStr.contains("sendwork"))			return sheetType.SendWork;
+		else if(sheetStr.contains("endwork"))			return sheetType.EndWork;
+
+		else if(sheetStr.contains("ncb_summary"))		return sheetType.NCBSummary;
+		else if(sheetStr.contains("excutive"))			return sheetType.ExcutiveSummary;
+
+		else if(sheetStr.contains("wait"))				return sheetType.Wait;
+		
+		else if(sheetStr.contains("searchworkbox"))		return sheetType.SearchWorkBox;
 		
 		else											return sheetType.None;
 	}

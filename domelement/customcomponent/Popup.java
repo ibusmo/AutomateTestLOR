@@ -14,7 +14,7 @@ public class Popup implements CustomComponent {
 	
 	public WebDriver RunPopup(elementObj obj) {
 //		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXX RunPopup");
-		return auto(obj.filedType, obj.fieldName, (int) Math.round(Double.parseDouble(obj.value)));
+		return auto(obj.fieldType, obj.fieldName, (int) Math.round(Double.parseDouble(obj.value)));
 	}
 	
 	private WebDriver auto(fieldType filedType, String fieldName, int nWindows) {

@@ -13,7 +13,7 @@ public class elementObj{
 	
 	public String value;
 	public String fieldName;
-	public fieldType filedType;
+	public fieldType fieldType;
 
 	public String fieldOpnal;
 	public String jsExe;

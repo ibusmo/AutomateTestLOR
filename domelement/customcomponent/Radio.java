@@ -10,7 +10,7 @@ import testdata.CellTag.fieldType;
 public class Radio implements CustomComponent{
 	
 	public void RunRadio(elementObj obj) {
-		auto(obj.filedType, obj.fieldName, obj.value);
+		auto(obj.fieldType, obj.fieldName, obj.value);
 	}
 	
 	public void auto(fieldType field, String fieldName, String value) {

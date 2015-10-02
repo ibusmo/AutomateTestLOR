@@ -3,18 +3,26 @@ package mytestpack;
 import java.util.Scanner;
 
 import COM.CMS.ListOfCMS;
-import COM.creditapplication.CollacteralAddAccountingCOM;
-import COM.creditapplication.CollacteralAddBuildingCOM;
-import COM.creditapplication.CollacteralAddLandAndBuildingCOM;
-import COM.creditapplication.CollacteralAddLandCOM;
-import COM.creditapplication.CollacteralAddWarranterCOM;
-import COM.creditapplication.CustomerAddCOM;
-import COM.creditapplication.LoanFormAddCOM;
-import CSM.NCB.NCBCOM;
+import COM.basicinfo.ExcutiveSummary;
+import COM.prescreen.CollacteralAddAccountingCOM;
+import COM.prescreen.CollacteralAddBuildingCOM;
+import COM.prescreen.CollacteralAddLandAndBuildingCOM;
+import COM.prescreen.CollacteralAddLandCOM;
+import COM.prescreen.CollacteralAddWarranterCOM;
+import COM.prescreen.CollacteralAddWarranterOrgCOM;
+import COM.prescreen.CustomerAddCOM;
+import COM.prescreen.CustomerOrgAddCOM;
+import COM.prescreen.LoanFormCOMAddCOM;
+import COM.prescreen.LoanFormDDAAddCOM;
+import COM.prescreen.NCBOptionCOM;
+import COM.prescreen.NCBSummaryCOM;
 import CSM.register.RegisterCOM;
 import common.AttachFilesCOM;
+import common.EndWorkCOM;
 import common.RequireDocumentsCOM;
+import common.SearchWorkBOx;
 import common.SendWorkCOM;
+import common.Wait;
 import helper.GotoApp;
 import helper.Login;
 import helper.Logout;
@@ -32,10 +40,12 @@ public class COMOperation {
 
 		// OPERATING
 		String appID = null;
+		String username = null;
 		for (ConfigElementObj obj : tc.configElementObj) {
 			switch (obj.sheet) {
 				case Login:
-					login(obj);
+					username = obj.remark.length() > 5 ? obj.remark : username;
+					login(username, obj.process);
 					break;
 				case Logout:
 					new Logout().execute();
@@ -47,14 +57,20 @@ public class COMOperation {
 					appID = obj.remark.length() > 5 ? obj.remark : appID;
 					new GotoApp(appID).execute();
 					break;
-				case NCB:
-					new NCBCOM(obj.index).execute();
+				case NCBOption:
+					new NCBOptionCOM(obj.index).execute();
 					break;
 				case AddCustomer:
 					new CustomerAddCOM(obj.index).execute();
 					break;
-				case AddLoan:
-					new LoanFormAddCOM(obj.index).execute();
+				case AddCustomerOrg:
+					new CustomerOrgAddCOM(obj.index).execute();
+					break;
+				case AddLoanCOM:
+					new LoanFormCOMAddCOM(obj.index).execute();
+					break;
+				case AddLoanDDA:
+					new LoanFormDDAAddCOM(obj.index).execute();
 					break;
 	
 				case CollBuilding:
@@ -72,10 +88,21 @@ public class COMOperation {
 				case CollWarranter:
 					new CollacteralAddWarranterCOM(obj.index).execute();
 					break;
+				case CollWarranterOrg:
+					new CollacteralAddWarranterOrgCOM(obj.index).execute();
+					break;
 	
 				case Document:
 					new RequireDocumentsCOM().execute();
 					new AttachFilesCOM().execute();
+					break;
+	
+				case NCBSummary:
+					new NCBSummaryCOM(obj.index).execute();
+					break;
+	
+				case ExcutiveSummary:
+					new ExcutiveSummary(obj.index).execute();
 					break;
 	
 				case CMSValuation:
@@ -85,22 +112,36 @@ public class COMOperation {
 				case SendWork:
 					new SendWorkCOM().execute();
 					break;
+
+				case EndWork:
+					new EndWorkCOM().execute();
+					break;
+
+				case Wait:
+					new Wait(obj.remark).execute();
+					break;
+
+				case SearchWorkBox:
+					appID = obj.remark.length() > 5 ? obj.remark : appID;
+					SearchWorkBOx swb = new SearchWorkBOx(appID);
+					swb.execute();
+					username = swb.getUsername();
+					break;
 	
 				default:
-					break;
+					continue;
 			}
-			waitForInterrupt();
+//			waitForInterrupt();
 		}
 	}
 
-	private void login(ConfigElementObj obj) {
-		if (obj.process.toLowerCase().contains("lor")) {
+	private void login(String username, String process) {
+		if (process.toLowerCase().contains("lor")) {
 			new OpenBrowser("http://172.31.1.41:55011/LOR/login.jsp").execute();
-		} else if (obj.process.toLowerCase().contains("cms")) {
+		} else if (process.toLowerCase().contains("cms")) {
 			new OpenBrowser("http://172.31.1.42:9080/CMS/login.jsp").execute();
 		}
-		new Login(obj.remark, "testuser").execute();
-		waitForInterrupt();
+		new Login(username, "testuser").execute();
 	}
 
 	private static String register(int index) {

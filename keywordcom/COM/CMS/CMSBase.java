@@ -46,7 +46,7 @@ public class CMSBase extends KeywordsCOM{
 				sendToLogCustom(logexestatus.PASS, logaction.Click, obj.nameTag + ": " + obj.dataTag);
 			}
 		}catch (TimeoutException e){
-			if(obj.filedType == fieldType.linktext)	{
+			if(obj.fieldType == fieldType.linktext)	{
 				//Nothing TO DO
 				sendToLogCustom(logexestatus.FAIL, logaction.Click, obj.nameTag + ": " + obj.dataTag);
 			}

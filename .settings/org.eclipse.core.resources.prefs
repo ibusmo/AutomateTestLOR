@@ -1,10 +1,12 @@
 eclipse.preferences.version=1
 encoding//keyword/common/AttachFiles.java=UTF-8
 encoding//keyword/common/AttachFilesCOM.java=UTF-8
+encoding//keyword/common/EndWorkCOM.java=UTF-8
 encoding//keyword/common/RequireDocuments.java=UTF-8
 encoding//keyword/common/RequireDocumentsCOM.java=UTF-8
 encoding//keyword/common/SendWork.java=UTF-8
 encoding//keyword/common/SendWorkCOM.java=UTF-8
+encoding//keyword/common/Wait.java=UTF-8
 encoding//keyword/helper/GotoApp.java=UTF-8
 encoding//keywordcsm/CSM/NCB/NCB.java=UTF-8
 encoding//keywordcsm/CSM/register/RegisterCOM.java=UTF-8
