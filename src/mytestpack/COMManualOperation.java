@@ -3,19 +3,6 @@ package mytestpack;
 import java.util.Scanner;
 
 import COM.CMS.ListOfCMS;
-import COM.basicinfo.ExcutiveSummary;
-import COM.prescreen.CollacteralAddAccountingCOM;
-import COM.prescreen.CollacteralAddBuildingCOM;
-import COM.prescreen.CollacteralAddLandAndBuildingCOM;
-import COM.prescreen.CollacteralAddLandCOM;
-import COM.prescreen.CollacteralAddWarranterCOM;
-import COM.prescreen.CollacteralAddWarranterOrgCOM;
-import COM.prescreen.CustomerAddCOM;
-import COM.prescreen.CustomerOrgAddCOM;
-import COM.prescreen.LoanFormCOMAddCOM;
-import COM.prescreen.LoanFormDDAAddCOM;
-import COM.prescreen.NCBOptionCOM;
-import COM.prescreen.NCBSummaryCOM;
 import CSM.register.RegisterCOM;
 import common.AttachFilesCOM;
 import common.EndWorkCOM;
@@ -23,6 +10,19 @@ import common.RequireDocumentsCOM;
 import common.SearchWorkBOx;
 import common.SendWorkCOM;
 import common.Wait;
+import creditapplication.CollacteralAddAccountingCOM;
+import creditapplication.CollacteralAddBuildingCOM;
+import creditapplication.CollacteralAddLandAndBuildingCOM;
+import creditapplication.CollacteralAddLandCOM;
+import creditapplication.CollacteralAddWarranterCOM;
+import creditapplication.CollacteralAddWarranterOrgCOM;
+import creditapplication.CustomerAddCOM;
+import creditapplication.CustomerOrgAddCOM;
+import creditapplication.ExcutiveSummary;
+import creditapplication.LoanFormCOMAddCOM;
+import creditapplication.LoanFormDDAAddCOM;
+import creditapplication.NCBOptionCOM;
+import creditapplication.NCBSummaryCOM;
 import helper.GotoApp;
 import helper.Login;
 import helper.Logout;
@@ -31,7 +31,7 @@ import testdata.ConfigElementObj;
 import testdata.TestConfig;
 import webdriver.WebDriverEngine;
 
-public class COMOperation {
+public class COMManualOperation {
 
 	public void LORasCOM() {
 		// Load CONFIGURATION

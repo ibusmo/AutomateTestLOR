@@ -1,32 +1,33 @@
-package COM.prescreen;
+package creditapplication;
 
 import base.KeywordsCOM;
 import testdata.ConfigElementObj;
 import testdata.elementObj;
 import testdata.CellTag.inputType;
 
-public class CollacteralAddBuildingCOM extends KeywordsCOM {
+public class CollacteralAddLandAndBuildingCOM extends KeywordsCOM {
 
 	int collacteralIndex;
 	
-	public CollacteralAddBuildingCOM(int sheetIndex, ConfigElementObj configElementObj) {
-		super.workSheetPath = "collateral_addbuilding_" + sheetIndex;
+	public CollacteralAddLandAndBuildingCOM(int sheetIndex, ConfigElementObj configElementObj) {
+		super.workSheetPath = "collateral_addlandandbuilding_" + sheetIndex;
 		this.collacteralIndex = (int) Math.round(Double.parseDouble(configElementObj.remark));
 		initKeywords();
 	}
 	
-	public CollacteralAddBuildingCOM(int sheetIndex, int collacteralIndex) {
-		super.workSheetPath = "collateral_addbuilding_" + sheetIndex;
+	public CollacteralAddLandAndBuildingCOM(int sheetIndex, int collacteralIndex) {
+		super.workSheetPath = "collateral_addlandandbuilding_" + sheetIndex;
 		this.collacteralIndex = collacteralIndex;
+		initKeywords();
 	}
 
 	@Override
 	public void initKeywords() {
 		super.logoperation 	= log.LogTag.logoperation.RegScanning;
 		super.logtab 			= log.LogTag.logtab.Collateral;
-		super.logsubtab 		= log.LogTag.logsubtab.AddBuilding;
+		super.logsubtab 		= log.LogTag.logsubtab.AddLandBuilding;
 
-		super.sizeOfData = 56;
+		super.sizeOfData = 74;
 		super.offsetRow = 2;
 
 		loadData();

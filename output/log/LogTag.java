@@ -22,7 +22,7 @@ public class LogTag {
 		NCB,
 		ConsComment,
 		BasiInfo,
-		None, RegisScan, Assigment, LoanApp, CMS, CSMColl, Config, SendWork, RequireDoc, EndWork, Wait, SearchWorkBOx
+		None, RegisScan, Assigment, LoanApp, CMS, CSMColl, Config, SendWork, RequireDoc, EndWork, Wait, SearchWorkBOx, CA, SBROAssign, SBROSECAssign, CMDEPTAssign, Comment
 	}
 	public enum logtab{
 		WorkBox,
@@ -34,7 +34,7 @@ public class LogTag {
 		
 		RegCollate,
 		ExcSummary,
-		None, RegColl, Assignment, Edit, GetCMS, CollInfo, CMSSendWork, CMSGotoApp, Collateral, NCB, ListofCMS, Land, LandBuilding, Building, SendWork, EndWork, Wait, Search, SearchWorkBOx, RegCustomerOrg, LoanFormDDA, 
+		None, RegColl, Assignment, Edit, GetCMS, CollInfo, CMSSendWork, CMSGotoApp, Collateral, NCB, ListofCMS, Land, LandBuilding, Building, SendWork, EndWork, Wait, Search, SearchWorkBOx, RegCustomerOrg, LoanFormDDA, CA, 
 	} 
 	public enum logsubtab{
 		WorkBox,
@@ -51,7 +51,7 @@ public class LogTag {
 		LongTermLoan,
 		
 		NCB,
-		None, Warrantee, Mortgage, GeneralInfo, LandInfo, BuildingInfo, SupportInfo, EvaMethod, Value, PartPledge, AddLand, AddLandBuilding, AddWarranter, Evaluate, AddBuilding, AddAccounting, AddWarranterOrg
+		None, Warrantee, Mortgage, GeneralInfo, LandInfo, BuildingInfo, SupportInfo, EvaMethod, Value, PartPledge, AddLand, AddLandBuilding, AddWarranter, Evaluate, AddBuilding, AddAccounting, AddWarranterOrg, info
 	} 
 	public enum logelement{
 		None

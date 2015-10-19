@@ -1,4 +1,4 @@
-package COM.prescreen;
+package creditapplication;
 
 import base.KeywordsCOM;
 import testdata.LoadElement;

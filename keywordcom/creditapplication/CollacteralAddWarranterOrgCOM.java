@@ -1,4 +1,4 @@
-package COM.prescreen;
+package creditapplication;
 
 import base.KeywordsCOM;
 import testdata.ConfigElementObj;
@@ -19,6 +19,7 @@ public class CollacteralAddWarranterOrgCOM extends KeywordsCOM {
 	public CollacteralAddWarranterOrgCOM(int sheetIndex, int collacteralIndex) {
 		super.workSheetPath = "collateral_addwarranter_org_" + sheetIndex;
 		this.collacteralIndex = collacteralIndex;
+		initKeywords();
 	}
 	
 	public CollacteralAddWarranterOrgCOM(int sheetIndex) {

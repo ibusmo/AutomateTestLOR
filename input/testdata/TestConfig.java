@@ -29,6 +29,14 @@ public class TestConfig implements TestDatas {
 
 		sizeOfData = getSize();
 		offsetRow = 2;
+	}	
+	
+	public TestConfig(String type){
+		logoperation 	= log.LogTag.logoperation.Config;
+		workSheetPath = "config_auto";
+
+		sizeOfData = getSize();
+		offsetRow = 2;
 	}
 
 	@Override

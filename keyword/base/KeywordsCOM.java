@@ -68,8 +68,8 @@ public abstract class KeywordsCOM{
 		sendToLogStart();
 
 		for(elementObj obj : elementObjList){
-			if(obj.run==false) continue;
 			precondition(obj);
+			if(obj.run==false) continue;
 			switch(obj.inputType){
 				case button:
 					if(caseButton(obj)==false) 

@@ -1,4 +1,4 @@
-package COM.prescreen;
+package creditapplication;
 
 import base.KeywordsCOM;
 import testdata.ConfigElementObj;
@@ -19,6 +19,7 @@ public class CollacteralAddLandCOM extends KeywordsCOM {
 	public CollacteralAddLandCOM(int sheetIndex, int collacteralIndex) {
 		super.workSheetPath = "collateral_addland_" + sheetIndex;
 		this.collacteralIndex = collacteralIndex;
+		initKeywords();
 	}
 	
 	//Use

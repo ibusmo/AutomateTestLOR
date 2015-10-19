@@ -1,4 +1,4 @@
-package COM.basicinfo;
+package creditapplication;
 
 import base.KeywordsCOM;
 

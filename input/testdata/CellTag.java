@@ -30,11 +30,11 @@ public class CellTag {
 		CollWarranter,
 		CollAccounting,
 		
-		CMSLandBuiling,
+		CMSLandBuilding,
 		CMSLand,
 		CMSBuilding, 
 		
 		Document, ReqDoc, AttachDoc, 
-		LOR, CMS, GotoApp, Login, Logout, SendWork, CMSValuation, None, EndWork, Wait, ExcutiveSummary, NCBSummary, SearchWorkBox, AddCustomerOrg, CollWarranterOrg, AddLoanDDA
+		LOR, CMS, GotoApp, Login, Logout, SendWork, CMSValuation, None, EndWork, Wait, ExcutiveSummary, NCBSummary, SearchWorkBox, AddCustomerOrg, CollWarranterOrg, AddLoanDDA, NCB, CutomerNormal, CutomerLegal, LoanCOM, LoanDDA, CMSAccounting, CMSLegalWar, CMSNormalWar, Seller
 	}
 }

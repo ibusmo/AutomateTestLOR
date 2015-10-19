@@ -31,6 +31,12 @@ public class Radio implements CustomComponent{
 		new WaitFor().name(field);
 		List<WebElement> radios = driver.findElements(By.name(field));
 		radios.get(value).click();
+	}	
+	
+	public void id(String field, int value){
+		new WaitFor().id(field);
+		List<WebElement> radios = driver.findElements(By.id(field));
+		radios.get(value).click();
 	}
 	
 }

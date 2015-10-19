@@ -2,6 +2,7 @@ package helper;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,19 +48,26 @@ public class Login implements base.KeywordsCSM {
 			driver.findElement(By.id("wp-submit")).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Fill_login, username + " : " + password);
 		} catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Fill_login, username + " : " + password);
-			return false;
+
 		}
-		try {
+		try{
 			// Kick
 			driver.findElement(By.id("j_password")).clear();
 			driver.findElement(By.id("j_password")).sendKeys(password);
+		}catch (InvalidElementStateException e) {
+			
+		}catch (NoSuchElementException e) {
+			
+		}
+		try{
 			driver.findElement(By.id("wp-submit")).click();
 			sendToLogCustom(logexestatus.PASS, logaction.Fill_again, username + " : " + password);
-		} catch (NoSuchElementException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Fill_again, username + " : " + password);
-			//return false;
+		}catch (InvalidElementStateException e) {
+			
+		}catch (NoSuchElementException e) {
+			
 		}
+		
 		sendToLogFinish();
 		return true;
 	}
