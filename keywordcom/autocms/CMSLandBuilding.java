@@ -1,4 +1,4 @@
-package COM.CMS;
+package autocms;
 import java.util.List;
 
 import org.openqa.selenium.By;

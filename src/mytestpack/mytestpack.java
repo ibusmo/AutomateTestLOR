@@ -2,7 +2,7 @@ package mytestpack;
 
 import java.util.Scanner;
 
-import COM.CMS.ListOfCMS;
+import autocms.ListOfCMS;
 import creditanalysis.CA;
 import helper.GotoApp;
 import helper.Login;
@@ -13,8 +13,8 @@ import webdriver.WebDriverEngine;
 
 public class mytestpack {
 	public static void main(String[] args){		
-		String filePath = "C:\\Users\\EthanHuntTB1\\Desktop\\testdata\\skillset\\";
-		String fileName = "12";
+		String filePath = "C:\\Users\\EthanHuntTB1\\Desktop\\testdata\\";
+		String fileName = "testdata";
 		
 		//fileName = "testdata";
 		
@@ -23,15 +23,16 @@ public class mytestpack {
 		LogCat.getInstance();
 		WebDriverEngine.getInstance("firefox");	
 
-//		new COMAutoOperation().LORasCOM();		
+		new COMAutoOperation().LORasCOM();		
 //		new COMManualOperation().LORasCOM();
-		CMSValuation2("003310580007");
+//		CMSValuation2("038311580031");
 //		CA();
 		
 		WebDriverEngine.Close();
 		WebDriverEngine.quit();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void CA(){
 		//new OpenBrowser("http://172.31.1.41:55011/LOR/login.jsp").execute();
 		new OpenBrowser("https://10.251.108.203/LOR/login.jsp").execute();
@@ -42,13 +43,14 @@ public class mytestpack {
 		new Logout().execute();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void CMSValuation2(String appID) {
 		new OpenBrowser("http://172.31.1.42:9080/CMS/login.jsp").execute();
 //		new OpenBrowser("https://10.251.108.202/CMS/login.jsp").execute();
 		WebDriverEngine.getDriver().manage().window().maximize();
-		//new Login("SomchaiA", "testuser").execute();
-		//new Login("PisutC", "testuser").execute();
-		new Login("UraiwanK", "testuser").execute();
+		new Login("SomchaiA", "testuser").execute();
+//		new Login("PisutC", "testuser").execute();
+//		new Login("UraiwanK", "testuser").execute();
 		waitForInterrupt();
 		new ListOfCMS(appID).execute();
 		waitForInterrupt();

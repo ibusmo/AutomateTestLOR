@@ -124,7 +124,25 @@ public class ReadExcel {
 	
 	public sheetType getSheetType(col colTag, int rowTag){
 		String sheetStr = getString(colTag, rowTag).toLowerCase();
-		if(sheetStr.contains("lor"))					return sheetType.LOR;
+		/////////////////////////////////////////////////////////////////////////////////////// AUTO
+		if(sheetStr.contains("seller"))					return sheetType.Seller;
+		else if(sheetStr.contains("ncb"))				return sheetType.NCB;
+		
+		else if(sheetStr.contains("com"))				return sheetType.LoanCOM;
+		else if(sheetStr.contains("dda"))				return sheetType.LoanDDA;
+		
+		else if(sheetStr.contains("landandbuilding"))	return sheetType.CMSLandBuilding;
+		else if(sheetStr.contains("building"))			return sheetType.CMSBuilding;
+		else if(sheetStr.contains("land"))				return sheetType.CMSLand;
+		else if(sheetStr.contains("accounting"))		return sheetType.CMSAccounting;
+		else if(sheetStr.contains("normal_war"))		return sheetType.CMSNormalWar;		
+		else if(sheetStr.contains("legal_war"))			return sheetType.CMSLegalWar;
+
+		else if(sheetStr.contains("normal"))			return sheetType.CutomerNormal;
+		else if(sheetStr.contains("legal"))				return sheetType.CutomerLegal;
+		
+		///////////////////////////////////////////////////////////////////////////////////// Manual
+		else if(sheetStr.contains("lor"))				return sheetType.LOR;
 		else if(sheetStr.contains("cms"))				return sheetType.CMS;
 		else if(sheetStr.contains("login"))				return sheetType.Login;
 		else if(sheetStr.contains("logout"))			return sheetType.Logout;
@@ -144,8 +162,8 @@ public class ReadExcel {
 		else if(sheetStr.contains("landbuilding"))		return sheetType.CollLandBuilding;
 		else if(sheetStr.contains("building"))			return sheetType.CollBuilding;
 		else if(sheetStr.contains("land"))				return sheetType.CollLand;
-		else if(sheetStr.contains("addwarranter_org"))		return sheetType.CollWarranterOrg;
-		else if(sheetStr.contains("addwarranter"))			return sheetType.CollWarranter;
+		else if(sheetStr.contains("addwarranter_org"))	return sheetType.CollWarranterOrg;
+		else if(sheetStr.contains("addwarranter"))		return sheetType.CollWarranter;
 
 		else if(sheetStr.contains("valuation"))			return sheetType.CMSValuation;
 		
@@ -159,23 +177,6 @@ public class ReadExcel {
 		else if(sheetStr.contains("wait"))				return sheetType.Wait;
 
 		else if(sheetStr.contains("searchworkbox"))		return sheetType.SearchWorkBox;
-
-		/////////////////////////////////////////////////////////////////////////////////////// AUTO
-		else if(sheetStr.contains("seller"))			return sheetType.Seller;
-		else if(sheetStr.contains("ncb"))				return sheetType.NCB;
-		
-		else if(sheetStr.contains("com"))				return sheetType.LoanCOM;
-		else if(sheetStr.contains("dda"))				return sheetType.LoanDDA;
-		
-		else if(sheetStr.contains("landandbuilding"))	return sheetType.CMSLandBuilding;
-		else if(sheetStr.contains("building"))			return sheetType.CMSBuilding;
-		else if(sheetStr.contains("land"))				return sheetType.CMSLand;
-		else if(sheetStr.contains("accounting"))		return sheetType.CMSAccounting;
-		else if(sheetStr.contains("normal_war"))		return sheetType.CMSNormalWar;		
-		else if(sheetStr.contains("legal_war"))			return sheetType.CMSLegalWar;
-
-		else if(sheetStr.contains("normal"))			return sheetType.CutomerNormal;
-		else if(sheetStr.contains("legal"))				return sheetType.CutomerLegal;
 		
 		else											return sheetType.None;
 	}

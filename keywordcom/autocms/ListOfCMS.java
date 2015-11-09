@@ -1,4 +1,4 @@
-package COM.CMS;
+package autocms;
 
 import java.util.ArrayList;
 import java.util.List;

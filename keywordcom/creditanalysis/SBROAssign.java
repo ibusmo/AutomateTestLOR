@@ -48,16 +48,16 @@ public class SBROAssign extends KeywordsCOM {
 
 		try {
 			// Select DropDown :หน่วยงาน * =หน่วยวิเคราะห์สินเชื่อธนาคารออมสินเขตวัชรพลธนาคารออมสินภาค1และสาขาภายใต้
-			new Dropdown().id("//*[@id='assignUser']/div/div[3]/input", "หน่วยวิเคราะห์สินเชื่อธนาคารออมสินเขตวัชรพลธนาคารออมสินภาค1และสาขาภายใต้",
+			new Dropdown().id("//*[@id='assignUser']/div/div[3]/input", "ธนาคารออมสินเขตวัชรพลและสาขาภายใต้",
 								"NEWSM2SBROSec_DDL", "NEWSM2SBROSec-group217", 
 								"populateUserList(this.value, '', errorNoResult);");
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":หน่วยงาน * =หน่วยวิเคราะห์สินเชื่อธนาคารออมสินเขตวัชรพลธนาคารออมสินภาค1และสาขาภายใต้");
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 		}catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =หน่วยวิเคราะห์สินเชื่อธนาคารออมสินเขตวัชรพลธนาคารออมสินภาค1และสาขาภายใต้");
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 			e.getStackTrace();
 			return false;
 		}catch (NoSuchElementException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =หน่วยวิเคราะห์สินเชื่อธนาคารออมสินเขตวัชรพลธนาคารออมสินภาค1และสาขาภายใต้");
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 			e.getStackTrace();
 			return false;
 		}
@@ -65,7 +65,7 @@ public class SBROAssign extends KeywordsCOM {
 		try{
 			//new CheckBox().name("selectedUsers");
 			//Check Box force to Radio
-			//Force to select Somchai
+			//Force to select SomchaiA
 			// 0 is hidden
 			//new Radio().name("selectedUsers", 1);
 

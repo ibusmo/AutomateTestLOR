@@ -1,4 +1,4 @@
-package COM.CMS;
+package autocms;
 
 public class CMSLand extends CMSBase{
 	

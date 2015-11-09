@@ -4,6 +4,7 @@ package common;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.UnhandledAlertException;
 
 import customcomponent.AlertHandle;
 import customcomponent.Click;
@@ -46,6 +47,13 @@ public class SendWorkCOM extends KeywordsCOM {
 			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "ส่งงาน Tab");
 		}
 		
+		
+		
+		
+		
+		
+		
+		
 		try {
 			// Select DropDown :กรุณาเลือกทางเลือก =ส่งงานต่อ
 			new Dropdown().id("//*[@id='btnSendDiv']/table[2]/tbody/tr[1]/td/div[2]/input", "ส่งงานต่อ",
@@ -61,21 +69,64 @@ public class SendWorkCOM extends KeywordsCOM {
 			e.getStackTrace();
 			//return false;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
 		try {
 			// Click Send ส่งงานต่อ
 			new Click().id("btnSend");
 			sendToLogCustom(logexestatus.PASS, logaction.Click, "ส่งงานต่อ");
+
+			try{
+				// Alert ยืนยันการส่งงาน
+				new AlertHandle().execute();
+				sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "ยืนยันการส่งงาน OK");
+			}catch (NoAlertPresentException e) {
+				sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "ยืนยันการส่งงาน");
+			}
+			
+			sendToLogFinish();
+			return true;
+			
 		} catch (TimeoutException e) {
 			sendToLogCustom(logexestatus.FAIL, logaction.Click, "ส่งงานต่อ");
-			return false;
+			//return false;
 		}
-		try{
-			// Alert ยืนยันการส่งงาน
-			new AlertHandle().execute();
-			sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "ยืนยันการส่งงาน OK");
-		}catch (NoAlertPresentException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "ยืนยันการส่งงาน");
+		
+		
+		
+		
+		
+		
+		
+		try {
+			// Click Send ส่งงานต่อ
+			new Click().xpath("//*[@id='btnSendDiv']/table[2]/tbody/tr/td/button");
+			sendToLogCustom(logexestatus.PASS, logaction.Click, "ส่งงานต่อ");
+
+			try{
+				// Alert ยืนยันการส่งงาน
+				new AlertHandle().execute();
+				sendToLogCustom(logexestatus.PASS, logaction.Comfirm, "ยืนยันการส่งงาน OK");
+			}catch (NoAlertPresentException e) {
+				sendToLogCustom(logexestatus.FAIL, logaction.Comfirm, "ยืนยันการส่งงาน");
+			}
+			
+			sendToLogFinish();
+			return true;
+			
+		} catch (TimeoutException e) {
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "ส่งงานต่อ");
+			//return false;
+		}catch(UnhandledAlertException e){
+			sendToLogCustom(logexestatus.FAIL, logaction.Click, "ส่งงานต่อ");
 		}
+
 		sendToLogFinish();
 		return true;
 	}

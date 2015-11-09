@@ -2,14 +2,16 @@ package mytestpack;
 
 import java.util.Scanner;
 
-import COM.CMS.ListOfCMS;
 import CSM.register.RegisterCOM;
+import autocms.ListOfCMS;
 import common.AttachFilesCOM;
 import common.RequireDocumentsCOM;
 import common.SearchWorkBOx;
 import common.SendWorkCOM;
 import common.Wait;
+import creditanalysis.CA;
 import creditanalysis.CMDEPTAssign;
+import creditanalysis.Comment;
 import creditanalysis.SBROAssign;
 import creditanalysis.SBROSECAssign;
 import creditapplication.CollacteralAddAccountingCOM;
@@ -37,7 +39,7 @@ public class COMAutoOperation {
 
 	String username = null;
 	String appID = null;
-	int delayTime = 2000;
+	int delayTime = 100;
 	Boolean NCB = false;
 	int CutomerNormal = 0;
 	int CutomerLegal = 0;
@@ -60,7 +62,6 @@ public class COMAutoOperation {
 		// Load CONFIGURATION
 		tc = new TestConfig("auto");
 		tc.loadData();
-
 		loadConfigAndSetting();
 		showSetting();
 
@@ -73,6 +74,7 @@ public class COMAutoOperation {
 
 //		/////////////////////////////////////////////////// Credit Analysis (CA)
 //		// Current User (SuneeR, SatapornM) 		SBRO
+		// User as verifyAndCommitment from creditApplication
 		login(username, "LOR");
 		new GotoApp(appID).execute();
 		new SBROAssign().execute();
@@ -100,19 +102,19 @@ public class COMAutoOperation {
 //		//Skill Set									CM
 		login(username, "LOR");
 		new GotoApp(appID).execute();
-//		new CA().execute();
-//		new SendWorkCOM().execute();
-		//waitForInterrupt();
+		new CA().execute();
+		new SendWorkCOM().execute();
+		waitForInterrupt();
 		new Logout().execute();
 
 //		//ONLY ThanypornK							CMDEPT
-//		login("ThanypornK", "LOR");
-//		new GotoApp(appID).execute();
-//		new Comment().execute();
-//		new SendWorkCOM().execute();
-//		waitForInterrupt();
-//		searchForRole();
-//		new Logout().execute();
+		login("ThanypornK", "LOR");
+		new GotoApp(appID).execute();
+		new Comment().execute();
+		new SendWorkCOM().execute();
+		waitForInterrupt();
+		searchForRole();
+		new Logout().execute();
 	}
 
 	private void showSetting() {
@@ -138,28 +140,15 @@ public class COMAutoOperation {
 	}
 
 	private void creditApplication() {
-		/////////////////////////////////////////////////// Node1
-		// login
+		//BRO	พนักงานปฎิบัติการ
 		login(username, "LOR");
-		
 		prescreen();
-
-		/////////////////////////////////////////////////// Node2
-		// If customer is Legal and NCB option is true -> NCB
 		NCBSummary();
-
-		// Basic Information
 		basicInformation();
-
-		// Search for next role
 		searchForRole();
-
-		// Logout
 		new Logout().execute();
-
-		// VerifyAndCommitment
+		//SBRO	ผจก.สาจา
 		verifyAndCommitment();
-
 	}
 
 	private void verifyAndCommitment() {
@@ -171,30 +160,18 @@ public class COMAutoOperation {
 	}
 
 	private void prescreen() {
-		// Register
 		appID = register(1);
-
-		// NCB option
 		NCBOption();
-
-		// Add Customer
 		addCustomer();
-
-		// Add Loan
 		addLoan();
-
-		// Collateral
 		addCollateral();
-
-		// If customer is Normal -> DOCUMENT
 		document();
-
-		// Send work
 		new SendWorkCOM().execute();
 		new Wait(delayTime).execute();
 	}
 
 	private void document() {
+		// If customer is Normal -> DOCUMENT
 		if (CutomerNormalQueue == 1) {
 			new RequireDocumentsCOM().execute();
 			new AttachFilesCOM().execute();
@@ -218,9 +195,16 @@ public class COMAutoOperation {
 	}
 
 	private void NCBSummary() {
-		if (CutomerLegalQueue == 1 && NCB) {
+		// If customer is Legal and NCB option is true -> NCB
+		if (CutomerLegal > 0 && NCB) {
 			new GotoApp(appID).execute();
-			new NCBSummaryCOM(1).execute();
+
+			for (int i = 1; i <= CutomerNormal + CutomerLegal; i++) {
+				new NCBSummaryCOM(1, i).execute();
+			}
+			
+//			new NCBSummaryCOM(1).execute();
+			
 			new SendWorkCOM().execute();
 			new Wait(delayTime).execute();
 		}

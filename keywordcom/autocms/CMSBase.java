@@ -1,4 +1,4 @@
-package COM.CMS;
+package autocms;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidElementStateException;

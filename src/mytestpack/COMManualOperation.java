@@ -2,8 +2,8 @@ package mytestpack;
 
 import java.util.Scanner;
 
-import COM.CMS.ListOfCMS;
 import CSM.register.RegisterCOM;
+import autocms.ListOfCMS;
 import common.AttachFilesCOM;
 import common.EndWorkCOM;
 import common.RequireDocumentsCOM;

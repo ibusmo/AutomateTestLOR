@@ -105,16 +105,16 @@ public class SBROSECAssign extends KeywordsCOM {
 
 		try {
 			// Select DropDown :หน่วยงาน * =101010115385070 - หน่วยวิเคราะห์สินเชื่อ(ธนาคารออมสินเขตวัชรพล)
-			new Dropdown().idNoText("//*[@id='assignUser']/div/div[3]/input", "101010115385070 - หน่วยวิเคราะห์สินเชื่อ(ธนาคารออมสินเขตวัชรพล)",
-								"NEWSM2CMDept_DDL", "NEWSM2CMDept-101010115385070", 
+			new Dropdown().idNoText("//*[@id='assignUser']/div/div[3]/input", "ธนาคารออมสินเขตวัชรพลและสาขาภายใต้",
+								"NEWSM2CMDept_DDL", "NEWSM2CMDept-group217", 
 								"populateUserList(this.value, '', errorNoResult);");
-			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":หน่วยงาน * =101010115385070 - หน่วยวิเคราะห์สินเชื่อ(ธนาคารออมสินเขตวัชรพล)");
+			sendToLogCustom(logexestatus.PASS, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 		}catch (TimeoutException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =101010115385070 - หน่วยวิเคราะห์สินเชื่อ(ธนาคารออมสินเขตวัชรพล)");
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 			e.getStackTrace();
 			return false;
 		}catch (NoSuchElementException e) {
-			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =101010115385070 - หน่วยวิเคราะห์สินเชื่อ(ธนาคารออมสินเขตวัชรพล)");
+			sendToLogCustom(logexestatus.FAIL, logaction.Dropdown, ":หน่วยงาน * =ธนาคารออมสินเขตวัชรพลและสาขาภายใต้");
 			e.getStackTrace();
 			return false;
 		}
@@ -126,7 +126,7 @@ public class SBROSECAssign extends KeywordsCOM {
 			// 0 is hidden
 			//new Radio().name("selectedUsers", 1);
 
-			new CheckBox().xpath("//*[@id='NEWSM2CMDeptTable']/tr[2]/td[1]/input");
+			new CheckBox().xpath("//*[@id='NEWSM2CMDeptTable']/tr[4]/td[1]/input");
 			
 			sendToLogCustom(logexestatus.PASS, logaction.Checkbox, "มอบหมายงาน :SBRO");
 		}catch(TimeoutException e){
